@@ -2,3 +2,10 @@
 /screenshots/
 /resources/
 /ojpenhanced/
+/CompileOJP.bat
+/CompileOJPLinux.bat
+/MakeLinuxPackage.bat
+/MakePK3.bat
+/MakeWindowsInstaller.bat
+/SetBatchEnvVars.bat
+/ojp_enhanced_installscript.iss
