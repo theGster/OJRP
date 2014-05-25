@@ -2305,12 +2305,12 @@ qboolean OJP_CounterForce(gentity_t *attacker, gentity_t *defender, int attackPo
 		{
 			return qfalse;
 		}
-	//} fix push
+	}
 
  	//if(PM_SaberInBrokenParry(defender->client->ps.saberMove))
 	//{//can't block while stunned
 	//	return qfalse; fix push
-	}
+	//}
 
 	if(BG_InSlowBounce(&defender->client->ps) && defender->client->ps.userInt3 & (1 << FLAG_OLDSLOWBOUNCE))
 	{//can't block lightning while in the heavier slow bounces.
