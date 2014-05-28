@@ -7225,40 +7225,44 @@ SP_fx_runner(fx_runner);
 		}
 			if ( trap_Argc() == 2 )
 			{
-			int	client_id = -1;
+			int	clId = -1;
+         int   clId2 = -1;
 			char	arg1[MAX_STRING_CHARS];
+         char	arg2[MAX_STRING_CHARS];
 			trap_Argv( 1, arg1, sizeof( arg1 ) );
-			client_id = G_ClientNumberFromArg( arg1 );
+			clId = G_ClientNumberFromArg( arg1 );			
+         trap_Argv( 1, arg2, sizeof( arg2 ) );
+			clId2 = G_ClientNumberFromArg( arg2 );
 
-			if (client_id == -1)
+			if (clId == -1 && clId2 == -1)
 			{
 				trap_SendServerCommand( ent-g_entities, va("print \"Can't find client ID for %s\n\"", arg1 ) );
 				return;
 			}
-			if (client_id == -2)
+			if (clId == -2 && clId2 == -2)
 			{
 				trap_SendServerCommand( ent-g_entities, va("print \"Ambiguous client ID for %s\n\"", arg1 ) );
 				return;
 			}
 			// either we have the client id or the string did not match
-			if (!g_entities[client_id].inuse)
+			if (!g_entities[clId].inuse && !g_entities[clId2].inuse)
 			{ // check to make sure client slot is in use
 				trap_SendServerCommand( ent-g_entities, va("print \"Client %s is not active\n\"", arg1 ) );
 				return;
 			}
-			if (g_entities[client_id].health <= 0)
+			if (g_entities[clId].health <= 0 && g_entities[clId2].health <= 0)
 		 {
 			return;
 		 }
-			VectorCopy(ent->client->ps.origin, location);
-			AngleVectors(ent->client->ps.viewangles, forward, NULL, NULL);
+			VectorCopy(g_entities[clId2]->ps.origin, location);
+			AngleVectors(g_entities[clId2]->ps.viewangles, forward, NULL, NULL);
 			// set location out in front of your view
 			forward[2] = 0; //no elevation change
 			VectorNormalize(forward);
-			VectorMA(ent->client->ps.origin, 100, forward, location);
+			VectorMA(g_entities[clId2]->ps.origin, 100, forward, location);
 			location[2] += 5; //add just a bit of height???
 			// teleport them to you
-			TeleportPlayer( &g_entities[client_id], location, ent->client->ps.viewangles);
+			TeleportPlayer( &g_entities[clId], location, g_entities[clId2]->ps.viewangles);
 			trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", g_entities[client_id].client->pers.netname, roar_teleport_saying.string ) );  
 			}
 			if ( trap_Argc() == 4 )
@@ -7285,220 +7289,6 @@ SP_fx_runner(fx_runner);
 				trap_SendServerCommand( ent-g_entities, va("print \"^1X:^7%d, ^1Y:^7%d, ^1Z:^7%d\n\"", (int) ent->client->ps.origin[0], (int) ent->client->ps.origin[1], (int) ent->client->ps.origin[2]));
 			}
 		}
-			/*else if (Q_stricmp(cmd, "nutkick") == 0){
-			trace_t tr;
-			vec3_t fPos;
-
-			AngleVectors(ent->client->ps.viewangles, fPos, 0, 0);
-
-			fPos[0] = ent->client->ps.origin[0] + fPos[0]*40;
-			fPos[1] = ent->client->ps.origin[1] + fPos[1]*40;
-			fPos[2] = ent->client->ps.origin[2] + fPos[2]*40;
-
-			trap_Trace(&tr, ent->client->ps.origin, 0, 0, fPos, ent->s.number, ent->clipmask);
-
-			if (tr.entityNum < MAX_CLIENTS && tr.entityNum != ent->s.number)
-			{
-				gentity_t *other = &g_entities[tr.entityNum];
-
-				if (other && other->inuse && other->client)
-				{
-					vec3_t entDir;
-					vec3_t otherDir;
-					vec3_t entAngles;
-					vec3_t otherAngles;
-
-							VectorSubtract( other->client->ps.origin, ent->client->ps.origin, otherDir );
-							VectorCopy( ent->client->ps.viewangles, entAngles );
-							entAngles[YAW] = vectoyaw( otherDir );
-							SetClientViewAngle( ent, entAngles );
-
-							G_SetAnim(ent, &ent->client->pers.cmd, SETANIM_LEGS, BOTH_A7_KICK_F, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD, 0);
-							G_Sound(ent, CHAN_AUTO, G_SoundIndex("sound/chars/player/dirt_land"));
-							ent->client->ps.saberMove = LS_NONE;
-							ent->client->ps.saberBlocked = 0;
-							ent->client->ps.saberBlocking = 0;
-
-							VectorSubtract( ent->client->ps.origin, other->client->ps.origin, entDir );
-							VectorCopy( other->client->ps.viewangles, otherAngles );
-							otherAngles[YAW] = vectoyaw( entDir );
-							SetClientViewAngle( other, otherAngles );
-
-							G_SetAnim(other, &other->client->pers.cmd, SETANIM_LEGS, BOTH_A7_KICK_RL, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD, 0);
-							G_SetAnim(other, &other->client->pers.cmd, SETANIM_TORSO, TORSO_SURRENDER_START, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD, 0);
-							G_Sound(other, CHAN_AUTO, G_SoundIndex("sound/chars/alora/misc/pain50"));
-							other->client->ps.saberMove = LS_NONE;
-							other->client->ps.saberBlocked = 0;
-							other->client->ps.saberBlocking = 0;
-				}
-			}
-				}
-			else if (Q_stricmp(cmd, "blowjob") == 0){
-			trace_t tr;
-			vec3_t fPos;
-
-			AngleVectors(ent->client->ps.viewangles, fPos, 0, 0);
-
-			fPos[0] = ent->client->ps.origin[0] + fPos[0]*40;
-			fPos[1] = ent->client->ps.origin[1] + fPos[1]*40;
-			fPos[2] = ent->client->ps.origin[2] + fPos[2]*40;
-
-			trap_Trace(&tr, ent->client->ps.origin, 0, 0, fPos, ent->s.number, ent->clipmask);
-
-			if (tr.entityNum < MAX_CLIENTS && tr.entityNum != ent->s.number)
-			{
-				gentity_t *other = &g_entities[tr.entityNum];
-
-					vec3_t entDir;
-					vec3_t otherDir;
-					vec3_t entAngles;
-					vec3_t otherAngles;
-
-					if (other && other->inuse && other->client)
-				{
-					ent->client->emote_freeze=1;
-					VectorSubtract( other->client->ps.origin, ent->client->ps.origin, otherDir );
-					VectorCopy( ent->client->ps.viewangles, entAngles );
-					entAngles[YAW] = vectoyaw( otherDir );
-					SetClientViewAngle( ent, entAngles );
-
-					G_SetAnim(ent, &ent->client->pers.cmd, SETANIM_LEGS, BOTH_CROUCH3, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD, 0);
-					G_SetAnim(ent, &ent->client->pers.cmd, SETANIM_TORSO, BOTH_FORCE_2HANDEDLIGHTNING_HOLD, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD, 0);
-					ent->client->ps.saberMove = LS_NONE;
-					ent->client->ps.saberBlocked = 0;
-					ent->client->ps.saberBlocking = 0;
-
-					VectorSubtract( ent->client->ps.origin, other->client->ps.origin, entDir );
-					VectorCopy( other->client->ps.viewangles, otherAngles );
-					otherAngles[YAW] = vectoyaw( entDir );
-					SetClientViewAngle( other, otherAngles );
-
-					other->client->emote_freeze=1;
-					StandardSetBodyAnim(other, BOTH_KNEES2, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD|SETANIM_FLAG_HOLDLESS);
-					G_Sound(other, CHAN_AUTO, G_SoundIndex("sound/chars/alora/01alo001"));
-					other->client->ps.saberMove = LS_NONE;
-					other->client->ps.saberBlocked = 0;
-					other->client->ps.saberBlocking = 0;
-				}
-			}
-				}
-		else if (Q_stricmp(cmd, "kiss") == 0){
-			trace_t tr;
-			vec3_t fPos;
-
-			AngleVectors(ent->client->ps.viewangles, fPos, 0, 0);
-
-			fPos[0] = ent->client->ps.origin[0] + fPos[0]*40;
-			fPos[1] = ent->client->ps.origin[1] + fPos[1]*40;
-			fPos[2] = ent->client->ps.origin[2] + fPos[2]*40;
-
-			trap_Trace(&tr, ent->client->ps.origin, 0, 0, fPos, ent->s.number, ent->clipmask);
-
-			if (tr.entityNum < MAX_CLIENTS && tr.entityNum != ent->s.number)
-			{
-				gentity_t *other = &g_entities[tr.entityNum];
-
-					vec3_t entDir;
-					vec3_t otherDir;
-					vec3_t entAngles;
-					vec3_t otherAngles;
-
-					if (other && other->inuse && other->client)
-				{
-					VectorSubtract( other->client->ps.origin, ent->client->ps.origin, otherDir );
-					VectorCopy( ent->client->ps.viewangles, entAngles );
-					entAngles[YAW] = vectoyaw( otherDir );
-					SetClientViewAngle( ent, entAngles );
-
-					ent->client->ps.saberMove = LS_NONE; // ok fine, leave yourself vulnerable
-
-					if (other->client->ps.saberMove != LS_NONE){ //if someones attacking you, that means leave me the fuck alone!
-						return;
-					}
-					else {
-
-				if (ent->client->ps.weapon == WP_SABER && !ent->client->ps.saberHolstered)
-				{
-					Cmd_ToggleSaber_f(ent);
-				}
-
-				if (other->client->ps.weapon == WP_SABER && !other->client->ps.saberHolstered)
-				{
-					Cmd_ToggleSaber_f(other);
-				}
-
-					StandardSetBodyAnim(ent, BOTH_KISSER1LOOP, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD|SETANIM_FLAG_HOLDLESS);
-					VectorSubtract( ent->client->ps.origin, other->client->ps.origin, entDir );
-					VectorCopy( other->client->ps.viewangles, otherAngles );
-					otherAngles[YAW] = vectoyaw( entDir );
-					SetClientViewAngle( other, otherAngles );
-
-					StandardSetBodyAnim(other, BOTH_KISSEE1LOOP, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD|SETANIM_FLAG_HOLDLESS);
-					G_Sound(other, CHAN_AUTO, G_SoundIndex("sound/chars/alora/confuse3"));
-					other->client->ps.saberMove = LS_NONE;
-					other->client->ps.saberBlocked = 0;
-					other->client->ps.saberBlocking = 0;
-					}
-				}
-			}
-				}
-			else if (Q_stricmp(cmd, "hug") == 0){
-			trace_t tr;
-			vec3_t fPos;
-
-			AngleVectors(ent->client->ps.viewangles, fPos, 0, 0);
-
-			fPos[0] = ent->client->ps.origin[0] + fPos[0]*40;
-			fPos[1] = ent->client->ps.origin[1] + fPos[1]*40;
-			fPos[2] = ent->client->ps.origin[2] + fPos[2]*40;
-
-			trap_Trace(&tr, ent->client->ps.origin, 0, 0, fPos, ent->s.number, ent->clipmask);
-
-			if (tr.entityNum < MAX_CLIENTS && tr.entityNum != ent->s.number)
-			{
-				gentity_t *other = &g_entities[tr.entityNum];
-
-					vec3_t entDir;
-					vec3_t otherDir;
-					vec3_t entAngles;
-					vec3_t otherAngles;
-
-					if (other && other->inuse && other->client)
-				{
-					VectorSubtract( other->client->ps.origin, ent->client->ps.origin, otherDir );
-					VectorCopy( ent->client->ps.viewangles, entAngles );
-					entAngles[YAW] = vectoyaw( otherDir );
-					SetClientViewAngle( ent, entAngles );
-
-					ent->client->ps.saberMove = LS_NONE; // ok fine, leave yourself vulnerable
-
-					if (other->client->ps.saberMove != LS_NONE){ //if someones attacking you, that means leave me the fuck alone!
-						return;
-					}
-					else {
-
-				if (ent->client->ps.weapon == WP_SABER && !ent->client->ps.saberHolstered)
-				{
-					Cmd_ToggleSaber_f(ent);
-				}
-
-				if (other->client->ps.weapon == WP_SABER && !other->client->ps.saberHolstered)
-				{
-					Cmd_ToggleSaber_f(other);
-				}
-
-					StandardSetBodyAnim(ent, BOTH_HUGGER1, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD|SETANIM_FLAG_HOLDLESS);
-					VectorSubtract( ent->client->ps.origin, other->client->ps.origin, entDir );
-					VectorCopy( other->client->ps.viewangles, otherAngles );
-					otherAngles[YAW] = vectoyaw( entDir );
-					SetClientViewAngle( other, otherAngles );
-
-					StandardSetBodyAnim(other, BOTH_HUGGEE1, SETANIM_FLAG_OVERRIDE|SETANIM_FLAG_HOLD|SETANIM_FLAG_HOLDLESS);
-					other->client->ps.saberMove = LS_NONE;
-					}
-				}
-			}
-				}*/
 		 else if ((Q_stricmp(cmd, "terminator") == 0) || (Q_stricmp(cmd, "amterminator") == 0) || (Q_stricmp(cmd, "ammerc") == 0))
       {
 		  gentity_t * targetplayer;
