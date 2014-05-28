@@ -331,25 +331,29 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          {
             if(blocker->client->ps.stats[STAT_DODGE] <= 45) {
                mechBlocker->doButterFingers= qtrue;
+               mechBlocker->doStun= qtrue;
             }
             G_DodgeDrain(attacker,blocker,-15); //Gain DP for hitting
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM) {
             if(blocker->client->ps.stats[STAT_DODGE] <= 45) {
                mechBlocker->doButterFingers= qtrue;
+               mechBlocker->doStun= qtrue;
             }
             SabBeh_AddBalance(attacker, mechAttacker, -3, qtrue);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG) {
             blocker->client->ps.fd.forcePower -= 8;
             if(blocker->client->ps.stats[STAT_DODGE] <= 45) {
-               mechBlocker->doKnockdown = qtrue;
+               mechBlocker->doButterFingers= qtrue;
+               mechBlocker->doStun= qtrue;
             }
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_DUAL) {
             //Animation speeds increased force_speed effect lol.
             if(blocker->client->ps.stats[STAT_DODGE] <= 45) {
-               mechBlocker->doKnockdown = qtrue;
+               mechBlocker->doButterFingers= qtrue;
+               mechBlocker->doStun= qtrue;
             }
             attacker->client->ps.fd.forcePowersActive |= ( 1 << FP_RAGE);
             attacker->client->ps.fd.forcePowerDuration[FP_RAGE] = level.time + 512*5;
@@ -357,19 +361,22 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_STAFF) {
             if(blocker->client->ps.stats[STAT_DODGE] <= 45) {
-               mechBlocker->doKnockdown = qtrue;
+               mechBlocker->doButterFingers= qtrue;
+               mechBlocker->doStun= qtrue;
             }
             attacker->client->ps.fd.forcePower += 15;         
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_TAVION) {
             if(blocker->client->ps.stats[STAT_DODGE] <= 45) {
                mechBlocker->doButterFingers= qtrue;
+               mechBlocker->doStun= qtrue;
             }
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_DESANN) {
             if(blocker->client->ps.stats[STAT_DODGE] <= 45) {
-               mechBlocker->doKnockdown = qtrue;
+               mechBlocker->doButterFingers= qtrue;
+               mechBlocker->doStun= qtrue;
             }
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
             attacker->client->ps.fd.forcePower += 5;
