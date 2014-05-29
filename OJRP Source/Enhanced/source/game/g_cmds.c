@@ -7262,8 +7262,8 @@ SP_fx_runner(fx_runner);
 			VectorMA(g_entities[clId2].client->ps.origin, 100, forward, location);
 			location[2] += 5; //add just a bit of height???
 			// teleport them to you
-			TeleportPlayer( &g_entities[clId], location, g_entities[clId2]->ps.viewangles);
-			trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", g_entities[client_id].client->pers.netname, roar_teleport_saying.string ) );  
+			TeleportPlayer( &g_entities[clId], location, g_entities[clId2].client->ps.viewangles);
+			trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", g_entities[clId].client->pers.netname, roar_teleport_saying.string ) );  
 			}
 			if ( trap_Argc() == 4 )
 			{
