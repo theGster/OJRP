@@ -7234,12 +7234,12 @@ SP_fx_runner(fx_runner);
          trap_Argv( 2, arg2, sizeof( arg2 ) );
 			clId2 = G_ClientNumberFromArg( arg2 );
 
-			if (clId == -1 && clId2 == -1)
+			if (clId == -1 || clId2 == -1)
 			{
 				trap_SendServerCommand( ent-g_entities, va("print \"Can't find client ID for %s\n\"", arg1 ) );
 				return;
 			}
-			if (clId == -2 && clId2 == -2)
+			if (clId == -2 || clId2 == -2)
 			{
 				trap_SendServerCommand( ent-g_entities, va("print \"Ambiguous client ID for %s\n\"", arg1 ) );
 				return;
