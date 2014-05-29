@@ -7244,6 +7244,11 @@ SP_fx_runner(fx_runner);
 				trap_SendServerCommand( ent-g_entities, va("print \"Ambiguous client ID for %s\n\"", arg1 ) );
 				return;
 			}
+			if (clId >= 32 || clId2 >= 32)
+			{
+				trap_SendServerCommand(ent - g_entities, va("print \"Ambiguous client ID for %s\n\"", arg1));
+				return;
+			}
 			// either we have the client id or the string did not match
 			if (!g_entities[clId].inuse && !g_entities[clId2].inuse)
 			{ // check to make sure client slot is in use
