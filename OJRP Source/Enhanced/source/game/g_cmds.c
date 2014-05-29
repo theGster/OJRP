@@ -732,9 +732,11 @@ argv(0) noclip
 void Cmd_Noclip_f( gentity_t *ent ) {
 	char	*msg;
 
-	if ( !CheatsOk( ent ) ) {
+	if (!CheatsOk(ent) && !((ent->r.svFlags & SVF_ADMIN1) || (ent->r.svFlags & SVF_ADMIN2) || (ent->r.svFlags & SVF_ADMIN3) || (ent->r.svFlags & SVF_ADMIN4) || (ent->r.svFlags & SVF_ADMIN5)))
+	{
 		return;
 	}
+
 
 	//[CoOp]
 	if (in_camera)
@@ -3403,7 +3405,7 @@ void Admin_Teleport( gentity_t *ent ) {
 	}
 
 	TeleportPlayer( ent, origin, ent->client->ps.viewangles );
-	trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", ent->client->pers.netname, roar_teleport_saying.string ) );  
+	//trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", ent->client->pers.netname, roar_teleport_saying.string ) );  
 }
 
 /*
@@ -5025,7 +5027,7 @@ void ClientCommand( int clientNum ) {
 			trap_SendServerCommand( ent-g_entities, "print \"^3===^1ADDEFFECT ADMIN COMMAND^3===\n\n^1DESCRIPTION: ^3Place an effect on a map.\n\n^5/Place (fxFile)\n^1WARNING: Once the effect is placed, it requires map restart to stop it!\nEXAMPLE: /place env/small_fire\n\n\"" );
 		}
 		else {
-		trap_SendServerCommand( ent-g_entities, "print \"^3===^1HELP^3===\n\n/AdminCommands <--- see a list of admin commands\n/Commands <--- see a list of commands\n/Emotes <--- see a list of emotes\n/PlayerConfigs <--- see a list of configurations\n/Sayings <--- list of chat-line commands\n/roll <number of sides> <--- perform a roll, ranging from 3-sided to 100-sided\n/AdminGuns <--- list of administration guns\n/saberdamages <--- show server saber damages\n\n^5For more options type in  /HELP (COMMAND)\n\n\"" );
+		trap_SendServerCommand( ent-g_entities, "print \"^3===^1HELP^3===\n\n/AdminCommands <--- see a list of admin commands\n/Sayings <--- list of chat-line commands\n/roll <number of sides> <--- perform a roll, ranging from 3-sided to 100-sided\n/saberdamages <--- show server saber damages\n\n^5For more options type in  /HELP (COMMAND)\n\n\"" );
 		}
 	}
 	else if (Q_stricmp (cmd, "sayings") == 0)
@@ -7268,7 +7270,7 @@ SP_fx_runner(fx_runner);
 			location[2] += 5; //add just a bit of height???
 			// teleport them to you
 			TeleportPlayer( &g_entities[clId], location, g_entities[clId2].client->ps.viewangles);
-			trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", g_entities[clId].client->pers.netname, roar_teleport_saying.string ) );  
+			//trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", g_entities[clId].client->pers.netname, roar_teleport_saying.string ) );  
 			}
 			if ( trap_Argc() == 4 )
 			{

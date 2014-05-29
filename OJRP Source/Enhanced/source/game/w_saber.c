@@ -3528,11 +3528,11 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 			if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG
 				&& !G_BlockIsParry(defender, attacker, hitLoc))
 			{//Red does additional DP damage with attack fakes if they aren't parried.
-				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.5); //1.35 orig
+				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.25); //1.35 orig
 			}
 			else
 			{
-				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.5); //1.25 orig
+				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.15); //1.25 orig
 			}
 		}
 		else
