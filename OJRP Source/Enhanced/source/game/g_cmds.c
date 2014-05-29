@@ -7223,7 +7223,7 @@ SP_fx_runner(fx_runner);
 		trap_SendServerCommand( ent-g_entities, va("print \"^3Type in ^5/help teleport ^3if you need help with this command.\n\"") );
 		return;
 		}
-			if ( trap_Argc() == 2 )
+			if ( trap_Argc() == 3 )
 			{
 			int	clId = -1;
          int   clId2 = -1;
@@ -7231,7 +7231,7 @@ SP_fx_runner(fx_runner);
          char	arg2[MAX_STRING_CHARS];
 			trap_Argv( 1, arg1, sizeof( arg1 ) );
 			clId = G_ClientNumberFromArg( arg1 );			
-         trap_Argv( 1, arg2, sizeof( arg2 ) );
+         trap_Argv( 2, arg2, sizeof( arg2 ) );
 			clId2 = G_ClientNumberFromArg( arg2 );
 
 			if (clId == -1 && clId2 == -1)
@@ -7254,12 +7254,12 @@ SP_fx_runner(fx_runner);
 		 {
 			return;
 		 }
-			VectorCopy(g_entities[clId2]->ps.origin, location);
-			AngleVectors(g_entities[clId2]->ps.viewangles, forward, NULL, NULL);
+			VectorCopy(g_entities[clId2].client->ps.origin, location);
+			AngleVectors(g_entities[clId2].client->ps.viewangles, forward, NULL, NULL);
 			// set location out in front of your view
 			forward[2] = 0; //no elevation change
 			VectorNormalize(forward);
-			VectorMA(g_entities[clId2]->ps.origin, 100, forward, location);
+			VectorMA(g_entities[clId2].client->ps.origin, 100, forward, location);
 			location[2] += 5; //add just a bit of height???
 			// teleport them to you
 			TeleportPlayer( &g_entities[clId], location, g_entities[clId2]->ps.viewangles);
