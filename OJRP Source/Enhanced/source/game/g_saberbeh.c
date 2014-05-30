@@ -384,7 +384,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
 #ifdef _DEBUG
          mechAttacker->behaveMode = SABBEHAVE_ATTACK;
 #endif
-         /* No saberlocking anymore!
+if(blocker->client->ps.stats[STAT_DODGE] <= 40) {
          if (WP_SabersCheckLock(attacker, blocker))
          {	
             attacker->client->ps.userInt3 |= ( 1 << FLAG_LOCKWINNER );
@@ -392,8 +392,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
             blocker->client->ps.saberBlocked = BLOCKED_NONE;
             startSaberLock = qtrue;
          }
-      */
-         
+}
 #ifdef _DEBUG
          mechBlocker->behaveMode = SABBEHAVE_BLOCKFAKED;
 #endif
