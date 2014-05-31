@@ -2337,14 +2337,22 @@ void G_Say( gentity_t *ent, gentity_t *target, int mode, const char *chatText ) 
 	switch ( mode ) {
 	default:
 	case SAY_ALL:
-      if(!Q_stricmpn("/shout", chatText, 6)) { 
-         chatMod = (char*)chatText+7;
+      if(!Q_stricmpn("/shout", chatText, 6) || !Q_stricmpn("!", chatText, 1)) {
+         if(!Q_stricmpn("/shout", chatText, 6)) {
+            chatMod = (char*)chatText+7;
+         } else {
+            chatMod = (char*)chatText+1;
+         }
          G_LogPrintf( "Shout: %s shouts: %s\n", ent->client->pers.netname, chatMod );
          Com_sprintf (name, sizeof(name), "%s%c%c"EC" shouts: ", ent->client->pers.netname, Q_COLOR_ESCAPE, COLOR_WHITE );
          color = COLOR_RED;
          distance = DIST_SAY_SHOUT;
-      } else if(!Q_stricmpn("/me", chatText, 3)) {
+      } else if(!Q_stricmpn("/me", chatText, 3) || !Q_stricmpn("@", chatText, 1)) {
+         if(!Q_stricmpn("/me", chatText, 3)) {
          chatMod = (char*)chatText+4;
+         } else {
+         chatMod = (char*)chatText+1;
+         }
          G_LogPrintf( "Action: %s %s\n", ent->client->pers.netname, chatMod );
          Com_sprintf (name, sizeof(name), "%s%c%c"EC" ", ent->client->pers.netname, Q_COLOR_ESCAPE, COLOR_WHITE );
          color = COLOR_YELLOW;
@@ -2357,61 +2365,38 @@ void G_Say( gentity_t *ent, gentity_t *target, int mode, const char *chatText ) 
 		  color = COLOR_YELLOW;
 		  distance = DIST_SAY_SHOUT;
 	  }
-	  else if (!Q_stricmpn("/low", chatText, 4)) {
-		  chatMod = (char*)chatText + 5;
+	  else if (!Q_stricmpn("/low", chatText, 4) || !Q_stricmpn(".", chatText, 1)) {
+		  if (!Q_stricmpn("/low", chatText, 4)) {
+        chatMod = (char*)chatText + 5;
+        } else {
+        chatMod = (char*)chatText + 1;
+        }
 		  G_LogPrintf("Say (low): %s says (low): %s\n", ent->client->pers.netname, chatMod);
 		  Com_sprintf(name, sizeof(name), "%s%c%c"EC" says (low): ", ent->client->pers.netname, Q_COLOR_ESCAPE, COLOR_WHITE);
 		  color = COLOR_WHITE;
 		  distance = DIST_SAY_LOW;
 	  }	
-	  else if (!Q_stricmpn("/comm", chatText, 5)) {
-		  chatMod = (char*)chatText + 6;
+	  else if (!Q_stricmpn("/comm", chatText, 5) || !Q_stricmpn("#", chatText, 1)) {
+if (!Q_stricmpn("/comm", chatText, 5) {		
+      chatMod = (char*)chatText + 6;
+      } else {
+      chatMod = (char*)chatText + 1;
+      }
 		  G_LogPrintf("Comm (Comm) %s: %s\n", ent->client->pers.netname, chatMod);
 		  Com_sprintf(name, sizeof(name), "%s%c%c"EC" says (comm): ", ent->client->pers.netname, Q_COLOR_ESCAPE, COLOR_WHITE);
 		  color = COLOR_CYAN;
 		  distance = 0;
 	  }
-	  else if(!Q_stricmpn("/ooc", chatText, 4)) {
+	  else if(!Q_stricmpn("/ooc", chatText, 4) || !Q_stricmpn("//", chatText, 2)) {
+         if(!Q_stricmpn("/ooc", chatText, 4)) {
          chatMod = (char*)chatText+5;
+         } else {
+         chatMod = (char*)chatText+2;
+         }
          G_LogPrintf( "OOC: (OOC) %s: %s\n", ent->client->pers.netname, chatMod );
          Com_sprintf (name, sizeof(name), "(OOC) %s%c%c"EC": ", ent->client->pers.netname, Q_COLOR_ESCAPE, COLOR_WHITE );
          color = COLOR_GREEN;
          distance = 0;
-      /*}  else if(!Q_stricmpn("/", chatText,1)) {
-         switcher = 0; //Looking for Digits
-         for(i=1;i<strlen(chatText);i++) {
-            oldi = 0;
-            oldj = 0;
-            if(switcher>=0 && oldi == 0) {
-            if(isdigit(chatText[i])) {
-               dice_amount[i-1] = (int)chatText[i];
-               switcher++;
-               oldj++;
-            }
-            }  if(switcher >= 1) {
-               if("d" == chatText[i]) {
-               switcher++;
-               oldi = 1;
-               }            
-            } if(switcher >= 2 && oldi == 1) {
-               if(isdigit(chatText[i])) {
-               oldi = switcher;
-               dice_sides[switcher-oldi] = (int)chatText[i];
-               switcher++;
-               } else {
-               oldi = switcher-oldi;
-               switcher = 10;
-               }
-            }
-            if(switcher==10) {
-               break;
-            }
-            for(i=0;i<oldi;i++) {
-            Q_irand(1,dice_sides[0]*100);
-            }
-         }
-         */
-         
       } else {
          chatMod = (char*)chatText;
          G_LogPrintf( "say: %s says: %s\n", ent->client->pers.netname, chatMod );
