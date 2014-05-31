@@ -2377,7 +2377,7 @@ void G_Say( gentity_t *ent, gentity_t *target, int mode, const char *chatText ) 
 		  distance = DIST_SAY_LOW;
 	  }	
 	  else if (!Q_stricmpn("/comm", chatText, 5) || !Q_stricmpn("#", chatText, 1)) {
-if (!Q_stricmpn("/comm", chatText, 5) {		
+if (!Q_stricmpn("/comm", chatText, 5)) {		
       chatMod = (char*)chatText + 6;
       } else {
       chatMod = (char*)chatText + 1;
