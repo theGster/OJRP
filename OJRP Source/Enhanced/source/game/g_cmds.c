@@ -4783,7 +4783,7 @@ void ClientCommand( int clientNum ) {
 		Cmd_Notarget_f (ent);
 	else if (Q_stricmp (cmd, "noclip") == 0)
 		Cmd_Noclip_f (ent);
-	else if ( Q_stricmp( cmd, "NPC" ) == 0 && CheatsOk(ent) && !in_camera)
+	else if ( Q_stricmp( cmd, "NPC" ) == 0 /*&& CheatsOk(ent)*/ && !in_camera)
 	{
 		Cmd_NPC_f( ent );
 	}
