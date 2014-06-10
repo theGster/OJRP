@@ -665,6 +665,7 @@ void WP_SaberSetDefaults( saberInfo_t *saber )
 //===NEW========================================================================================
 	//done in cgame (client-side code)
 	saber->saberFlags = 0;					//see all the SFL_ flags
+	saber->saberFlags |= SFL_NO_STABDOWN; // no stabdown
 	saber->saberFlags2 = 0;					//see all the SFL2_ flags
 
 	saber->spinSound = 0;					//none - if set, plays this sound as it spins when thrown

@@ -2495,7 +2495,7 @@ void ForceLightningDamage( gentity_t *self, gentity_t *traceEnt, vec3_t dir, vec
 					//lightning also blasts the target back.
 					G_Throw(traceEnt, dir, 100);
 					if(!WalkCheck(traceEnt) 
-					|| (WalkCheck(traceEnt) && traceEnt->client->ps.saberAttackChainCount >= MISHAPLEVEL_HEAVY) 
+					//|| (WalkCheck(traceEnt) && traceEnt->client->ps.saberAttackChainCount >= MISHAPLEVEL_HEAVY) -no knockdown on mishap
 					|| BG_IsUsingHeavyWeap(&traceEnt->client->ps)
 					|| PM_SaberInBrokenParry(traceEnt->client->ps.saberMove)
 					|| traceEnt->client->ps.stats[STAT_DODGE] < DODGE_CRITICALLEVEL)

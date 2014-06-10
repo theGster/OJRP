@@ -384,7 +384,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
 #ifdef _DEBUG
          mechAttacker->behaveMode = SABBEHAVE_ATTACK;
 #endif
-if(blocker->client->ps.stats[STAT_DODGE] <= 40) {
+if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
          if (WP_SabersCheckLock(attacker, blocker))
          {	
             attacker->client->ps.userInt3 |= ( 1 << FLAG_LOCKWINNER );
