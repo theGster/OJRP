@@ -329,55 +329,51 @@ qboolean *attackerMishap, qboolean *blockerMishap)
 
          if(attacker->client->ps.fd.saberAnimLevel == SS_FAST)
          {
-            /*if(blocker->client->ps.stats[STAT_DODGE] <= 42) {
+            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
-			   mechBlocker->doSlowBounce= qtrue;
-           }*/
+			   //mechBlocker->doSlowBounce= qtrue;
+           }
             G_DodgeDrain(attacker,blocker,-8); //Gain DP for hitting
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM) {
-			 /*if(blocker->client->ps.stats[STAT_DODGE] <= 42) {
+			 if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
-               mechBlocker->doSlowBounce= qtrue;
-            }*/
+               //mechBlocker->doSlowBounce= qtrue;
+            }
             SabBeh_AddBalance(attacker, mechAttacker, -3, qtrue);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG) {
             blocker->client->ps.fd.forcePower -= 8;
-            /*if(blocker->client->ps.stats[STAT_DODGE] <= 42) {
+            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
-			   mechBlocker->doSlowBounce= qtrue;
-            }*/
+            }
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_DUAL) {
             //Animation speeds increased force_speed effect lol.
-            /*if(blocker->client->ps.stats[STAT_DODGE] <= 42) {
+            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
-               mechBlocker->doSlowBounce= qtrue;
-            }*/
+            }
             attacker->client->ps.fd.forcePowersActive |= ( 1 << FP_RAGE);
             attacker->client->ps.fd.forcePowerDuration[FP_RAGE] = level.time + 512*5;
             ataruRage = 1;
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_STAFF) {
-            /*if(blocker->client->ps.stats[STAT_DODGE] <= 42) {
-               //mechBlocker->doButterFingers= qtrue;
-               mechBlocker->doSlowBounce= qtrue;
-            }*/
+            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+               mechBlocker->doButterFingers= qtrue;
+               //mechBlocker->doSlowBounce= qtrue;
+            }
             attacker->client->ps.fd.forcePower += 15;         
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_TAVION) {
-            /*if(blocker->client->ps.stats[STAT_DODGE] <= 42) {
-              // mechBlocker->doButterFingers= qtrue;
-               mechBlocker->doSlowBounce= qtrue;
-            }*/
+            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+              mechBlocker->doButterFingers= qtrue;
+            }
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_DESANN) {
-            /*if(blocker->client->ps.stats[STAT_DODGE] <= 42) {
-               //mechBlocker->doButterFingers= qtrue;
-			   mechBlocker->doSlowBounce= qtrue;
-            }*/
+            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+               mechBlocker->doButterFingers= qtrue;
+            }
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
             attacker->client->ps.fd.forcePower += 5;
          }
