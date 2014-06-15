@@ -365,7 +365,7 @@ static GAME_INLINE int G_SaberAttackPower(gentity_t *ent, qboolean attacking)
 			switch (ent->client->ps.fd.saberAnimLevel)
 			{
 			case SS_STRONG:
-				toleranceAmt = 8;
+				toleranceAmt = 8; //8
 				break;
 			case SS_MEDIUM:
 				toleranceAmt = 16;
@@ -3361,7 +3361,7 @@ int BasicSaberBlockCost(int attackerStyle)
 		return 16;
 		break;
 	case SS_STRONG:
-		return 17;
+		return 16; //17
 		break;
 	default:
 		G_Printf("Unknown Style type %i in BasicSaberBlockCost()\n", attackerStyle);
@@ -3528,7 +3528,7 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 			if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG
 				&& !G_BlockIsParry(defender, attacker, hitLoc))
 			{//Red does additional DP damage with attack fakes if they aren't parried.
-				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.25); //1.35 orig
+				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.15); //1.35 orig
 			}
 			else
 			{

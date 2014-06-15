@@ -343,7 +343,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
             SabBeh_AddBalance(attacker, mechAttacker, -3, qtrue);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG) {
-            blocker->client->ps.fd.forcePower -= 8;
+            blocker->client->ps.fd.forcePower -= 4;
             if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
             }
@@ -460,7 +460,7 @@ if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
          }
          else if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG)
          {
-            blocker->client->ps.fd.forcePower -= 2;
+            blocker->client->ps.fd.forcePower -= 1; //2
          }
          
 #ifdef _DEBUG
