@@ -5030,7 +5030,7 @@ void ClientCommand( int clientNum ) {
 	}
 		else if (Q_stricmp (cmd, "emotes") == 0)
 	{
-		trap_SendServerCommand( ent-g_entities, "print \"^3===^1EMOTES^3===\n\n^5/dance1, /dance2, /dance3, /taunt, /cower, /smack, /swirl\n/kneel1, /kneel2, /kneel3, /breakdance, /laydown, /myhead, /cheer\n/sit1, /sit2, /sit3, /sit4, /sit5, /sit6, /sit7, /surrender, /enraged\n/victory1, /victory2, /victory3, /choke1, /choke3\n/wait1, /wait2, /die1, /die2, /die3, /die4\n\n\"" );
+		trap_SendServerCommand( ent-g_entities, "print \"^3===^1EMOTES^3===\n\n^5/dance1, /dance2, /dance3, /taunt, /cower, /smack, /swirl\n/kneel1, /kneel2, /kneel3, /breakdance, /laydown, /myhead, /cheer\n/sit1, /sit2, /sit3, /sit4, /sit5, /sit6, /sit7, /surrender, /enraged\n/victory1, /victory2, /victory3, /choke1, /choke3\n/wait1, /wait2, /wait3, /die1, /die2, /die3, /die4\n\n\"" );
 	}
 		else if (Q_stricmp (cmd, "admincommands") == 0)
 	{
@@ -6613,6 +6613,44 @@ SP_fx_runner(fx_runner);
 					ent->client->ps.saberCanThrow = qfalse;
 					ent->client->emote_freeze = 1;
 					StandardSetBodyAnim(ent, BOTH_STAND10, SETANIM_FLAG_OVERRIDE | SETANIM_FLAG_HOLD | SETANIM_FLAG_HOLDLESS);
+					ent->client->ps.saberMove = LS_NONE;
+					ent->client->ps.saberBlocked = 0;
+					ent->client->ps.saberBlocking = 0;
+				}
+			}
+		}
+		else if ((Q_stricmp(cmd, "wait3") == 0) || (Q_stricmp(cmd, "amwait3") == 0))
+		{
+			if (!(roar_emoteControl.integer & (1 << E_SIT4)))
+			{
+				trap_SendServerCommand(ent - g_entities, va("print \"This emote is not allowed on this server.\n\""));
+				return;
+			}
+			if (ent->client->ps.groundEntityNum == ENTITYNUM_NONE)
+			{
+				return;
+			}
+			if (ent->client->ps.duelInProgress)
+			{
+				trap_SendServerCommand(ent - g_entities, va("print \"^7Emotes not allowed in duel!\n\""));
+				return;
+			}
+			else {
+				if (ent->client->ps.legsAnim == BOTH_STAND5TOSTAND8)
+				{
+					ent->client->ps.forceDodgeAnim = 0;
+					ent->client->ps.forceHandExtendTime = 0;
+					ent->client->emote_freeze = 0;
+					ent->client->ps.saberCanThrow = qtrue;
+				}
+				else
+				{
+					ent->client->ps.forceHandExtend = HANDEXTEND_TAUNT;
+					ent->client->ps.forceDodgeAnim = BOTH_STAND5TOSTAND8;
+					ent->client->ps.forceHandExtendTime = level.time + Q3_INFINITE;
+					ent->client->ps.saberCanThrow = qfalse;
+					ent->client->emote_freeze = 1;
+					StandardSetBodyAnim(ent, BOTH_STAND5TOSTAND8, SETANIM_FLAG_OVERRIDE | SETANIM_FLAG_HOLD | SETANIM_FLAG_HOLDLESS);
 					ent->client->ps.saberMove = LS_NONE;
 					ent->client->ps.saberBlocked = 0;
 					ent->client->ps.saberBlocking = 0;
