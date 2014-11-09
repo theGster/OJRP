@@ -3361,7 +3361,7 @@ int BasicSaberBlockCost(int attackerStyle)
 		return 16;
 		break;
 	case SS_STRONG:
-		return 16; //17
+		return 16; //17 - 16 (current)
 		break;
 	default:
 		G_Printf("Unknown Style type %i in BasicSaberBlockCost()\n", attackerStyle);
