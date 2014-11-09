@@ -1,0 +1,140 @@
+repeatDelay				300
+
+Line
+{
+	count				4 8
+
+	life				100 200
+
+	origin2				16 -14 -14 22 14 14
+
+	alpha
+	{
+		start			0.25 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			0.2 0.5
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	flags				usePhysics
+
+	spawnFlags			absoluteVel orgOnSphere
+
+	count				150
+
+	life				1000 1200
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	height				25
+
+	velocity			300 300 1000 -300 -300 100
+
+	gravity				-350 -450
+
+	size
+	{
+		start			0.3
+	}
+
+	length
+	{
+		start			37 25
+		end				17 15
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Particle
+{
+	spawnFlags			orgOnSphere
+
+	count				4 6
+
+	life				900 1000
+
+	radius				35
+
+	height				35
+
+	velocity			8 -12 -12 16 12 12
+
+	gravity				12 24
+
+	alpha
+	{
+		start			0.2 0.4
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			4 12
+		end				12 24
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/steam
+	]
+}
+
+Tail
+{
+	name				Copy of Unnamed Tail 1
+
+	flags				usePhysics
+
+	spawnFlags			absoluteVel orgOnSphere
+
+	count				150
+
+	life				200 600
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	velocity			300 300 1000 -300 -300 100
+
+	gravity				-350 -450
+
+	size
+	{
+		start			0.3
+	}
+
+	length
+	{
+		start			37 25
+		end				17 15
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}

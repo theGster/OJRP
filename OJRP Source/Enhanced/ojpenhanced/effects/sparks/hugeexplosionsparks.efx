@@ -1,0 +1,202 @@
+repeatDelay				300
+
+Line
+{
+	count				4 8
+
+	life				100 200
+
+	origin2				12 -10 -10 18 10 10
+
+	alpha
+	{
+		start			0.25 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			0.2 0.5
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	flags				usePhysics useAlpha
+
+	spawnFlags			absoluteVel orgOnSphere rgbComponentInterpolation
+
+	count				35
+
+	life				400 500
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	height				25
+
+	velocity			300 300 750 -300 -300 750
+
+	gravity				-350 -450
+
+	rgb
+	{
+		start			1 0.9843 0.9412 1 1 1
+	}
+
+	size
+	{
+		start			0.4 0.5
+	}
+
+	length
+	{
+		start			4 10
+		end				2 5
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Tail
+{
+	name				longersparks
+
+	flags				usePhysics useAlpha
+
+	spawnFlags			absoluteVel orgOnSphere rgbComponentInterpolation
+
+	count				25
+
+	life				2100 300
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	velocity			1000 500 500 -1000 -500 100
+
+	acceleration		1000 500 500 -1000 -500 100
+
+	gravity				-250 -450
+
+	rgb
+	{
+		start			1 0.9843 0.9412 1 1 1
+	}
+
+	size
+	{
+		start			0.5 0.6
+	}
+
+	length
+	{
+		start			9 25
+		end				7 8
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Tail
+{
+	name				sidueways
+
+	flags				usePhysics useAlpha
+
+	spawnFlags			absoluteVel orgOnSphere rgbComponentInterpolation
+
+	count				25
+
+	life				300
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	velocity			500 1000 500 -500 -1000 100
+
+	gravity				-350 -450
+
+	rgb
+	{
+		start			1 0.9843 0.9412 1 1 1
+	}
+
+	size
+	{
+		start			0.5 0.6
+	}
+
+	length
+	{
+		start			9 25
+		end				7 8
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Tail
+{
+	name				diagonal
+
+	flags				usePhysics useAlpha
+
+	spawnFlags			absoluteVel orgOnSphere rgbComponentInterpolation
+
+	count				25
+
+	life				300
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	velocity			750 750 500 -750 -750 100
+
+	gravity				-350 -450
+
+	rgb
+	{
+		start			1 0.9843 0.9412 1 1 1
+	}
+
+	size
+	{
+		start			0.7 0.8
+	}
+
+	length
+	{
+		start			9 25
+		end				7 8
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}

@@ -1,0 +1,108 @@
+repeatDelay				300
+
+Line
+{
+	count				4 8
+
+	life				200
+
+	origin2				16 -14 -14 22 14 14
+
+	alpha
+	{
+		start			0.25 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		end				0
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	flags				usePhysics
+
+	spawnFlags			absoluteVel orgOnSphere
+
+	count				150
+
+	life				200
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	height				25
+
+	velocity			300 300 1000 -300 -300 100
+
+	gravity				-350 -450
+
+	size
+	{
+		start			0.3
+	}
+
+	length
+	{
+		start			15
+		end				5
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Tail
+{
+	name				Copy of Unnamed Tail 1
+
+	flags				usePhysics
+
+	spawnFlags			absoluteVel orgOnSphere
+
+	count				150
+
+	life				200
+
+	bounce				0.25 0.4
+
+	radius				5
+
+	height				5
+
+	velocity			300 300 1000 -300 -300 100
+
+	gravity				-350 -450
+
+	size
+	{
+		end				0
+		flags			linear nonlinear
+	}
+
+	length
+	{
+		start			15
+		end				0
+		flags			nonlinear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}

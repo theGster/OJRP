@@ -1,0 +1,95 @@
+repeatDelay				300
+
+Tail
+{
+	flags				usePhysics
+
+	count				2 1
+
+	life				200 1200
+
+	bounce				0.25 0.2
+
+	origin				0 -20 0
+
+	velocity			-220 -120 -75 255 120 120
+
+	gravity				-350 -450
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			2
+		end				7 8
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+FxRunner
+{
+	origin				0 -20 0
+
+	playfx
+	[
+		smoke/fleshhitsmoke
+	]
+}
+
+Sound
+{
+	sounds
+	[
+		sound/weapons/saber/saberhitwall1.mp3
+		sound/weapons/saber/saberhitwall2.mp3
+		sound/weapons/saber/saberhitwall3.mp3
+	]
+}
+
+Tail
+{
+	name				Copy of Unnamed Tail 1
+
+	count				2 7
+
+	life				400 500
+
+	intensity			0.25 0.2
+
+	origin				0 -20 0
+
+	velocity			-220 -120 -120 255 120 120
+
+	gravity				-350 -450
+
+	alpha
+	{
+		end				0.5 0.3
+		flags			linear
+	}
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			2
+		end				6 5
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}

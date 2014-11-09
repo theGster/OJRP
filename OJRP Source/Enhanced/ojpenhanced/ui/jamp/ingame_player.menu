@@ -1,0 +1,828 @@
+//[NewMenus]
+//------------------------------------------------------------------------------------------------
+// PLAYER SETUP MENU  - ingame_player
+//
+//	Choose player skin, name
+//	Choose light saber
+//	Allocate force powers
+//
+//	g_gametypes
+//		"Free For All" 		0
+//		"Duel" 			3
+//		"Power Duel" 		4
+//		"Team FFA" 		6 
+//		"Siege" 		7
+//		"Capture the Flag" 	8
+//
+//	ui_net_gametype
+//		0 = FFA
+//		1 = DUEL
+//		2 = POWER DUEL
+//		3 = TEAM FFA
+//		4 = SIEGE
+//		5 = CTF
+//------------------------------------------------------------------------------------------------
+{
+	menuDef 
+	{
+		name						"ingame_player"
+		visible						0
+		fullscreen					0
+		outOfBoundsClick										// this closes the window if it gets a click out of the rectangle
+		rect						0 40 640 480
+		focusColor					0 0.4 0.8 1				// Focus color for text and items
+		style						1
+		border						1
+		descX						383
+		descY						422
+		descScale					1
+		descColor					0 0.4 0.8 1
+		descAlignment				ITEM_ALIGN_CENTER		
+		onOpen  
+		{ 
+			uiScript				update "ui_GetName"
+			uiScript				updateForceStatus
+			hide					highlights
+			
+			show					startpage ;
+			hide					name ;
+			hide					character ;
+			setitemcolor			namebutton			forecolor 0.8 0.8 0.8 1 ;
+			setitemcolor			characterbutton		forecolor 0.8 0.8 0.8 1 ;
+			setitemcolor			forcebutton			forecolor 0.8 0.8 0.8 1 ;
+			setitemcolor			lightsaberbutton	forecolor 0.8 0.8 0.8 1 ;
+			setitemcolor			gunnerybutton		forecolor 0.8 0.8 0.8 1 ;
+		}
+		onClose 
+		{ 
+			uiScript				update "ui_SetName"
+			uiScript				updateForceStatus
+			hide					highlights
+			close					ingame_playerforce
+		}
+		
+//------------------------------------------------------------------------------------------------
+// Overall window backdrop
+//------------------------------------------------------------------------------------------------
+		itemDef 
+		{
+			name				background_pic
+			group				none
+			style				WINDOW_STYLE_FILLED
+			rect				10 0 100 400
+			border				1
+			bordercolor			0 0 0 1
+			backcolor			0.1 0.1 0.1 0.5
+			forecolor			1 1 1 1
+			visible				1
+			decoration
+		}
+		
+		itemDef
+		{
+			name				background2
+			group				none
+			style				WINDOW_STYLE_FILLED
+			rect				120 0 510 400
+			border				1
+			bordercolor			0 0 0 1
+			backcolor			0.1 0.1 0.1 0.5
+			forecolor			1 1 1 1
+			visible				1
+			decoration
+		}
+		
+		itemDef
+		{
+			name				background3
+			group				none
+			style				WINDOW_STYLE_FILLED
+			rect				10 410 620 25
+			border				1
+			bordercolor			0 0 0 1
+			backcolor			0.1 0.1 0.1 0.5
+			forecolor			1 1 1 1
+			visible				1
+			decoration			
+		}
+		
+//------------------------------------------------------------------------------------------------
+// Player Configuration
+//------------------------------------------------------------------------------------------------
+
+		// Player Configuration title		
+		itemDef 
+		{
+			name				playerconfigtitle
+			style				WINDOW_STYLE_FILLED
+			text				@MENUS_PROFILE_LOWER
+			rect				11 1 100 25
+			textalign			ITEM_ALIGN_CENTER		
+			textalignx			48
+			textaligny			0
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 1
+			font				3
+			textscale			1
+			forecolor			1 1 1 1
+			border				0
+			bordercolor			0 0 0 0
+			visible				1 
+		}
+		
+//------------------------------------------------------------------------------------------------
+// Main Buttons
+//------------------------------------------------------------------------------------------------
+
+		// Name Button
+		itemDef
+		{
+			name				namebutton
+			group				none
+			text				"Name"
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				15 45 90 15
+			font				3
+			textscale			0.7
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			44
+			textaligny			0
+			textstyle			3
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+			
+			action
+			{
+				play			"sound/interface/button1.wav" ;
+				hide			startpage ;
+				show			name ;
+				hide			character ;
+				close			ingame_playerforce ;
+				close			ingame_player2 ;
+				close			ingame_playergunnery ;
+				close			ingame_saber ;
+				setitemcolor	namebutton			forecolor 0 0.4 0.8 1 ;
+				setitemcolor	characterbutton		forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	forcebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	lightsaberbutton	forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	gunnerybutton		forecolor 0.8 0.8 0.8 1 ;
+			}
+		}
+		
+		// Character Button
+		itemDef
+		{
+			name				characterbutton
+			group				none
+			text				"Character"
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				15 90 90 15
+			font				3
+			textscale			0.7
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			44
+			textaligny			0
+			textstyle			3
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+			
+			action
+			{
+				play			"sound/interface/button1.wav" ;
+				hide			startpage ;
+				hide			name ;
+				show			character ;
+				close			ingame_playerforce ;
+				close			ingame_player2 ;	
+				close			ingame_playergunnery ;	
+				close			ingame_saber ;	
+				setitemcolor	namebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	characterbutton		forecolor 0 0.4 0.8 1 ;
+				setitemcolor	forcebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	lightsaberbutton	forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	gunnerybutton		forecolor 0.8 0.8 0.8 1 ;
+			}
+		}
+		
+		// Force Powers Button
+		itemDef
+		{
+			name				forcebutton
+			group				none
+			text				"Force"
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				15 180 90 15
+			font				3
+			textscale			0.7
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			44
+			textaligny			0
+			textstyle			3
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+			cvarTest			"ui_about_gametype"
+			hideCvar 
+			{ 
+				"1" ;
+				"2"
+			}
+			
+			action
+			{
+				play			"sound/interface/button1.wav" ;
+				hide			startpage ;
+				hide			name ;
+				hide			character ;
+				open			ingame_playerforce ;
+				close			ingame_player2 ;
+				close			ingame_playergunnery ;
+				close			ingame_saber ;
+				setitemcolor	namebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	characterbutton		forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	forcebutton			forecolor 0 0.4 0.8 1 ;
+				setitemcolor	lightsaberbutton	forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	gunnerybutton		forecolor 0.8 0.8 0.8 1 ;
+			}
+		}
+		
+		// Lightsaber Button
+		itemDef
+		{
+			name				lightsaberbutton
+			group				none
+			text				"Lightsaber"
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				15 135 90 15
+			font				3
+			textscale			0.7
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			44
+			textaligny			0
+			textstyle			3
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+			
+			action
+			{
+				play			"sound/interface/button1.wav" ;
+				hide			startpage ;
+				close			ingame_force ;
+				hide			name ;
+				hide			character ;
+				close			ingame_playerforce ;
+				close			ingame_player2 ;
+				close			ingame_playergunnery ;
+				open			ingame_saber ;
+				setitemcolor	namebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	characterbutton		forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	forcebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	lightsaberbutton	forecolor 0 0.4 0.8 1 ;
+				setitemcolor	gunnerybutton		forecolor 0.8 0.8 0.8 1 ;
+			}
+		}
+		
+		// Gunnery Button
+		itemDef
+		{
+			name				gunnerybutton
+			group				none
+			text				"Gunnery"
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				15 225 90 15
+			font				3
+			textscale			0.7
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			44
+			textaligny			0
+			textstyle			3
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+			cvarTest			"ui_about_gametype"
+			hideCvar 
+			{ 
+				"1" ;
+				"2"
+			}
+			
+			action
+			{
+				play			"sound/interface/button1.wav" ;
+				hide			startpage ;
+				hide			name ;
+				hide			character ;
+				close			ingame_playerforce ;
+				close			ingame_player2 ;
+				open			ingame_playergunnery ;
+				close			ingame_saber ;
+				setitemcolor	namebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	characterbutton		forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	forcebutton			forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	lightsaberbutton	forecolor 0.8 0.8 0.8 1 ;
+				setitemcolor	gunnerybutton		forecolor 0 0.4 0.8 1 ;
+			}
+		}
+		
+//------------------------------------------------------------------------------------------------
+// Starting Page
+//------------------------------------------------------------------------------------------------
+
+		itemDef
+		{
+			name 				startpagetitle
+			group				startpage
+			style				WINDOW_STYLE_FILLED
+			text				@MENUS_PLAYER_CONFIGURATION
+			rect				121 1 510 25
+			textalign			ITEM_ALIGN_CENTER		
+			textalignx			255
+			textaligny			0
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 1
+			font				3
+			textscale			1
+			forecolor			1 1 1 1
+			border				0
+			bordercolor			0 0 0 0
+			visible				1 
+		}
+		// Starting Page Welcome Text
+		itemDef 
+		{
+			name				startpageshit
+			group				startpage
+			style				WINDOW_STYLE_EMPTY	
+			text				"Please choose an option from the right."
+			rect				130 45 0 0
+			textalign			ITEM_ALIGN_LEFT
+			textalignx			0
+			textaligny			0
+			font				2
+			textscale			0.7
+			forecolor			1 1 1 1
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 0
+			border				0
+			bordercolor			0 0 0 0
+			visible				1 
+			decoration
+		}
+		
+		
+		// Force points remaining
+		itemDef 
+		{
+			name				siderank
+			group				startpage
+			style				WINDOW_STYLE_EMPTY	
+			text				@MENUS_POINTS_REMAINING
+			ownerdraw			UI_FORCE_POINTS
+			rect				299 250 150 32
+			textalign			ITEM_ALIGN_LEFT
+			textalignx			5
+			textaligny			5
+			font				2
+			textscale			0.7
+			forecolor			1 1 1 1
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 0
+			border				1
+			bordercolor			0 0 0 1
+			visible				1 
+			decoration
+		}
+		
+//------------------------------------------------------------------------------------------------
+// Name entry field
+//------------------------------------------------------------------------------------------------
+	
+		itemDef
+		{
+			name 				nametitle
+			group				name
+			style				WINDOW_STYLE_FILLED
+			text				"Name"
+			rect				121 1 510 25
+			textalign			ITEM_ALIGN_CENTER		
+			textalignx			255
+			textaligny			0
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 1
+			font				3
+			textscale			1
+			forecolor			1 1 1 1
+			border				0
+			bordercolor			0 0 0 0
+			visible				1 
+		}
+		
+		itemDef
+		{
+			name				namedesc
+			group				name
+			style				WINDOW_STYLE_EMPTY
+			text				@MENUS_ENTER_YOUR_NAME_HERE
+			rect				140 50 300 20
+			textalign			ITEM_ALIGN_LEFT
+			textalignx			0
+			textaligny			0
+			font				2
+			textscale			0.7
+			forecolor			1 1 1 1
+			outlinecolor		1 .5 .5 .5
+			border				0
+			visible				1
+		}
+
+		itemDef 
+		{
+			name 				namefield
+			group				name
+			type 				ITEM_TYPE_EDITFIELD
+			style 				0
+			text 				@MENUS_NAME1
+			cvar 				"ui_Name"
+			maxchars 			35
+			rect 				140 90 300 20
+			textalign			ITEM_ALIGN_LEFT		
+			textalignx 			0
+			textaligny 			0
+			font				2
+			textscale			0.7
+			forecolor			0.8 0.8 0.8 1
+			outlinecolor 		1 .5 .5 .5
+			backcolor 			0 0 0 0
+			border 				0
+			bordercolor 		0 0 0 0
+			visible 			1 
+			action 
+			{ 
+				play			"sound/interface/button1"
+			}
+		}
+	
+//------------------------------------------------------------------------------------------------
+// Character Screen
+//------------------------------------------------------------------------------------------------
+		
+		// Character Title
+		itemDef
+		{
+			name 				charactertitle
+			group				character
+			style				WINDOW_STYLE_FILLED
+			text				"Character"
+			rect				121 1 510 25
+			textalign			ITEM_ALIGN_CENTER		
+			textalignx			255
+			textaligny			0
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 1
+			font				3
+			textscale			1
+			forecolor			1 1 1 1
+			border				0
+			bordercolor			0 0 0 0
+			visible				1 
+		}
+		
+		itemDef
+		{
+			name				descbackground
+			group				character
+			style				WINDOW_STYLE_FILLED
+			rect				121 380 510 20
+			backcolor			0 0 0 1
+			forecolor			1 1 1 1
+			border				0
+			visible				1
+		}
+		
+		itemDef 
+		{
+			name				setcolor
+			group				character
+			style				0	
+			text				@MENUS_TEAM_COLOR
+			ownerdraw			UI_SKIN_COLOR
+			rect				130 30 160 20
+			textalign			ITEM_ALIGN_LEFT
+			textalignx			0
+			textaligny			0
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 0
+			font				2
+			textscale			.7
+			forecolor			0.8 0.8 0.8 1
+			border				0
+			bordercolor			0 0 0 0
+			descText			@MENUS_CHOOSE_THE_COLOR_FOR
+			cvarTest			"ui_about_gametype"
+			hideCvar 
+			{ 
+				"6" ;
+				"7" ;
+				"8" ;
+				"9"
+			}
+			visible				1 
+			action 
+			{ 
+				play			"sound/interface/button1"
+			}
+		}
+
+		// Skin/Team Color Chooser
+		itemDef 
+		{
+			name				setcolor
+			group				character
+			style				0	
+			text				@MENUS_TEAM_COLOR
+			ownerdraw			UI_SKIN_COLOR
+			rect				130 30 160 20
+			textalign			ITEM_ALIGN_LEFT
+			textalignx			0
+			textaligny			0
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 0
+			font				2
+			textscale			.7
+			forecolor			0.8 0.8 0.8 1
+			border				0
+			bordercolor			0 0 0 0
+			descText			@MENUS_CHOOSE_THE_COLOR_FOR
+			cvarTest			"ui_about_gametype"
+			showCvar 
+			{ 
+				"6" ;
+				"7" ;
+				"8" ;
+				"9"
+			}
+			visible				1 
+			decoration
+			action 
+			{ 
+				play			"sound/interface/button1"
+			}
+		}
+		
+		// Scroll box with portraits.
+		itemDef 
+		{
+			name 				headlist
+			group				character
+			rect 				130 45 468 258			
+			type 				ITEM_TYPE_LISTBOX
+			style 				WINDOW_STYLE_FILLED
+			elementwidth 		64
+			elementheight 		64
+			elementtype 		LISTBOX_IMAGE
+			feeder 				FEEDER_Q3HEADS
+			backcolor 			0 0 0 1
+			border 				1
+			bordercolor 		0 0 0 1
+			forecolor 			1 1 1 1
+			descText			@MENUS_CHOOSE_THE_MODEL_FOR
+			visible 			1
+			textscale 			0.7
+			action 
+			{ 
+				play			"sound/interface/button1"
+			}
+			mouseenter 
+			{ 
+				setitemcolor 	headlist bordercolor 0 0.4 0.8 1 
+			}
+			mouseexit 
+			{ 
+				setitemcolor 	headlist bordercolor 0 0 0 1
+			}
+		}
+		
+		itemDef
+		{
+			name				customchar
+			group				character
+			text				@MENUS_CUSTOMPLAYER_DESC
+			descText			@MENUS_CUSTOMPLAYER_DESC
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				290 322 160 15
+			font				2
+			textscale			0.8
+			textalign			ITEM_ALIGN_LEFT
+			textstyle			3
+			forecolor			1 1 1 1
+			visible				1
+			action 
+			{ 
+				play			"sound/interface/button1.wav" 
+				uiScript		updateForceStatus
+				hide			name ;
+				hide			character ;
+				hide			lightsaber ;
+				hide			gunnery ;
+				close			ingame_playerforce ;
+				open			ingame_player2 ;
+			}  	  
+		}
+		
+//---------------------------------------------
+//	APPLY BUTTON
+//---------------------------------------------
+// APPLY, already on a team
+		itemDef 
+		{
+			name				applycurrent
+			group				"playerapply"
+			text				@MENUS_APPLY
+			type				1
+			style				WINDOW_STYLE_EMPTY
+			rect				5 410 105 32
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			52
+			textaligny			-2
+			font				2
+			textscale			1
+			forecolor			0.8 0.8 0.8 1
+			descText			@MENUS_APPLY_CHANGES_AND_JOIN
+			visible			1
+			action 
+			{ 
+				play			"sound/interface/button1"
+				uiScript		setForce "none"
+				hide			highlights
+				uiScript		closeingame
+			}
+			mouseEnter 
+			{ 
+			}
+			mouseExit 
+			{ 
+			}
+		}
+
+		// APPLY Free
+		itemDef 
+		{
+			name				applyjoin
+			group				"playerforcejoin"
+			text				@MENUS_JOIN_GAME
+			type				1
+			style				WINDOW_STYLE_EMPTY
+			rect				5 410 105 32
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			53
+			textaligny			-1
+			font				2
+			textscale			1
+			forecolor			0.8 0.8 0.8 1
+			descText			@MENUS_APPLY_CHANGES_AND_JOIN
+			visible			1
+			action 
+			{ 
+				play			"sound/interface/button1"
+				uiScript 		setForce "free"
+				hide			highlights
+				uiScript 		closeingame
+			}
+			mouseEnter 
+			{ 
+			}
+			mouseExit 
+			{ 
+			}
+		}
+
+// APPLY RED
+		itemDef 
+		{
+			name				applyred
+			group				"playerforcered"
+			text				@MENUS_JOIN_RED
+			type				1
+			style				WINDOW_STYLE_EMPTY
+			rect				110 410 105 32
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			52
+			textaligny			-1
+			font				2
+			textscale			1
+			forecolor			0.8 0.8 0.8 1
+			cvarTest			"ui_about_gametype"
+			hideCvar 
+			{ 
+				"0" ;
+				"1" ;
+				"2" ;
+				"3" ;
+				//[CoOp]
+				"4" ;
+				"5"
+				//"4"
+				//[/CoOp]
+			}
+			descText			@MENUS_CHANGES_AND_JOIN_THE
+			visible				1
+			action 
+			{ 
+				play			"sound/interface/button1"
+				uiScript		setForce "red"
+				hide			highlights
+				uiScript 		closeingame
+			}
+			mouseEnter 
+			{ 
+			}
+			mouseExit 
+			{ 
+			}
+		}
+
+		// APPLY BLUE
+		itemDef 
+		{
+			name				applyblue
+			group				"playerforceblue"
+			text				@MENUS_JOIN_BLUE
+			type				1
+			style				WINDOW_STYLE_EMPTY
+			rect				215 410 105 32
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			52
+			textaligny			-1
+			font				2
+			textscale			1
+			forecolor			0.8 0.8 0.8 1
+			cvarTest			"ui_about_gametype"
+			hideCvar 
+			{ 
+				"0" ;
+				"1" ;
+				"2" ;
+				"3" ;
+				//[CoOp]
+				"4" ;
+				"5"
+				//"4"
+				//[/CoOp]
+			}
+			descText			@MENUS_AND_JOIN_THE_BLUE_TEAM
+			visible				1
+			action 
+			{ 
+				play			"sound/interface/button1"
+				uiScript 		setForce "blue"
+				hide			highlights
+				uiScript 		closeingame
+			}
+			mouseEnter 
+			{ 
+			}
+			mouseExit 
+			{ 
+			}
+		}
+
+// APPLY SPECTATOR
+		itemDef 
+		{
+			name				applyspectate
+			group				"playerforcespectate"
+			text				@MENUS_SPECTATE
+			type				1
+			style				WINDOW_STYLE_EMPTY
+			rect				320 410 105 32
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			52
+			textaligny			-2
+			font				2
+			textscale			1
+			forecolor			0.8 0.8 0.8 1
+			descText			@MENUS_APPLY_CHANGES_BUT_REMAIN
+			visible			1
+			action 
+			{ 
+				play			"sound/interface/button1"
+				uiScript 		setForce "s"
+				hide			highlights
+				uiScript 		closeingame
+			}
+			mouseEnter 
+			{ 
+			}
+			mouseExit 
+			{ 
+			}
+		}
+		
+	}
+}
+//[/NewMenus]
+

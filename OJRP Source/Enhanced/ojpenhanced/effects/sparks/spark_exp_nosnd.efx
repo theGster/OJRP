@@ -1,0 +1,139 @@
+Line
+{
+	count				4 8
+
+	life				100 200
+
+	origin2				12 -10 -10 18 10 10
+
+	alpha
+	{
+		start			0.25 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			0.2 0.5
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	flags				usePhysics
+
+	count				8 10
+
+	life				700 1100
+
+	bounce				0.15 0.2
+
+	velocity			120 -140 -140 225 140 140
+
+	gravity				-250 -400
+
+	alpha
+	{
+		flags			random
+	}
+
+	size
+	{
+		start			0.5 0.75
+	}
+
+	length
+	{
+		start			8 12
+		end				0.1 1
+		parm			10 40
+		flags			linear nonlinear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Particle
+{
+	count				3 4
+
+	life				900 1000
+
+	rotation			0 360
+
+	rotationDelta		-5 5
+
+	velocity			8 -12 -12 16 12 12
+
+	gravity				12 24
+
+	alpha
+	{
+		start			0.6 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			2
+		end				16 32
+		parm			20 30
+		flags			linear clamp
+	}
+
+	shaders
+	[
+		gfx/misc/steam
+	]
+}
+
+Tail
+{
+	name				Copy of Unnamed Tail 1
+
+	flags				usePhysics
+
+	count				10
+
+	life				700 1100
+
+	bounce				0.15 0.2
+
+	velocity			120 -160 -160 225 160 160
+
+	gravity				-250 -400
+
+	alpha
+	{
+		flags			random
+	}
+
+	size
+	{
+		start			0.5 0.75
+	}
+
+	length
+	{
+		start			6 16
+		end				0.1 1
+		parm			30 60
+		flags			linear nonlinear
+	}
+
+	shaders
+	[
+		gfx/misc/spark3
+	]
+}

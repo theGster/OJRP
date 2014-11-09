@@ -1,0 +1,102 @@
+repeatDelay				300
+
+Line
+{
+	count				4 8
+
+	life				100 200
+
+	origin2				12 -10 -10 18 10 10
+
+	alpha
+	{
+		start			0.25 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			0.2 0.5
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	flags				usePhysics
+
+	count				125
+
+	life				1200 1700
+
+	bounce				0.25 0.4
+
+	velocity			237 -187 -164 274 183 176
+
+	gravity				-350 -450
+
+	size
+	{
+		start			0.3
+	}
+
+	length
+	{
+		start			4 10
+		end				2 5
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Particle
+{
+	count				4 6
+
+	life				900 1000
+
+	velocity			8 -12 -12 16 12 12
+
+	gravity				12 24
+
+	alpha
+	{
+		start			0.2 0.4
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			4 12
+		end				12 24
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/steam
+	]
+}
+
+FxRunner
+{
+	count				0
+
+	delay				0 100
+}
+
+Sound
+{
+	count				0
+}

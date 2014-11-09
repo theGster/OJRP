@@ -1,0 +1,64 @@
+repeatDelay				300
+
+Line
+{
+	name				startspark
+
+	count				2 4
+
+	life				100
+
+	origin2				6 -10 -10 12 10 10
+
+	alpha
+	{
+		start			0.25 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			0.2 0.5
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	name				sparks
+
+	flags				usePhysics
+
+	count				14 12
+
+	life				1600 1700
+
+	bounce				0.25 0.3
+
+	velocity			190 -230 -230 270 170 240
+
+	gravity				-100 -450
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			4 10
+		end				0.1 1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}

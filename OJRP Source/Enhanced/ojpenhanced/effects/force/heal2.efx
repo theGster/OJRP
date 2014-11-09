@@ -1,0 +1,51 @@
+repeatDelay				300
+
+Particle
+{
+	name				Copy of Unnamed Particle 0
+
+	count				6 8
+
+	life				700 800
+
+	delay				0 300
+
+	rotation			0 360
+
+	rgb
+	{
+		start			0 0 0.6275 0.6863 0.1686 1
+		end				0 0.3804 1 0.9216 0.3569 1
+		parm			1
+		flags			linear
+	}
+
+	alpha
+	{
+		start			0.02
+		end				0.1 0.05
+		parm			1
+		flags			wave
+	}
+
+	size
+	{
+		start			56 72
+		end				0.1 0.3
+		parm			1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/Chunk
+	]
+}
+
+FxRunner
+{
+	playfx
+	[
+		force/heal
+	]
+}

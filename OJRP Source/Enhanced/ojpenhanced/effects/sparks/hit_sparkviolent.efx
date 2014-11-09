@@ -1,0 +1,153 @@
+repeatDelay				300
+
+Tail
+{
+	name				sparks
+
+	flags				usePhysics
+
+	spawnFlags			rgbComponentInterpolation
+
+	count				2
+
+	life				1200 1600
+
+	bounce				0.22 0.21
+
+	velocity			173 145 155 -155 -133 -139
+
+	gravity				-700 -250
+
+	rgb
+	{
+		start			1 0.9843 0.9412
+		end				0.651 0.7922 0.9412
+		parm			2 1
+	}
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			2
+		end				3 1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+FxRunner
+{
+	playfx
+	[
+		smoke/fleshhitsmokesmall
+	]
+}
+
+Sound
+{
+	count				0
+}
+
+Tail
+{
+	name				Copy of sparks
+
+	flags				usePhysics
+
+	spawnFlags			rgbComponentInterpolation
+
+	count				12 9
+
+	life				300
+
+	bounce				0.22 0.21
+
+	velocity			173 145 155 -155 -133 -139
+
+	gravity				-700 -250
+
+	rgb
+	{
+		start			1 0.9843 0.9412
+		end				0.651 0.7922 0.9412
+		parm			2 1
+	}
+
+	alpha
+	{
+		end				0.3 0.4
+		flags			linear
+	}
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			2
+		end				3 1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Tail
+{
+	name				ftails?
+
+	flags				usePhysics
+
+	spawnFlags			orgOnSphere rgbComponentInterpolation
+
+	count				3
+
+	life				1200 1600
+
+	bounce				0.22 0.21
+
+	radius				4 3
+
+	height				3 4
+
+	velocity			173 145 155 -155 -133 -139
+
+	gravity				-700 -250
+
+	rgb
+	{
+		start			1 1 0 1 0.9843 0.9412
+		end				0.651 0.7922 0.9412
+		parm			2 1
+	}
+
+	size
+	{
+		start			0.7 0.4
+	}
+
+	length
+	{
+		start			2
+		end				3 4
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/flaretailup
+	]
+}

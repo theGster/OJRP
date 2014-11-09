@@ -1,0 +1,53 @@
+repeatDelay				300
+
+Tail
+{
+	name				sparks
+
+	flags				usePhysics
+
+	spawnFlags			rgbComponentInterpolation
+
+	count				5 3
+
+	life				125
+
+	bounce				0.22 0.21
+
+	radius				2
+
+	height				2
+
+	velocity			175 185 194 -175 -179 -185
+
+	gravity				-700 -250
+
+	rgb
+	{
+		start			1 0.9843 0.9412
+		end				0.651 0.7922 0.9412
+		parm			2 1
+	}
+
+	alpha
+	{
+		start			0.7 0.8
+	}
+
+	size
+	{
+		start			0.4 0.3
+	}
+
+	length
+	{
+		start			7 5
+		end				2 4
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark3
+	]
+}

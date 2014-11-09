@@ -1,0 +1,80 @@
+repeatDelay				300
+
+Tail
+{
+	flags				usePhysics
+
+	spawnFlags			absoluteVel orgOnSphere
+
+	count				100
+
+	life				100
+
+	bounce				0.25 0.4
+
+	radius				25
+
+	height				25
+
+	velocity			300 300 800 -300 -300 -800
+
+	gravity				-350 -450
+
+	size
+	{
+		start			0.3
+	}
+
+	length
+	{
+		start			15
+		end				5
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Tail
+{
+	name				Copy of Unnamed Tail 1
+
+	flags				usePhysics
+
+	spawnFlags			absoluteVel orgOnSphere
+
+	count				100
+
+	life				100
+
+	bounce				0.25 0.4
+
+	radius				5
+
+	height				5
+
+	velocity			1050 1050 800 -1050 -1050 -800
+
+	gravity				-350 -450
+
+	size
+	{
+		end				0
+		flags			linear nonlinear
+	}
+
+	length
+	{
+		start			15
+		end				0
+		flags			nonlinear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}

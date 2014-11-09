@@ -1,0 +1,18 @@
+repeatDelay				300
+
+Particle
+{
+	life				600 700
+
+	velocity			45 0 0
+
+	size
+	{
+		start			2.4 2.5
+	}
+
+	shaders
+	[
+		gfx/2d/numbers/two
+	]
+}

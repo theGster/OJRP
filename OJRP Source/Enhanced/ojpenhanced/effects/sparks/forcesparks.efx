@@ -1,0 +1,52 @@
+repeatDelay				300
+
+Tail
+{
+	name				sparks
+
+	flags				usePhysics
+
+	spawnFlags			orgOnSphere
+
+	count				14 12
+
+	life				400 500
+
+	bounce				0.25 0.3
+
+	radius				11 10
+
+	height				12
+
+	velocity			35 35 35 -25 -25 -25
+
+	gravity				50 100
+
+	rgb
+	{
+		start			0.8 0.6549 0.9961 0.651 0.7922 0.9412
+	}
+
+	alpha
+	{
+		start			0.2 0.5
+	}
+
+	size
+	{
+		start			1 0.7
+	}
+
+	length
+	{
+		start			4 10
+		end				0.1 1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/flaretail2
+		gfx/misc/flaretailup
+	]
+}

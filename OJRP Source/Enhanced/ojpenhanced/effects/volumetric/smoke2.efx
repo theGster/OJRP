@@ -1,0 +1,41 @@
+repeatDelay				300
+
+Particle
+{
+	spawnFlags			orgOnSphere
+
+	count				16
+
+	life				1.2e+004 1.15e+004
+
+	delay				0 120
+
+	origin				4 -6 -6 4 6 6
+
+	radius				15 13
+
+	height				14
+
+	velocity			15 -12 -12 20 12 12
+
+	gravity				12 32
+
+	alpha
+	{
+		start			0.3 0.4
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			80
+		end				180 170
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/steam
+	]
+}

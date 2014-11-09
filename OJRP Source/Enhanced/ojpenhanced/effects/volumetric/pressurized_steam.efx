@@ -1,0 +1,31 @@
+Particle
+{
+	count				12
+
+	life				600 900
+
+	delay				0 150
+
+	velocity			100 -24 -24 200 24 24
+
+	gravity				12 24
+
+	alpha
+	{
+		start			0.4 0.6
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			10 16
+		end				24 32
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/steam
+	]
+}

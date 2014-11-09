@@ -1,0 +1,73 @@
+repeatDelay				509
+
+Line
+{
+	count				4 5
+
+	life				100
+
+	origin2				-30 -30 -30 30 30 30
+
+	alpha
+	{
+		end				0
+		flags			linear nonlinear
+	}
+
+	size
+	{
+		start			0.2 0.5
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	flags				useBBox usePhysics
+
+	count				2
+
+	life				300 200
+
+	cullrange			300
+
+	bounce				0.2
+
+	velocity			-185 -280 -280 185 280 280
+
+	gravity				-800
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			4 10
+		end				0.1 1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Sound
+{
+	cullrange			1200
+
+	sounds
+	[
+		sound/ambience/spark1.mp3
+		sound/ambience/spark2.mp3
+		sound/ambience/spark3.mp3
+	]
+}

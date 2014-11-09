@@ -1,0 +1,66 @@
+repeatDelay				300
+
+Tail
+{
+	name				sparks
+
+	flags				usePhysics impactFx
+
+	spawnFlags			orgOnCylinder rgbComponentInterpolation
+
+	count				3
+
+	life				1200 1600
+
+	radius				5 4
+
+	height				4
+
+	velocity			133 -133 -100 140 140 100
+
+	gravity				-700 -250
+
+	rgb
+	{
+		start			0.651 0.7922 0.9412 0 0 1
+	}
+
+	size
+	{
+		start			0.4 0.5
+	}
+
+	length
+	{
+		start			4 6
+		end				3 6
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/effects/whiteFlare
+		gfx/misc/spark
+	]
+
+	impactfx
+	[
+		smoke/pistolsmoke
+		soundefx/sparkhitfloor
+	]
+}
+
+FxRunner
+{
+	delay				0 100
+
+	playfx
+	[
+		smoke/fleshhitsmokesmall
+	]
+}
+
+Sound
+{
+	count				0
+}

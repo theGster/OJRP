@@ -1,0 +1,59 @@
+repeatDelay				200
+
+Tail
+{
+	name				fall
+
+	spawnFlags			cheapOrgCalc evenDistribution rgbComponentInterpolation
+
+	count				3 2
+
+	life				1000 1200
+
+	delay				0 250
+
+	cullrange			4000
+
+	origin				-100 -100 -150 100 100 -100
+
+	velocity			20 -5 -100 150 5 100
+
+	acceleration		300 0 0 320 0 0
+
+	gravity				-3500 -3000
+
+	rgb
+	{
+		start			0.5137 0.8745 0.9373 0.9922 0.9961 1
+		end				1 0.9843 0.9412
+		flags			linear wave
+	}
+
+	alpha
+	{
+		start			0.1
+		end				0
+		parm			70 90
+		flags			nonlinear
+	}
+
+	size
+	{
+		start			48 64
+		end				256 320
+		flags			linear
+	}
+
+	length
+	{
+		start			200 100
+		end				800 1100
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/effects/alpha_smoke
+		gfx/misc/steam2
+	]
+}

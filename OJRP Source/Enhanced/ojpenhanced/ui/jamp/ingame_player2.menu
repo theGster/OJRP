@@ -1,0 +1,517 @@
+//[NewMenus]
+//-----------------------------------
+// Custom Player
+//-----------------------------------
+//
+// This menu works the same as the ingame_playerforce.menu.
+//
+{
+	menuDef 
+	{
+		name						"ingame_player2"
+		visible						0
+		fullscreen					0
+//		outOfBoundsClick										// this closes the window if it gets a click out of the rectangle
+		rect						120 40 510 400
+		focusColor					0 0.4 0.8 1				// Focus color for text and items
+		style						1
+		border						1
+		descX						383
+		descY						422
+		descScale					1
+		descColor					0 0.4 0.8 1
+		descAlignment				ITEM_ALIGN_CENTER		
+		onOpen  
+		{ 
+			uiScript  				"getcharcvars"
+			uiScript  				"character"
+			uiScript				updateForceStatus
+			hide					highlights
+		}
+		onClose 
+		{ 
+			uiScript				updateForceStatus 
+			hide					highlights
+			uiScript				"updatecharmodel"
+		}
+		
+//---------------------------------------------
+//	CUSTOM CHARACTER
+//---------------------------------------------
+		// Custom Character Title
+		itemDef
+		{
+			name 				charactertitle
+			group				custom
+			style				WINDOW_STYLE_FILLED
+			text				@MENUS_CUSTOM_CHARACTER
+			rect				1 1 510 25
+			textalign			ITEM_ALIGN_CENTER		
+			textalignx			255
+			textaligny			0
+			outlinecolor		1 .5 .5 .5
+			backcolor			0 0 0 1
+			font				3
+			textscale			1
+			forecolor			1 1 1 1
+			border				0
+			bordercolor			0 0 0 0
+			visible				1 
+		}
+		
+		itemDef
+		{
+			name				descbackground
+			group				custom
+			style				WINDOW_STYLE_FILLED
+			rect				1 380 510 20
+			backcolor			0 0 0 1
+			forecolor			1 1 1 1
+			border				0
+			visible				1
+		}
+		
+		// Character model
+		itemDef
+		{
+			name				character
+			group				models
+			type 				ITEM_TYPE_MODEL
+			rect				320 100 200 225
+			model_g2anim 		"BOTH_WALK1"
+			asset_model			"ui_char_model"
+			model_angle			180
+			//mins maxs format is apparently z x y (hmmm... y x z?)
+			model_g2mins		-30 -15 -14
+			model_g2maxs		20 15 30
+			model_rotation		50
+			model_fovx			50
+			model_fovy			50
+			isCharacter			1
+			visible				1
+			decoration
+		}
+		
+		//////////////////
+		// SPECIES BUTTON
+		//////////////////
+		itemDef
+		{
+			name				species
+			group				none
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				10 30 140 24
+			forecolor			1 1 1 1
+			text				@MENUS_SPECIES
+			textalign			ITEM_ALIGN_LEFT
+			textalignx			0
+			textaligny			0
+			textstyle			0
+			font				2
+			textscale 			0.7
+			visible 			1
+			decoration
+		}
+
+		itemDef 
+		{
+			name				speciesbut
+			group				none
+			text				" "
+			descText			@MENUS_CHOOSE_SPECIES
+			type				ITEM_TYPE_MULTI
+			style				WINDOW_STYLE_EMPTY
+			rect				106 30 150 16
+			font				2
+			textscale			.7
+			textaligny			0
+			textalign			ITEM_ALIGN_LEFT
+			textstyle			0
+			textalignx			0
+			backcolor			0 0 0 0
+			forecolor			0.8 0.8 0.8 1
+			feeder				19	//FEEDER_PLAYER_SPECIES
+			cvar				"ui_char_model"
+			cvarStrList			feeder
+
+			visible			1
+			 
+			action 
+			{
+				play			"sound/interface/button1.wav"
+				uiScript 		"characterchanged"
+				uiScript 		"resetcharacterlistboxes"
+			}
+		}
+		
+		////////////////////
+		// COLOR TINT AREA
+		////////////////////
+		itemDef
+		{
+			name				colorbox
+			group				tints
+			type				ITEM_TYPE_LISTBOX
+			style				WINDOW_STYLE_FILLED
+			elementwidth		32
+			elementheight		32
+			elementtype			1 			//LISTBOX_IMAGE
+			feeder				23		//FEEDER_COLORCHOICES
+			horizontalscroll
+			border				1
+			bordersize			1
+			backcolor			0 0 0 .6
+			bordercolor			0 0 0 1
+			rect				10 100 288 50
+			visible				1
+			action 
+			{
+				play			"sound/interface/choose_color.wav"
+			}
+		}
+		
+		// RGB Player
+		
+		itemDef 
+		{
+			name				colorpresetbut
+			group				none
+			text				"Presets"
+			descText			"Preset Color Menu."
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				12 84 70 16
+			font				2
+			textscale			.7
+			textaligny			0
+			textalign			ITEM_ALIGN_LEFT
+			textstyle			0
+			textalignx			0
+			backcolor			0 0 0 0
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+
+			action 
+			{
+				play			"sound/interface/button1.wav"
+				show			tints
+				hide			tints2
+				
+				setitemcolor		colorrgbbut forecolor 0.8 0.8 0.8 1
+				setitemcolor		colorpresetbut forecolor 0 0.4 0.8 1
+			}
+		}
+
+		itemDef 
+		{
+			name				colorrgbbut
+			group				none
+			text				"RGB"
+			descText			"RGB Colors Menu."
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				100 84 70 16
+			font				2
+			textscale			.7
+			textaligny			0
+			textalign			ITEM_ALIGN_LEFT
+			textstyle			0
+			textalignx			0
+			backcolor			0 0 0 0
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+
+			action 
+			{
+				play			"sound/interface/button1.wav"
+				show			tints2
+				hide			tints
+				
+				setitemcolor		colorpresetbut forecolor 0.8 0.8 0.8 1
+				setitemcolor		colorrgbbut forecolor 0 0.4 0.8 1
+			}
+		}
+		
+		itemDef 
+		{
+			name				charred
+			group				tints2
+			//[INTSLIDER]
+			type				ITEM_TYPE_INTSLIDER
+			text				"Red: "
+			cvarint				"ui_char_color_red" 50 0 255
+			//[/INTSLIDER]
+			rect				0 104 175 18
+			textalign			ITEM_ALIGN_RIGHT
+			textalignx			70
+			textaligny			0
+			font 				2
+			textscale 			0.7
+			forecolor			0.8 0.8 0.8 1
+			visible				0
+			// appearance_slot		3
+			descText			"Red Channel."
+			
+			action 
+			{ 
+				play			"sound/interface/button1"
+			}
+		}
+
+		itemDef 
+		{
+			name				chargreen
+			group				tints2
+			//[INTSLIDER]
+			type				ITEM_TYPE_INTSLIDER
+			text				"Green: "
+			cvarint				"ui_char_color_green" 50 0 255
+			//[/INTSLIDER]
+			rect				0 124 175 18
+			textalign			ITEM_ALIGN_RIGHT
+			textalignx			70
+			textaligny			0
+			font 				2
+			textscale 			0.7
+			forecolor			0.8 0.8 0.8 1
+			visible				0
+			// appearance_slot		3
+			descText			"Green Channel."
+
+			action 
+			{ 
+				play			"sound/interface/button1"
+			}
+		}
+
+		itemDef 
+		{
+			name				charblue
+			group				tints2
+			//[INTSLIDER]
+			type				ITEM_TYPE_INTSLIDER
+			text				"Blue: "
+			cvarint				"ui_char_color_blue" 50 0 255
+			//[/INTSLIDER]
+			rect				0 144 175 18
+			textalign			ITEM_ALIGN_RIGHT
+			textalignx			70
+			textaligny			0
+			font 				2
+			textscale 			0.7
+			forecolor			0.8 0.8 0.8 1
+			visible				0
+			// appearance_slot		3
+			descText			"Blue Channel."
+			
+			action 
+			{ 
+				play			"sound/interface/button1"
+			}
+		}
+		
+		// RGB Player
+		
+		// HEAD BUTTON
+		itemDef 
+		{
+			name				headbut
+			group				none
+			text				@MENUS_HEAD
+			descText			@MENUS_SELECT_HEAD
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				20 199 90 16
+			font				2
+			textscale			.7
+			textaligny			-5
+			textalign			ITEM_ALIGN_LEFT
+			textstyle			0
+			textalignx			0
+			backcolor			0 0 0 0
+			forecolor			0.8 0.8 0.8 1
+			visible			1
+			 
+			action 
+			{
+				play			"sound/interface/button1.wav"
+				show			heads
+				hide			torso
+				hide			lower
+			}
+		}
+		
+		// TORSO BUTTON
+		itemDef 
+		{
+			name				torsobut
+			group				none
+			text				@MENUS_TORSO
+			descText			@MENUS_SELECT_TORSO
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				110 199 90 16
+			font				2
+			textscale			.7
+			textaligny			-5
+			textalign			ITEM_ALIGN_LEFT
+			textstyle			0
+			textalignx			0
+			backcolor			0 0 0 0
+			forecolor			0.8 0.8 0.8 1
+			visible			1
+
+			mouseEnter 
+			{ 
+			}
+			mouseExit 
+			{ 
+			}	  	  
+			action 
+			{
+				play			"sound/interface/button1.wav" 
+				show			torso
+				hide			heads
+				hide			lower
+			}
+		}
+
+		// LEGS BUTTON
+		itemDef 
+		{
+			name				legsbut
+			group				none
+			text				@MENUS_LEGS
+			descText			@MENUS_SELECT_LEGS
+			type				ITEM_TYPE_BUTTON
+			style				WINDOW_STYLE_EMPTY
+			rect				200 199 90 16
+			font				2
+			textscale			.7
+			textaligny			-5
+			textalign			ITEM_ALIGN_LEFT
+			textstyle			0
+			textalignx			0
+			backcolor			0 0 0 0
+			forecolor			0.8 0.8 0.8 1
+			visible				1
+			 
+			action 
+			{
+				play			"sound/interface/button1.wav"
+				show			lower
+				hide			heads
+				hide			torso
+			}
+		}
+		
+		//////////////////////
+		//LISTBOXES
+		//////////////////////
+		itemDef
+		{
+			name				headlistbox
+			group				heads
+			type				ITEM_TYPE_LISTBOX
+			style				WINDOW_STYLE_FILLED
+			elementwidth		72
+			elementheight		72
+			elementtype			1 			//LISTBOX_IMAGE
+			feeder				20 			//FEEDER_PLAYER_SKIN_HEAD
+			horizontalscroll
+			border				1
+			bordersize			1
+			backcolor			0 0 0 .6
+			bordercolor			0 0 0 1
+			forecolor			-1			//use playercolor
+			rect				10 214 292 93
+			visible				1
+			action
+			{
+				play			"sound/interface/choose_head.wav"
+				uiScript 		"char_skin"
+			}
+		}
+
+		itemDef
+		{
+			name				torsolistbox
+			group				torso
+			type				ITEM_TYPE_LISTBOX
+			style				WINDOW_STYLE_FILLED
+			elementwidth		72
+			elementheight		72
+			elementtype			1 			//LISTBOX_IMAGE
+			feeder			21 			//FEEDER_PLAYER_SKIN_TORSO
+			horizontalscroll
+			border			1
+			bordersize			1
+			backcolor			0 0 0 .6
+			bordercolor			0 0 0 1
+			forecolor			-1			//use playercolor
+			rect				10 214 292 93
+			visible				0
+			action
+			{
+				play			"sound/interface/choose_torso.wav"
+				uiScript 		"char_skin"
+			}
+		}
+
+		itemDef
+		{
+			name				lowerlistbox
+			group				lower
+			type				ITEM_TYPE_LISTBOX
+			style				WINDOW_STYLE_FILLED
+			elementwidth		72
+			elementheight		72
+			elementtype			1 			//LISTBOX_IMAGE
+			feeder				22 			//FEEDER_PLAYER_SKIN_LEGS
+			horizontalscroll
+			border				1
+			bordersize			1
+			backcolor			0 0 0 .6
+			bordercolor			0 0 0 1
+			forecolor			-1			//use playercolor
+			rect				10 214 292 93
+			visible				0
+			action
+			{
+				play			"sound/interface/choose_head.wav"
+				uiScript 		"char_skin"
+			}
+		}
+/*		
+//---------------------------------------------
+//	APPLY BUTTON
+//---------------------------------------------
+// APPLY, already on a team
+		itemDef 
+		{
+			name				applycurrent
+			group				"playerapply"
+			text				@MENUS_APPLY
+			type				1
+			style				WINDOW_STYLE_EMPTY
+			rect				200 350 110 32
+			textalign			ITEM_ALIGN_CENTER
+			textalignx			55
+			textaligny			0
+			font				2
+			textscale			1
+			forecolor			1 1 1 1
+			descText			@MENUS_APPLY_CHANGES_AND_JOIN
+			visible			1
+			action 
+			{ 
+				play			"sound/interface/button1"
+				uiScript		"updatecharmodel"
+				hide			highlights
+			}
+		} */
+	}
+}
+//[/NewMenus]
+

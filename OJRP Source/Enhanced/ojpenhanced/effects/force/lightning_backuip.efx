@@ -1,0 +1,126 @@
+repeatDelay				250
+
+Electricity
+{
+	name				beams
+
+	flags				useModel useBBox usePhysics
+
+	spawnFlags			org2fromTrace rgbComponentInterpolation
+
+	count				1 0
+
+	life				100
+
+	bounce				2 3
+
+	origin2				325 -25 -2 350 15 2
+
+	rgb
+	{
+		start			1 0.9843 0.9412 0.4275 0.02745 0.9725
+		end				1 0.9843 0.9412
+		flags			nonlinear
+	}
+
+	size
+	{
+		start			8.5
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/blueLine
+	]
+}
+
+Particle
+{
+	rotation			0 360
+
+	rgb
+	{
+		start			0.4275 0.02745 0.9725 0.7294 0.5255 0.9765
+	}
+
+	size
+	{
+		start			10
+		flags			random
+	}
+
+	shaders
+	[
+		gfx/effects/whiteGlow
+	]
+}
+
+OrientedParticle
+{
+	spawnFlags			rgbComponentInterpolation
+
+	rgb
+	{
+		start			0 0 1 0.7294 0.5255 0.9765
+	}
+
+	size
+	{
+		start			10
+		flags			random
+	}
+
+	shaders
+	[
+		gfx/effects/whiteGlow
+	]
+}
+
+Light
+{
+}
+
+FxRunner
+{
+	count				2
+
+	playfx
+	[
+		explosions/lightning base
+	]
+}
+
+Electricity
+{
+	flags				useModel useBBox usePhysics
+
+	spawnFlags			rgbComponentInterpolation
+
+	count				0
+
+	life				100
+
+	bounce				5 6
+
+	origin2				50 50 50 -50 -50 -50
+
+	rgb
+	{
+		start			0 0 1 1 0.9843 0.9412
+		end				0.7294 0.5255 0.9765 0 0 1
+		flags			nonlinear
+	}
+
+	size
+	{
+		start			0.3 0.5
+		end				2
+		flags			nonlinear
+	}
+
+	shaders
+	[
+		gfx/effects/blueLine
+	]
+}

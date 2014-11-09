@@ -1,0 +1,21 @@
+repeatDelay				250
+
+FxRunner
+{
+	name				smoke
+
+	playfx
+	[
+		explosions/pushblurfire
+	]
+}
+
+FxRunner
+{
+	name				sparkles
+
+	playfx
+	[
+		sparks/forcesparks
+	]
+}

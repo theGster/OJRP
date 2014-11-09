@@ -1,0 +1,73 @@
+repeatDelay				509
+
+Tail
+{
+	name				sparks
+
+	flags				usePhysics
+
+	spawnFlags			orgOnCylinder
+
+	count				7 8
+
+	life				600 500
+
+	bounce				0.25 0.3
+
+	velocity			150 -180 -180 230 150 180
+
+	gravity				-600 -450
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			4 10
+		end				0.1 1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}
+
+Tail
+{
+	name				sparksstart
+
+	flags				usePhysics
+
+	spawnFlags			orgOnCylinder
+
+	count				17 14
+
+	life				150
+
+	bounce				0.25 0.3
+
+	velocity			280 -180 -180 270 150 180
+
+	gravity				-600 -450
+
+	size
+	{
+		start			0.3 0.4
+	}
+
+	length
+	{
+		start			4 10
+		end				0.1 1
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+}

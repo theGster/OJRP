@@ -1,0 +1,610 @@
+// Note to translators:
+// If a sentence is the same in your language then please change it to "#same"
+//
+// eg:
+// LANG_ENGLISH  "HALT"
+// LANG_GERMAN   "#same"
+//
+// (This is so we can tell which strings have been signed-off as ok to be the same words for QA
+//  and because we do not store duplicate strings, which will then get exported again next time
+//  as being untranslated.)
+//
+VERSION             "1"
+CONFIG              "W:\bin\stringed.cfg"
+FILENOTES           "OJP menu strings"
+
+//[ExpSys]
+REFERENCE	    STARTINGSKILLPOINTS
+LANG_ENGLISH	    "Initial Skill Points:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    MAXSKILLPOINTS
+LANG_ENGLISH	    "Maximum Skill Points:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL
+LANG_ENGLISH	    "Skill"
+LANG_FRENCH		"#same"
+
+REFERENCE	    NOTFORCESENSITIVE
+LANG_ENGLISH	    "No Force Powers"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_NOTFORCESENSITIVE
+LANG_ENGLISH	    "Must acquire a minimum rank of 1 in Force Seeing to use other Force Powers."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_JETPACK
+LANG_ENGLISH	    "Jetpack:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_JETPACK
+LANG_ENGLISH	"Gains the user a jetpack.  Additional points give the pack additional fuel."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_PISTOL
+LANG_ENGLISH	    "Pistol:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_PISTOL
+LANG_ENGLISH	"Gains the user a blaster pistol."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_BLASTER
+LANG_ENGLISH	    "Blaster:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_BLASTER
+LANG_ENGLISH	"Gains the user a blaster rifle."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_THERMALS
+LANG_ENGLISH	    "Thermals:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_THERMALS
+LANG_ENGLISH	"Gains the user thermals."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_ROCKET
+LANG_ENGLISH	    "Rocket Launcher:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_ROCKET
+LANG_ENGLISH	"Gains the user a Rocket Launcher."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_BACTA
+LANG_ENGLISH	    "Bacta:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_BACTA
+LANG_ENGLISH	"Gains the user a emergency medical bacta pack.  Additional points makes the pack larger."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_FLAMETHROWER
+LANG_ENGLISH	    "Flamethrower:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_FLAMETHROWER
+LANG_ENGLISH	"Gains the user a Flamethrower."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_BOWCASTER
+LANG_ENGLISH	    "Bowcaster:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_BOWCASTER
+LANG_ENGLISH	"Gains the user a Bowcaster."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_FORCEFIELD
+LANG_ENGLISH	    "Force Field:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_FORCEFIELD
+LANG_ENGLISH	"Gains the user a portable ray shield."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_CLOAK
+LANG_ENGLISH	    "Cloaking Device:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_CLOAK
+LANG_ENGLISH	"Gains the user a cloaking device."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_SEEKER
+LANG_ENGLISH	    "Seeker Droid:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_SEEKER
+LANG_ENGLISH	"Gains the user a seeker droid."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_SENTRY
+LANG_ENGLISH	    "Sentry Gun:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_SENTRY
+LANG_ENGLISH	"Gains the user a sentry gun."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_DETPACK
+LANG_ENGLISH	    "Detpack:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_DETPACK
+LANG_ENGLISH	"Gains the user detpacks."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_REPEATER
+LANG_ENGLISH	"Clone Rifle:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_REPEATER
+LANG_ENGLISH	"Gains the user the Clone Rifle."
+LANG_FRENCH		"#same"
+
+REFERENCE	    SKILL_DISRUPTOR
+LANG_ENGLISH	"Disruptor:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_DISRUPTOR
+LANG_ENGLISH	"Gains the user the Disruptor."
+LANG_FRENCH		"#same"
+
+//[StanceSelection]
+REFERENCE	REQUIRES_BLUESTYLE
+LANG_ENGLISH	"(requires Shii-Cho 1)"
+LANG_FRENCH		"#same"
+
+REFERENCE	SKILL_BLUESTYLE
+LANG_ENGLISH	"Soresu:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_BLUESTYLE
+LANG_ENGLISH	"Gains the user the Soresu style of lightsaber combat."
+LANG_FRENCH		"#same"
+
+REFERENCE	SKILL_YELLOWSTYLE
+LANG_ENGLISH	"Shii-Cho:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_YELLOWSTYLE
+LANG_ENGLISH	"Gains the user a lightsaber and levels in the Shii-Cho style of lightsaber combat."
+LANG_FRENCH		"#same"
+
+REFERENCE	SKILL_REDSTYLE
+LANG_ENGLISH	"Djem So:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_REDSTYLE
+LANG_ENGLISH	"Gains the user the Djem So style of lightsaber combat."
+LANG_FRENCH		"#same"
+
+REFERENCE	SKILL_GREENSTYLE
+LANG_ENGLISH	"Makashi:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_GREENSTYLE
+LANG_ENGLISH	"Gains the user the Makashi style of lightsaber combat."
+LANG_FRENCH		"#same"
+
+REFERENCE	SKILL_PURPLESTYLE
+LANG_ENGLISH	"Juyo:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_PURPLESTYLE
+LANG_ENGLISH	"Gains the user the Juyo style of lightsaber combat."
+LANG_FRENCH		"#same"
+
+REFERENCE	SKILL_DUALSTYLE
+LANG_ENGLISH	"Dual Style:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_DUALSTYLE
+LANG_ENGLISH	"Gains the user the ability to use dual lightsabers."
+LANG_FRENCH		"#same"
+
+REFERENCE	SKILL_STAFFSTYLE
+LANG_ENGLISH	"Staff Style:"
+LANG_FRENCH		"#same"
+
+REFERENCE	    DESC_SKILL_STAFFSTYLE
+LANG_ENGLISH	"Gains the user the ability to use the staff lightsaber."
+LANG_FRENCH		"#same"
+//[/StanceSelection]
+//[/ExpSys]
+
+//[Flamethrower]
+REFERENCE	    ITEM_FLAMETHROWER
+LANG_ENGLISH	    "Flamethrower"
+LANG_FRENCH		"#same"
+//[/Flamethrower]
+
+//[OLDGAMETYPES]
+REFERENCE           JEDIMASTER
+LANG_ENGLISH        "Jedi Master"
+LANG_FRENCH	    "#same"
+//[/OLDGAMETYPES]
+
+//[HSABERS]
+REFERENCE	    SINGLE_HILT10
+NOTES               "HSABERS"
+LANG_ENGLISH        "Retribution"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    SINGLE_HILT11
+NOTES               "HSABERS"
+LANG_ENGLISH        "Skywalker"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    SINGLE_HILT12
+NOTES               "HSABERS"
+LANG_ENGLISH        "Stinger"
+LANG_FRENCH	    "#same"
+//[/HSABERS]
+
+//[SERVERFILTERS]
+REFERENCE	    OJP_BASIC
+LANG_ENGLISH        "OJP Basic"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    OJP_ENHANCED
+LANG_ENGLISH        "OJP Enhanced"
+LANG_FRENCH	    "#same"
+//[/SERVERFILTERS]
+
+//[CoOp]
+REFERENCE           COOP
+LANG_ENGLISH        "Cooperative"
+LANG_FRENCH	    "#same"
+//[/CoOp]
+
+//[AdminSys]
+REFERENCE           KICKALLY
+LANG_ENGLISH        "Kick Ally"
+LANG_FRENCH	    "#same"
+
+REFERENCE           KICK_ALLY
+LANG_ENGLISH        "Kick Ally:"
+LANG_FRENCH	    "#same"
+
+REFERENCE           BANISH_AN_ALLY_FROM
+LANG_ENGLISH        "Banish an ally from the server."
+LANG_FRENCH	    "#same"
+
+REFERENCE           SELECT_ALLY_TO_KICK
+LANG_ENGLISH        "Select ally to kick."
+LANG_FRENCH	    "#same"
+
+REFERENCE           BEGIN_VOTE_TO_BANISH_ALLY
+LANG_ENGLISH        "Begin vote to banish this ally."
+LANG_FRENCH	    "#same"
+
+REFERENCE           WARNINGSUICIDEBAN
+LANG_ENGLISH        "Warning: Suicide spammers WILL be BANNED"
+LANG_FRENCH	    "#same"
+
+REFERENCE           WARNINGSUICIDEKICK
+LANG_ENGLISH        "Warning: Suicide spammers WILL be KICKED"
+LANG_FRENCH	    "#same"
+
+REFERENCE           SUICIDEBAN
+LANG_ENGLISH        "BANNED for suicide spamming!"
+LANG_FRENCH	    "#same"
+
+REFERENCE           SUICIDEKICK
+LANG_ENGLISH        "KICKED for suicide spamming!"
+LANG_FRENCH	    "#same"
+
+REFERENCE           WARNINGTKBAN
+LANG_ENGLISH        "Warning: Team-kill spammers WILL be BANNED"
+LANG_FRENCH	    "#same"
+
+REFERENCE           WARNINGTKKICK
+LANG_ENGLISH        "Warning: Team-kill spammers WILL be KICKED"
+LANG_FRENCH	    "#same"
+
+REFERENCE           TKBAN
+LANG_ENGLISH        "BANNED for team-kill spamming!"
+LANG_FRENCH	    "#same"
+
+REFERENCE           TKKICK
+LANG_ENGLISH        "KICKED for team-kill spamming!"
+LANG_FRENCH	    "#same"
+//[/AdminSys]
+
+//[UITweaks]
+REFERENCE	    DRAWCROSSHAIR_DESC
+LANG_ENGLISH	    "Hide/Show and choose crosshair"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    CROSSHAIRSIZE
+LANG_ENGLISH	    "Crosshair Size: "
+LANG_FRENCH	    "#same"
+
+REFERENCE	    CROSSHAIRSIZE_DESC
+LANG_ENGLISH	   "Sets crosshair size"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    SMALL
+LANG_ENGLISH	    "Small"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    NORMAL
+LANG_ENGLISH	    "Normal"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    LARGE
+LANG_ENGLISH	    "Large"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    ADVANCED
+LANG_ENGLISH	    "Advanced"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    ADVANCED_DESC
+LANG_ENGLISH	    "Advanced Settings"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    SHOWFRAMERATE
+LANG_ENGLISH	    "Show Framerate:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    SHOWFRAMERATE_DESC
+LANG_ENGLISH	    "Show framerate in upper right corner"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    LAGOMETER
+LANG_ENGLISH	    "Display Lag Meter:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    LAGOMETER_DESC
+LANG_ENGLISH	    "Displays Lag Meter on right side"
+LANG_FRENCH	    "#same"
+//[/UITweaks]
+
+//[MOREWEAPOPTIONS]
+REFERENCE	    WEAPONDISABLE
+LANG_ENGLISH	    "Weapons:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    WEAPONDISABLE_DESC
+LANG_ENGLISH	    "Sets which weapons are useable."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    WEAPONDISABLE_ALLON
+LANG_ENGLISH	    "All On"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    WEAPONDISABLE_MELEEONLY
+LANG_ENGLISH	    "Melee Only"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    WEAPONDISABLE_SABERSONLY
+LANG_ENGLISH	    "Sabers Only"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    WEAPONDISABLE_SABERSMELEE
+LANG_ENGLISH	    "Sabers/Melee"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    WEAPONDISABLE_NOEXPLOSIVES
+LANG_ENGLISH	    "No Explosives"
+LANG_FRENCH	    "#same"
+//[/MOREWEAPOPTIONS]
+
+//[MOREFORCEOPTIONS]
+REFERENCE	    DISABLEFORCEPOWERS
+LANG_ENGLISH	    "Force Powers:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    DISABLEFORCEPOWERS_DESC
+LANG_ENGLISH	    "Sets which force powers are useable."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    DISABLEFORCEPOWERS_ALLON
+LANG_ENGLISH	    "All On"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    DISABLEFORCEPOWERS_ALLOFF
+LANG_ENGLISH	    "All Off"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    DISABLEFORCEPOWERS_JUMPONLY
+LANG_ENGLISH	    "Jump Only"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    DISABLEFORCEPOWERS_NEUTRALSONLY
+LANG_ENGLISH	    "Neutrals Only"	
+LANG_FRENCH	    "#same"
+//[/MOREFORCEOPTIONS]
+
+//[VisualWeapons]
+REFERENCE	    HOLSTEREDWEAPONS
+LANG_ENGLISH	    "Display Holstered Weapons:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    HOLSTEREDWEAPONS_DESC
+LANG_ENGLISH	    "Displays weaponry on players' models."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    HOLSTEREDWEAPONSPLAYER
+LANG_ENGLISH	    "On you only"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    HOLSTEREDWEAPONSALL
+LANG_ENGLISH	    "On everyone"
+LANG_FRENCH	    "#same"
+//[/VisualWeapons]
+
+//[RGBSabers]
+REFERENCE	    SFXSABERS
+LANG_ENGLISH	    "SFX Sabers:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    SFXSABERS_DESC
+LANG_ENGLISH	    "Toggle whether to use the SFX Saber effects."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TEAMRGBSABERS
+LANG_ENGLISH	    "Team RGB Sabers:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TEAMRGBSABERS_DESC
+LANG_ENGLISH	    "Displays custom colored sabers in team games."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TEAMRGBSABERSPLAYER
+LANG_ENGLISH	    "Yours only"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TEAMRGBSABERSALL
+LANG_ENGLISH	    "Everyone's"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP
+LANG_ENGLISH	    "RGB Saber Setup"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_PROFILE
+LANG_ENGLISH	    "RGB Setup"	
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_DESC
+LANG_ENGLISH	    "Customize your sabers using RGB color channels."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_APPLY_DESC
+LANG_ENGLISH	    "Apply these settings to your RGB saber blades and close the window."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_SLIDER_RED1
+LANG_ENGLISH	    "Move this slider to select the red color component of your first lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_SLIDER_RED2
+LANG_ENGLISH	    "Move this slider to select the red color component of your second lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_SLIDER_GREEN1
+LANG_ENGLISH	    "Move this slider to select the green color component of your first lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_SLIDER_GREEN2
+LANG_ENGLISH	    "Move this slider to select the green color component of your second lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_SLIDER_BLUE1
+LANG_ENGLISH	    "Move this slider to select the blue color component of your first lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_SLIDER_BLUE2
+LANG_ENGLISH	    "Move this slider to select the blue color component of your second lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_RED1_DESC
+LANG_ENGLISH	    "The red color component of your first lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_RED2_DESC
+LANG_ENGLISH	    "The red color component of your second lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_GREEN1_DESC
+LANG_ENGLISH	    "The green color component of your first lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_GREEN2_DESC
+LANG_ENGLISH	    "The green color component of your second lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_BLUE1_DESC
+LANG_ENGLISH	    "The blue color component of your first lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_SETUP_BLUE2_DESC
+LANG_ENGLISH	    "The blue color component of your second lightsaber blade."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_COLOR1
+LANG_ENGLISH	    "Color 1"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_COLOR2
+LANG_ENGLISH	    "Color 2"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_PIMP_DESC
+LANG_ENGLISH	    "A lightsaber blade that pulses with multiple colors. Consult the OJP documentation on how to make your own."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    RGBSABERS_RGB_DESC
+LANG_ENGLISH	    "Customize this lightsaber blade's color in the RGB Setup Menu."
+LANG_FRENCH	    "#same"
+//[/RGBSabers]
+
+//[TrueView]
+REFERENCE	    TRUEINVERTSABER
+LANG_ENGLISH	    "3rd Person Invert:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TRUEINVERTSABER_DESC
+LANG_ENGLISH	    "Determines how the current third/first person setting affects sabers, melee, and guns."
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TRUEINVERTSABERSAME
+LANG_ENGLISH	    "All Same"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TRUEINVERTSABERINVERT 
+LANG_ENGLISH	    "Saber/Melee Inverted"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    TRUEINVERTSABERALWAYSTHIRDPERSON
+LANG_ENGLISH	    "Sabers/Melee Always 3rd Person"
+LANG_FRENCH	    "#same"
+//[/TrueView]
+
+//[CoOp]
+REFERENCE	    PLAYERTEAM
+LANG_ENGLISH	    "Friendlies"
+LANG_FRENCH	    "#same"
+
+REFERENCE	    ENEMYTEAM
+LANG_ENGLISH	    "Enemies"
+LANG_FRENCH	    "#same"
+//[/CoOp]
+
+//Control Menu
+
+REFERENCE	    THERMAL_DETONATOR_THROW
+LANG_ENGLISH	"Thermal Detonator Autothrow:"
+LANG_FRENCH	    "#same"
+
+REFERENCE       THERMAL_DETONATOR_THROW_AVAILABLE
+LANG_ENGLISH	"Automatically Throws available Thermal Detonator without being selected in inventory"
+LANG_FRENCH	    "#same"
+
+REFERENCE	   QUICK_PARRY_HOLDBUTTON
+LANG_ENGLISH	"QuickParry/KickBlock Button"
+LANG_FRENCH	    "#same"
+
+
+REFERENCE	   ALLOWS_FOR_QUICK_PARRY
+LANG_ENGLISH	"Holding this allows parrying that doesn't stall enemy saberists or block enemy kicks"
+LANG_FRENCH	    "#same"
+
+REFERENCE		RELOAD
+LANG_ENGLISH	"Reload Button:"
+LANG_FRENCH	    "#same"
+
+REFERENCE	   	USESRELOAD
+LANG_ENGLISH	"Reloads weapon. Cancels reload if you tap it again."
+LANG_FRENCH	    "#same"
+
+
+ENDMARKER
+

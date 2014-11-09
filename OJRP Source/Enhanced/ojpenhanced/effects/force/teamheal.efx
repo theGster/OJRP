@@ -1,0 +1,101 @@
+repeatDelay				200
+
+Particle
+{
+	name				head
+
+	spawnFlags			orgOnSphere rgbComponentInterpolation
+
+	count				7 9
+
+	life				1000 3000
+
+	delay				0 200
+
+	origin				5 0 0
+
+	radius				16 20
+
+	height				30 36
+
+	rotation			88 92
+
+	rotationDelta		-4 4
+
+	gravity				10 80
+
+	rgb
+	{
+		start			0.003922 0.6235 0.9961 1 1 1
+	}
+
+	alpha
+	{
+		end				0
+		parm			50
+		flags			linear nonlinear
+	}
+
+	size
+	{
+		start			8 12
+		end				2 3
+		parm			30 50
+		flags			nonlinear
+	}
+
+	shaders
+	[
+		gfx/effects/whiteFlareMult
+	]
+}
+
+Particle
+{
+	name				Copy of head
+
+	spawnFlags			orgOnSphere rgbComponentInterpolation
+
+	count				12 30
+
+	life				1000 4000
+
+	delay				0 200
+
+	origin				5 0 0
+
+	radius				32 38
+
+	height				50 56
+
+	rotation			88 92
+
+	rotationDelta		-4 4
+
+	gravity				5 60
+
+	rgb
+	{
+		start			0.003922 0.6235 0.9961 1 0.9843 0.9412
+	}
+
+	alpha
+	{
+		end				0.1 0.5
+		parm			50
+		flags			linear nonlinear
+	}
+
+	size
+	{
+		start			3 4
+		end				0 1
+		parm			20 40
+		flags			nonlinear
+	}
+
+	shaders
+	[
+		gfx/effects/whiteFlareMult
+	]
+}

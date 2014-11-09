@@ -1,0 +1,51 @@
+repeatDelay				300
+
+Particle
+{
+	count				10 16
+
+	life				350 500
+
+	delay				0 400
+
+	origin				0 -5 -5 15 5 5
+
+	velocity			30 -25 -25 50 25 25
+
+	acceleration		10 -15 -15 20 15 15
+
+	gravity				-30 -150
+
+	rgb
+	{
+		start			0 0.4 1 0.3 1 1
+	}
+
+	alpha
+	{
+		end				0
+		parm			50 70
+		flags			nonlinear
+	}
+
+	size
+	{
+		start			0.2 0.3
+		end				12 9
+		parm			0.01 0.05
+		flags			linear wave
+	}
+
+	shaders
+	[
+		gfx/effects/whiteGlow
+	]
+}
+
+Sound
+{
+	sounds
+	[
+		sound/weapons/force/distract.wav
+	]
+}

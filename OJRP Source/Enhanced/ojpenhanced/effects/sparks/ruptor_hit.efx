@@ -1,0 +1,123 @@
+repeatDelay				300
+
+Line
+{
+	count				4 8
+
+	life				100 200
+
+	origin2				12 -10 -10 18 10 10
+
+	alpha
+	{
+		start			0.25 1
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			0.5
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+		gfx/misc/spark2
+	]
+}
+
+Tail
+{
+	name				sparks
+
+	flags				usePhysics deathFx
+
+	spawnFlags			rgbComponentInterpolation
+
+	count				7 5
+
+	life				1200 1600
+
+	bounce				0.25 0.4
+
+	velocity			100 -100 -50 90 100 50
+
+	gravity				-700 -250
+
+	rgb
+	{
+		start			1 0 0 0.9098 0.6118 0.4157
+	}
+
+	size
+	{
+		start			0.8 0.7
+	}
+
+	length
+	{
+		start			4 6
+		end				3 6
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/spark
+	]
+
+	deathfx
+	[
+		disruptor/death_smoke
+	]
+}
+
+Particle
+{
+	spawnFlags			rgbComponentInterpolation
+
+	count				4 6
+
+	life				900 1000
+
+	velocity			8 -12 -12 16 12 12
+
+	gravity				12 24
+
+	rgb
+	{
+		start			1 0 0
+	}
+
+	alpha
+	{
+		start			0.2 0.4
+		end				0
+		flags			linear
+	}
+
+	size
+	{
+		start			4 12
+		end				12 24
+		flags			linear
+	}
+
+	shaders
+	[
+		gfx/misc/steam
+	]
+}
+
+FxRunner
+{
+	count				0
+
+	delay				0 100
+}
+
+Sound
+{
+	count				0
+}
