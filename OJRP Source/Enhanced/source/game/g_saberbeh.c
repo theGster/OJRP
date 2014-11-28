@@ -148,7 +148,7 @@ void SabBeh_AddBalance(gentity_t *self, sabmech_t *mechSelf, int amount, qboolea
    {//running or moving very fast, can't balance as well
       if(amount > 0)
       {
-         amount *= 2;
+         amount *= 1; // 2 ORIG
       }
       else
       {
@@ -331,6 +331,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          {
             if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
+			   blocker->client->ps.fd.forcePower -= 55;
 			   //mechBlocker->doSlowBounce= qtrue;
            }
             G_DodgeDrain(attacker,blocker,-8); //Gain DP for hitting
@@ -338,20 +339,25 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          if(attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM) {
 			 if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
+			   blocker->client->ps.fd.forcePower -= 55;
                //mechBlocker->doSlowBounce= qtrue;
             }
             SabBeh_AddBalance(attacker, mechAttacker, -3, qtrue);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG) {
-            blocker->client->ps.fd.forcePower -= 4;
-            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+		if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
+			   blocker->client->ps.fd.forcePower -= 55;
             }
+		   else {
+			   blocker->client->ps.fd.forcePower -= 4;
+		   }
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_DUAL) {
             //Animation speeds increased force_speed effect lol.
             if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
+			   blocker->client->ps.fd.forcePower -= 55;
             }
             attacker->client->ps.fd.forcePowersActive |= ( 1 << FP_RAGE);
             attacker->client->ps.fd.forcePowerDuration[FP_RAGE] = level.time + 512*5;
@@ -360,6 +366,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          if(attacker->client->ps.fd.saberAnimLevel == SS_STAFF) {
             if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
+			   blocker->client->ps.fd.forcePower -= 55;
                //mechBlocker->doSlowBounce= qtrue;
             }
             attacker->client->ps.fd.forcePower += 15;         
@@ -367,12 +374,14 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          if(attacker->client->ps.fd.saberAnimLevel == SS_TAVION) {
             if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
               mechBlocker->doButterFingers= qtrue;
+			  blocker->client->ps.fd.forcePower -= 55;
             }
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_DESANN) {
             if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
+			   blocker->client->ps.fd.forcePower -= 55;
             }
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
             attacker->client->ps.fd.forcePower += 5;
@@ -456,7 +465,7 @@ if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
          SabBeh_AddBalance(attacker, mechAttacker, -1, qtrue);
          if(attacker->client->ps.fd.saberAnimLevel == SS_TAVION)
          {//aqua styles deals MP to players that don't parry it.
-            SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
+            SabBeh_AddBalance(blocker, mechBlocker, 1, qfalse); // 2 orig
          }
          else if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG)
          {

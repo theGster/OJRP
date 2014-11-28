@@ -3343,25 +3343,25 @@ int BasicSaberBlockCost(int attackerStyle)
 	switch(attackerStyle)
 	{
 	case SS_DUAL:
-		return 10; // 13 orig
+		return 11; // 13 orig
 		break;
 	case SS_STAFF:
 		return 13;
 		break;
 	case SS_TAVION:
-		return 14;
+		return 14; // 14 ORIG
 		break;
 	case SS_FAST:
 		return 12;
 		break;
 	case SS_MEDIUM:
-		return 15;
+		return 16; //15 orig
 		break;
 	case SS_DESANN:
-		return 16;
+		return 17; // 16 orig
 		break;
 	case SS_STRONG:
-		return 16; //17 - 16 (current)
+		return 13; //17 - 16 (current)
 		break;
 	default:
 		G_Printf("Unknown Style type %i in BasicSaberBlockCost()\n", attackerStyle);
