@@ -214,3 +214,12 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#############
+## dlls
+#############
+cgamex86.dll
+jampgamex86.dll
+uix86.dll
+ojp_enhanceddlls.pk3
+ojp_enhancedstuff.pk3
