@@ -255,7 +255,7 @@ extern qboolean G_InAttackParry(gentity_t *self);
 extern int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc);
 extern void WP_SaberBlockNonRandom( gentity_t *self, vec3_t hitloc, qboolean missileBlock );
 extern qboolean G_BlockIsParry( gentity_t *self, gentity_t *attacker, vec3_t hitLoc );
-extern qboolean G_BlockIsQuickParry( gentity_t *self, gentity_t *attacker, vec3_t hitLoc );
+//extern qboolean G_BlockIsQuickParry( gentity_t *self, gentity_t *attacker, vec3_t hitLoc );
 extern void BG_AddFatigue( playerState_t * ps, int Fatigue);
 void SabBeh_AttackVsBlock( gentity_t *attacker, sabmech_t *mechAttacker, 
 gentity_t *blocker, sabmech_t *mechBlocker, vec3_t hitLoc, qboolean hitSaberBlade,

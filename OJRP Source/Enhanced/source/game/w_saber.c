@@ -12718,90 +12718,90 @@ qboolean G_BlockIsParry( gentity_t *self, gentity_t *attacker, vec3_t hitLoc )
 }
 //[/SaberSys]
 //[SaberSys]
-qboolean G_BlockIsQuickParry( gentity_t *self, gentity_t *attacker, vec3_t hitLoc )
-{//determines if self (who is blocking) is activing blocking (quickparrying)//JRHockney addition
-	vec3_t pAngles;
-	vec3_t pRight;
-	vec3_t parrierMove;
-	vec3_t hitPos;
-	vec3_t hitFlat; //flatten 2D version of the hitPos.
-	float blockDot; //the dot product of our desired parry direction
-					//vs the actual attack location.
-	qboolean inFront = InFront(attacker->client->ps.origin, self->client->ps.origin, self->client->ps.viewangles, 0.0f);
-    
-	if(!(self->client->pers.cmd.buttons & BUTTON_15))
-	{
-		return qfalse;
-	}
-	if(!inFront)
-	{//can't parry attacks to the rear.
-		return qfalse;
-	}
-	else if(PM_SaberInKnockaway(self->client->ps.saberMove) )
-	{//already in parry move, continue parrying anything that hits us as long as 
-		//the attacker is in the same general area that we're facing.
-		return qtrue;
-	}
-
-	if(BG_KickingAnim(self->client->ps.legsAnim))
-	{//can't parry in kick.
-		return qfalse;
-	}
-
-	if(BG_SaberInNonIdleDamageMove(&self->client->ps, self->localAnimIndex)
-		|| PM_SaberInBounce(self->client->ps.saberMove) || BG_InSlowBounce(&self->client->ps))
-	{//can't parry if we're transitioning into a block from an attack state.
-		return qfalse;
-	}
-
-	if(self->client->ps.pm_flags & PMF_DUCKED)
-	{//can't parry while ducked or running
-		return qfalse;
-	}
-
-	//set up flatten version of the location of the incoming attack in orientation
-	//to the player.
-	VectorSubtract(hitLoc, self->client->ps.origin, hitPos);
-	VectorSet(pAngles, 0, self->client->ps.viewangles[YAW], 0);
-	AngleVectors(pAngles, NULL, pRight, NULL);
-	hitFlat[0] = 0;
-	hitFlat[1] = DotProduct(pRight, hitPos);
-	
-	//just bump the hit pos down for the blocking since the average left/right slice happens at about origin +10
-	hitFlat[2] = hitPos[2] - 10;
-	VectorNormalize(hitFlat);
-
-	//set up the vector for the direction the player is trying to parry in.
-	parrierMove[0] = 0;
-	parrierMove[1] = (self->client->pers.cmd.rightmove);
-	parrierMove[2] = -(self->client->pers.cmd.forwardmove);
-	VectorNormalize(parrierMove);
-
-	
-	blockDot = DotProduct(hitFlat, parrierMove);
-
-	if(blockDot >= .4)
-	{//player successfully blocked in the right direction to do a full parry.
-		//G_Printf("%i: %i: parried\n", level.time, self->s.number);
-		return qtrue;
-	}
-	else
-	{//player didn't parry in the correct direction, do the minimal parry bonus.
-		//SABERSYSRAFIXME - this is a hack, please try to fix this since it's not really
-		//fair to players.
-		self->client->ps.saberAttackChainCount += 3;
-		if(self->r.svFlags & SVF_BOT)
-		{//bots just randomly parry to make up for them not intelligently parrying.
-			if(BOT_PARRYRATE * botstates[self->s.number]->settings.skill > Q_irand(0,999))
-			{
-				//G_Printf("%i: %i: Bot cheat parried\n", level.time, self->s.number);
-				return qtrue;
-			}
-		}
-
-		return qfalse;
-	}
-}
+//qboolean G_BlockIsQuickParry( gentity_t *self, gentity_t *attacker, vec3_t hitLoc )
+//{//determines if self (who is blocking) is activing blocking (quickparrying)//JRHockney addition
+//	vec3_t pAngles;
+//	vec3_t pRight;
+//	vec3_t parrierMove;
+//	vec3_t hitPos;
+//	vec3_t hitFlat; //flatten 2D version of the hitPos.
+//	float blockDot; //the dot product of our desired parry direction
+//					//vs the actual attack location.
+//	qboolean inFront = InFront(attacker->client->ps.origin, self->client->ps.origin, self->client->ps.viewangles, 0.0f);
+//    
+//	if(!(self->client->pers.cmd.buttons & BUTTON_15))
+//	{
+//		return qfalse;
+//	}
+//	if(!inFront)
+//	{//can't parry attacks to the rear.
+//		return qfalse;
+//	}
+//	else if(PM_SaberInKnockaway(self->client->ps.saberMove) )
+//	{//already in parry move, continue parrying anything that hits us as long as 
+//		//the attacker is in the same general area that we're facing.
+//		return qtrue;
+//	}
+//
+//	if(BG_KickingAnim(self->client->ps.legsAnim))
+//	{//can't parry in kick.
+//		return qfalse;
+//	}
+//
+//	if(BG_SaberInNonIdleDamageMove(&self->client->ps, self->localAnimIndex)
+//		|| PM_SaberInBounce(self->client->ps.saberMove) || BG_InSlowBounce(&self->client->ps))
+//	{//can't parry if we're transitioning into a block from an attack state.
+//		return qfalse;
+//	}
+//
+//	if(self->client->ps.pm_flags & PMF_DUCKED)
+//	{//can't parry while ducked or running
+//		return qfalse;
+//	}
+//
+//	//set up flatten version of the location of the incoming attack in orientation
+//	//to the player.
+//	VectorSubtract(hitLoc, self->client->ps.origin, hitPos);
+//	VectorSet(pAngles, 0, self->client->ps.viewangles[YAW], 0);
+//	AngleVectors(pAngles, NULL, pRight, NULL);
+//	hitFlat[0] = 0;
+//	hitFlat[1] = DotProduct(pRight, hitPos);
+//	
+//	//just bump the hit pos down for the blocking since the average left/right slice happens at about origin +10
+//	hitFlat[2] = hitPos[2] - 10;
+//	VectorNormalize(hitFlat);
+//
+//	//set up the vector for the direction the player is trying to parry in.
+//	parrierMove[0] = 0;
+//	parrierMove[1] = (self->client->pers.cmd.rightmove);
+//	parrierMove[2] = -(self->client->pers.cmd.forwardmove);
+//	VectorNormalize(parrierMove);
+//
+//	
+//	blockDot = DotProduct(hitFlat, parrierMove);
+//
+//	if(blockDot >= .4)
+//	{//player successfully blocked in the right direction to do a full parry.
+//		//G_Printf("%i: %i: parried\n", level.time, self->s.number);
+//		return qtrue;
+//	}
+//	else
+//	{//player didn't parry in the correct direction, do the minimal parry bonus.
+//		//SABERSYSRAFIXME - this is a hack, please try to fix this since it's not really
+//		//fair to players.
+//		self->client->ps.saberAttackChainCount += 3;
+//		if(self->r.svFlags & SVF_BOT)
+//		{//bots just randomly parry to make up for them not intelligently parrying.
+//			if(BOT_PARRYRATE * botstates[self->s.number]->settings.skill > Q_irand(0,999))
+//			{
+//				//G_Printf("%i: %i: Bot cheat parried\n", level.time, self->s.number);
+//				return qtrue;
+//			}
+//		}
+//
+//		return qfalse;
+//	}
+//}
 //[/SaberSys]
 
 //[SaberThrowSys]
