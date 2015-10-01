@@ -309,14 +309,14 @@ qboolean *attackerMishap, qboolean *blockerMishap)
 #ifdef _DEBUG
          mechAttacker->behaveMode = SABBEHAVE_ATTACK;
 #endif
-         if (blocker->client->pers.cmd.buttons & BUTTON_15)
-         {
-            attacker->client->ps.userInt3 |= (1 << FLAG_QUICKPARRY);
-         }
-         else
-         {
+         //if (blocker->client->pers.cmd.buttons & BUTTON_15)
+         //{
+         //   attacker->client->ps.userInt3 |= (1 << FLAG_QUICKPARRY);
+         //}
+         //else
+         //{
             attacker->client->ps.userInt3 |= ( 1 << FLAG_PARRIED );
-         }
+         //}
          
          SabBeh_AddBalance(blocker, mechBlocker, MPCOST_PARRYING_ATTACKFAKE, qfalse);
 #ifdef _DEBUG
@@ -447,14 +447,14 @@ if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
          mechAttacker->behaveMode = SABBEHAVE_ATTACKPARRIED;
 #endif
          //[QuickParry]
-         if (blocker->client->pers.cmd.buttons & BUTTON_15)
-         {
-            attacker->client->ps.userInt3 |= ( 1 << FLAG_QUICKPARRY);
-         }
-         else
-         {
-            attacker->client->ps.userInt3 |= ( 1 << FLAG_PARRIED );
-         }
+         //if (blocker->client->pers.cmd.buttons & BUTTON_15)
+         //{
+            //attacker->client->ps.userInt3 |= ( 1 << FLAG_QUICKPARRY);
+         //}
+         //else
+         //{
+			attacker->client->ps.userInt3 |= ( 1 << FLAG_PARRIED );
+         //}
          //[/QuickParry]
 
          SabBeh_AddBalance(blocker, mechBlocker, MPCOST_PARRYING, qfalse);

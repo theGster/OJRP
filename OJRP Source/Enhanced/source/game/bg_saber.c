@@ -5534,7 +5534,7 @@ void PM_SetSaberMove(short newMove)
 			pm->ps->userInt3 &= ~( 1 << FLAG_OLDSLOWBOUNCE );
 			pm->ps->userInt3 &= ~( 1 << FLAG_PARRIED );
 			//[QuickParry]
-			pm->ps->userInt3 &= ~( 1 << FLAG_QUICKPARRY);
+			//pm->ps->userInt3 &= ~( 1 << FLAG_QUICKPARRY);
 			//[/QuickParry]
 		}
 

@@ -3449,13 +3449,13 @@ void BG_SaberStartTransAnim( int clientNum, int saberAnimLevel, int weapon, int 
 		}
 	}
 	//[QuickParry]
-	else if ( (fatigued & (1 << FLAG_QUICKPARRY)))
+	/*else if ( (fatigued & (1 << FLAG_QUICKPARRY)))
 	{
 		if(BG_BounceAnim(anim) || PM_SaberReturnAnim(anim))
 		{
 			*animSpeed *= 1.0f;
 		}
-	}
+	}*/
 	//[/QuickParry]
 	//[/SaberSys]
 }

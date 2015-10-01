@@ -2540,7 +2540,7 @@ typedef struct siegePers_s
 #define FLAG_PREBLOCK		9
 
 //[QuickParry]
-#define FLAG_QUICKPARRY		10
+//#define FLAG_QUICKPARRY		10
 //[/QuickParry]
 #define FLAG_BLOCKING       11
 
