@@ -3567,11 +3567,31 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 		if(G_BlockIsParry(defender, attacker, hitLoc))
 		{//parried this attack, cost is less
 			if(defender->client->ps.fd.saberAnimLevel == SS_FAST)
-			{//blue parries cheaper
-				saberBlockCost = (saberBlockCost/3.25);
+			{//blue parries cheaper - 3.25
+				saberBlockCost = (saberBlockCost/5);
+			}
+			else if (defender->client->ps.fd.saberAnimLevel == SS_STRONG)
+			{
+				saberBlockCost = (saberBlockCost/1.75);
+			}
+			else if (defender->client->ps.fd.saberAnimLevel == SS_DUAL)
+			{
+				saberBlockCost = saberBlockCost;
+			}
+			else if (defender->client->ps.fd.saberAnimLevel == SS_STAFF)
+			{
+				saberBlockCost = (saberBlockCost/3);
+			}
+			else if (defender->client->ps.fd.saberAnimLevel == SS_DESANN)
+			{
+				saberBlockCost = (saberBlockCost/1.5);
+			}
+			else if (defender->client->ps.fd.saberAnimLevel == SS_TAVION)
+			{
+				saberBlockCost = (saberBlockCost/1.5);
 			}
 			else
-			{
+			{//3
 				saberBlockCost = (saberBlockCost/3);
 			}
 		}
