@@ -3343,25 +3343,25 @@ int BasicSaberBlockCost(int attackerStyle)
 	switch(attackerStyle)
 	{
 	case SS_DUAL:
-		return 11; // 13 orig
+		return 13; // 13 orig
 		break;
 	case SS_STAFF:
-		return 13;
+		return 13; //13
 		break;
 	case SS_TAVION:
 		return 14; // 14 ORIG
 		break;
 	case SS_FAST:
-		return 12;
+		return 12; //12
 		break;
 	case SS_MEDIUM:
-		return 16; //15 orig
+		return 15; //15 orig
 		break;
 	case SS_DESANN:
-		return 17; // 16 orig
+		return 16; // 16 orig
 		break;
 	case SS_STRONG:
-		return 13; //17 - 16 (current)
+		return 16; //17 - 16 (current)
 		break;
 	default:
 		G_Printf("Unknown Style type %i in BasicSaberBlockCost()\n", attackerStyle);
@@ -3548,11 +3548,15 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 
 			if(attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_DUAL)//Ataru's other perk more powerful running hits
 			{
-				saberBlockCost *= 2.0;
+				saberBlockCost *= 2.2;
+			}
+			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_STRONG)
+			{
+				saberBlockCost *= 1.2;
 			}
 			else
 			{
-				saberBlockCost *= 1.5;
+				saberBlockCost *= 1.4;
 			}
 		}
 	}
@@ -3572,27 +3576,27 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_STRONG)
 			{
-				saberBlockCost = (saberBlockCost/1.75);
+				saberBlockCost = (saberBlockCost/3.5);
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_DUAL)
 			{
-				saberBlockCost = saberBlockCost;
+				saberBlockCost = (saberBlockCost/2);
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_STAFF)
 			{
-				saberBlockCost = (saberBlockCost/3);
+				saberBlockCost = (saberBlockCost/3.5);
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_DESANN)
 			{
-				saberBlockCost = (saberBlockCost/1.5);
+				saberBlockCost = (saberBlockCost/3.5);
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_TAVION)
 			{
-				saberBlockCost = (saberBlockCost/1.5);
+				saberBlockCost = (saberBlockCost/3.5);
 			}
 			else
 			{//3
-				saberBlockCost = (saberBlockCost/3);
+				saberBlockCost = (saberBlockCost/3.5);
 			}
 		}
 

@@ -439,8 +439,8 @@ if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
          }
          else
          {
-            //*attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry);
-            *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, qfalse);
+            *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry);
+            //*attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, qfalse); OJRP
          }
          SabBeh_AddBalance(attacker, mechAttacker, MPCOST_PARRIED, qtrue);
 #ifdef _DEBUG
