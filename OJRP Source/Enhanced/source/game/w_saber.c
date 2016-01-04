@@ -3343,25 +3343,25 @@ int BasicSaberBlockCost(int attackerStyle)
 	switch(attackerStyle)
 	{
 	case SS_DUAL:
-		return 13; // 13 orig
+		return 13; // 13
 		break;
 	case SS_STAFF:
 		return 13; //13
 		break;
 	case SS_TAVION:
-		return 14; // 14 ORIG
+		return 14; // 14
 		break;
 	case SS_FAST:
 		return 12; //12
 		break;
 	case SS_MEDIUM:
-		return 15; //15 orig
+		return 17; //15 
 		break;
 	case SS_DESANN:
-		return 16; // 16 orig
+		return 16; // 16
 		break;
 	case SS_STRONG:
-		return 16; //17 - 16 (current)
+		return 16; //17 
 		break;
 	default:
 		G_Printf("Unknown Style type %i in BasicSaberBlockCost()\n", attackerStyle);
@@ -3548,11 +3548,23 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 
 			if(attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_DUAL)//Ataru's other perk more powerful running hits
 			{
-				saberBlockCost *= 2.2;
+				saberBlockCost *= 2.7;
 			}
 			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_STRONG)
 			{
-				saberBlockCost *= 1.2;
+				saberBlockCost *= 1.1;
+			}
+			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_TAVION)
+			{
+				saberBlockCost *= 1.3;
+			}
+			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_DESANN)
+			{
+				saberBlockCost *= 1.3;
+			}
+			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM)
+			{
+				saberBlockCost *= 1.3;
 			}
 			else
 			{
@@ -3572,31 +3584,31 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 		{//parried this attack, cost is less
 			if(defender->client->ps.fd.saberAnimLevel == SS_FAST)
 			{//blue parries cheaper - 3.25
-				saberBlockCost = (saberBlockCost/5);
+				saberBlockCost = 0;
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_STRONG)
 			{
-				saberBlockCost = (saberBlockCost/3.5);
+				saberBlockCost = 0; //(saberBlockCost/3.5)
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_DUAL)
 			{
-				saberBlockCost = (saberBlockCost/2);
+				saberBlockCost = 0;
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_STAFF)
 			{
-				saberBlockCost = (saberBlockCost/3.5);
+				saberBlockCost = 0;
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_DESANN)
 			{
-				saberBlockCost = (saberBlockCost/3.5);
+				saberBlockCost = 0;
 			}
 			else if (defender->client->ps.fd.saberAnimLevel == SS_TAVION)
 			{
-				saberBlockCost = (saberBlockCost/3.5);
+				saberBlockCost = 0;
 			}
 			else
 			{//3
-				saberBlockCost = (saberBlockCost/3.5);
+				saberBlockCost = 0;
 			}
 		}
 
