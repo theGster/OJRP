@@ -3806,7 +3806,7 @@ int OJP_SaberCanBlock(gentity_t *self, gentity_t *atk, qboolean checkBBoxBlock, 
 			return 0;
 		}
 
-		if(BG_SuperBreakWinAnim(atk->client->ps.torsoAnim)) //&& self->client->ps.stats[STAT_DODGE] < DODGE_CRITICALLEVEL)
+		if(BG_SuperBreakWinAnim(atk->client->ps.torsoAnim) && self->client->ps.stats[STAT_DODGE] < DODGE_CRITICALLEVEL)
 
 		{//can't block super breaks when in critical DP.
 			return 0;

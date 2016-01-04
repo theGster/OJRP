@@ -299,7 +299,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
    {//attacker faked before making this attack, treat like standard attack/attack
       if(parried)
       {//defender parried the attack fake.
-         *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry);
+         *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry); //SLOWBOUNCE ON POWERATTACKS
          //*attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, qfalse);
          if(attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM) {
             SabBeh_AddBalance(attacker, mechAttacker, 4, qtrue); // MAGIC NUMBERS
@@ -329,31 +329,31 @@ qboolean *attackerMishap, qboolean *blockerMishap)
 
          if(attacker->client->ps.fd.saberAnimLevel == SS_FAST)
          {
-            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+            /*if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
 			   blocker->client->ps.fd.forcePower -= 55;
 			   //mechBlocker->doSlowBounce= qtrue;
            }
-            G_DodgeDrain(attacker,blocker,-8); //Gain DP for hitting
+            */G_DodgeDrain(attacker,blocker,-8); //Gain DP for hitting
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM) {
-			 if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+			 /*if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
 			   blocker->client->ps.fd.forcePower -= 55;
                //mechBlocker->doSlowBounce= qtrue;
             }
-            SabBeh_AddBalance(attacker, mechAttacker, -3, qtrue);
+            */SabBeh_AddBalance(attacker, mechAttacker, -3, qtrue);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG) {
-		if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+		/*if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
 			   blocker->client->ps.fd.forcePower -= 55;
             }
 		   else {
-			   blocker->client->ps.fd.forcePower -= 4;
-		   }
+			   */blocker->client->ps.fd.forcePower -= 4;
+		   //}
          }
-         if(attacker->client->ps.fd.saberAnimLevel == SS_DUAL) {
+         /*if(attacker->client->ps.fd.saberAnimLevel == SS_DUAL) {
             //Animation speeds increased force_speed effect lol.
             if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
@@ -362,34 +362,34 @@ qboolean *attackerMishap, qboolean *blockerMishap)
             attacker->client->ps.fd.forcePowersActive |= ( 1 << FP_RAGE);
             attacker->client->ps.fd.forcePowerDuration[FP_RAGE] = level.time + 512*5;
             ataruRage = 1;
-         }
+         }*/
          if(attacker->client->ps.fd.saberAnimLevel == SS_STAFF) {
-            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+            /*if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
 			   blocker->client->ps.fd.forcePower -= 55;
                //mechBlocker->doSlowBounce= qtrue;
-            }
+            }*/
             attacker->client->ps.fd.forcePower += 15;         
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_TAVION) {
-            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+            /*if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
               mechBlocker->doButterFingers= qtrue;
 			  blocker->client->ps.fd.forcePower -= 55;
-            }
+            }*/
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_DESANN) {
-            if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+            /*if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
                mechBlocker->doButterFingers= qtrue;
 			   blocker->client->ps.fd.forcePower -= 55;
-            }
+            }*/
             SabBeh_AddBalance(blocker, mechBlocker, 2, qfalse);
             attacker->client->ps.fd.forcePower += 5;
          }
 #ifdef _DEBUG
          mechAttacker->behaveMode = SABBEHAVE_ATTACK;
 #endif
-if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
+//if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
          if (WP_SabersCheckLock(attacker, blocker))
          {	
             attacker->client->ps.userInt3 |= ( 1 << FLAG_LOCKWINNER );
@@ -397,7 +397,7 @@ if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
             blocker->client->ps.saberBlocked = BLOCKED_NONE;
             startSaberLock = qtrue;
          }
-}
+//}
 #ifdef _DEBUG
          mechBlocker->behaveMode = SABBEHAVE_BLOCKFAKED;
 #endif
@@ -439,8 +439,8 @@ if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
          }
          else
          {
-            *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry);
-            //*attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, qfalse); OJRP
+            *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry); //SLOWBOUNCE NORMAL ATTACKS
+            //*attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, qfalse); 
          }
          SabBeh_AddBalance(attacker, mechAttacker, MPCOST_PARRIED, qtrue);
 #ifdef _DEBUG
