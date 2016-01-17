@@ -2670,9 +2670,6 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot ) {
 	te->r.svFlags |= SVF_BROADCAST;
 	te->s.eventParm = clientNum;
 	
-	g_entities->client->pers.iamanadmin = 0;
-	// Fixing the bug where random people would be given admin ranks without logging in. 
-
 	// for statistics
 //	client->areabits = areabits;
 //	if ( !client->areabits )
