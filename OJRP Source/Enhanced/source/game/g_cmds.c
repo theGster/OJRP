@@ -7259,6 +7259,13 @@ SP_fx_runner(fx_runner);
          trap_Argv( 2, arg2, sizeof( arg2 ) );
 			clId2 = G_ClientNumberFromArg( arg2 );
 
+			// Preventing teleport to self - Mikkel
+			if (clId2 == clId)
+			{
+				trap_SendServerCommand(ent - g_entities, va("print \"Can't teleport to yourself\n\""));
+				return;
+			}
+
 			if (clId == -1 || clId2 == -1)
 			{
 				trap_SendServerCommand( ent-g_entities, va("print \"Can't find client ID for %s\n\"", arg1 ) );

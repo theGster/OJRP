@@ -2402,7 +2402,9 @@ int		trap_PointContents( const vec3_t point, int passEntityNum );
 qboolean trap_InPVS( const vec3_t p1, const vec3_t p2 );
 qboolean trap_InPVSIgnorePortals( const vec3_t p1, const vec3_t p2 );
 void	trap_AdjustAreaPortalState( gentity_t *ent, qboolean open );
-qboolean trap_AreasConnected( int area1, int area2 );
+qboolean trap_Areas
+
+( int area1, int area2 );
 void	trap_LinkEntity( gentity_t *ent );
 void	trap_UnlinkEntity( gentity_t *ent );
 int		trap_EntitiesInBox( const vec3_t mins, const vec3_t maxs, int *entityList, int maxcount );
