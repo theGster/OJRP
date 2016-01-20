@@ -7258,7 +7258,12 @@ SP_fx_runner(fx_runner);
 			clId = G_ClientNumberFromArg( arg1 );			
          trap_Argv( 2, arg2, sizeof( arg2 ) );
 			clId2 = G_ClientNumberFromArg( arg2 );
-
+			//no self teleport
+			if (clId == clId2)
+			{
+				trap_SendServerCommand(ent - g_entities, va("print \"Can't find client ID for %s\n\"", arg1));
+				return;
+			}
 			if (clId == -1 || clId2 == -1)
 			{
 				trap_SendServerCommand( ent-g_entities, va("print \"Can't find client ID for %s\n\"", arg1 ) );
