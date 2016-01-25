@@ -1,0 +1,18 @@
+Returning to the core functionality of Open Jedi Project. 
+
+24/01/15 - Removed the possibility of self-teleporting (g_cmds.c / Void_TeleportPlayer // if (clid == clid2) , to avoid misuse.
+Additionally, a teleport cooldown has been added, in order for the console to be able to process each request. This
+exploit has been used to crash servers before, and is now fixed.  
+
+24/01/15 - Disabled Makashi and Juyo form, due to simplicity and animational issues. 
+The same goes for bots, who can only use Soresu/Shii/Djem at this point. 
+These lightsaber forms can be re-introduced by including them in the string files (/ui/jamp/ingame_playerforce.cfg)
+and by uncommenting the lines in ui_force.c ("setfp_green/purplestyle")
+
+25/01/15 - Restricted Duals/Ataru & Staff/Niman form to their respective lightsaber hilts. These forms are
+from this point on only accessible if you have the lightsaber hilts required to use them. No more using Ataru/Niman with a single lightsaber.
+
+25/01/15 - Fixed a compiler issue where some clients would crash upon selecting force powers. 
+
+Server compile: Debug(final)
+Client compile: Final  

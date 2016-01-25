@@ -479,6 +479,9 @@ struct gentity_s {
 	int			roff_ctr;		// current roff frame we are playing
 	//[/ROFF]
 
+	// Teleport cooldown [Mikkel]
+	int teleportCooldown;
+
 	//[Reload]
 	qboolean	justReloaded;	//Used to stop user from holding down reload
 	int			bullets[WP_NUM_WEAPONS];//Number of bullets each gun has left

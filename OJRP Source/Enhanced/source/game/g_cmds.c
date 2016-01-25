@@ -1889,7 +1889,7 @@ argCheck:
 
 //[StanceSelection]
 qboolean G_ValidSaberStyle(gentity_t *ent, int saberStyle);
-//extern qboolean WP_SaberStyleValidForSaber( saberInfo_t *saber1, saberInfo_t *saber2, int saberHolstered, int saberAnimLevel );
+extern qboolean WP_SaberStyleValidForSaber( saberInfo_t *saber1, saberInfo_t *saber2, int saberHolstered, int saberAnimLevel );
 //[/StanceSelection]
 extern qboolean WP_UseFirstValidSaberStyle( saberInfo_t *saber1, saberInfo_t *saber2, int saberHolstered, int *saberAnimLevel );
 qboolean G_SetSaber(gentity_t *ent, int saberNum, char *saberName, qboolean siegeOverride)
@@ -1951,13 +1951,13 @@ qboolean G_SetSaber(gentity_t *ent, int saberNum, char *saberName, qboolean sieg
 		ent->client->saberCycleQueue = ent->client->ps.fd.saberAnimLevel;
 	}
 
-	/*
+	
 	if ( !WP_SaberStyleValidForSaber( &ent->client->saber[0], &ent->client->saber[1], ent->client->ps.saberHolstered, ent->client->ps.fd.saberAnimLevel ) )
 	{
 		WP_UseFirstValidSaberStyle( &ent->client->saber[0], &ent->client->saber[1], ent->client->ps.saberHolstered, &ent->client->ps.fd.saberAnimLevel );
 		ent->client->ps.fd.saberAnimLevelBase = ent->client->saberCycleQueue = ent->client->ps.fd.saberAnimLevel;
 	}
-	*/
+	
 	//[/StanceSelection]
 
 	return qtrue;
@@ -3390,6 +3390,7 @@ void Admin_Teleport( gentity_t *ent ) {
 	}
 
 	TeleportPlayer( ent, origin, ent->client->ps.viewangles );
+	ent->teleportCooldown = -1;
 	//trap_SendServerCommand( -1, va("cp \"%s^7\n%s\n\"", ent->client->pers.netname, roar_teleport_saying.string ) );  
 }
 
@@ -3694,27 +3695,41 @@ void Cmd_ToggleSaber_f(gentity_t *ent)
 
 
 qboolean G_ValidSaberStyle(gentity_t *ent, int saberStyle)
-{	
-	if(saberStyle == SS_MEDIUM)
+{
+	if (saberStyle == SS_MEDIUM)
 	{//SS_YELLOW is the default and always valid
 		return qtrue;
 	}
+
+	//[StanceSelection]
+	if (saberStyle == SS_STAFF && ent->client->saber[0].numBlades <= 1)
+	{//you're not allowed to use the staff style with a single bladed lightsaber.
+		return qfalse;
+	}
+
 	
+	if(saberStyle == SS_DUAL && !ent->client->saber[1].model[0])
+	{//you're not allowed to use the dual style without two lightsabers.
+	return qfalse;
+	}
+	
+	//[/StanceSelection]
+
 	//otherwise, check to see if the player has the skill to use this style
 	switch (saberStyle)
 	{
-		case SS_FAST:
-			if(ent->client->skillLevel[SK_BLUESTYLE] > 0)
-			{
-				return qtrue;
-			}
-			break;
-		default:
-			if(ent->client->skillLevel[saberStyle+SK_REDSTYLE-SS_STRONG] > 0)
-			{//valid style
-				return qtrue;
-			}
-			break;
+	case SS_FAST:
+		if (ent->client->skillLevel[SK_BLUESTYLE] > 0)
+		{
+			return qtrue;
+		}
+		break;
+	default:
+		if (ent->client->skillLevel[saberStyle + SK_REDSTYLE - SS_STRONG] > 0)
+		{//valid style
+			return qtrue;
+		}
+		break;
 	};
 
 	return qfalse;
@@ -7244,6 +7259,10 @@ SP_fx_runner(fx_runner);
 		{ // teleport to specific location
 			vec3_t location;
 			vec3_t forward;
+
+		if (ent->teleportCooldown > level.time)
+			return;
+
 		if ( trap_Argc() < 2 ) {
 		trap_SendServerCommand( ent-g_entities, va("print \"^3Type in ^5/help teleport ^3if you need help with this command.\n\"") );
 		return;
@@ -7261,7 +7280,7 @@ SP_fx_runner(fx_runner);
 			//no self teleport
 			if (clId == clId2)
 			{
-				trap_SendServerCommand(ent - g_entities, va("print \"Can't find client ID for %s\n\"", arg1));
+				trap_SendServerCommand(ent - g_entities, va("print \"Can't self-teleport ID %s\n\"", arg1));
 				return;
 			}
 			if (clId == -1 || clId2 == -1)

@@ -411,8 +411,8 @@ void UpdateForceUsed()
 				//[StanceSelection]
 				Menu_ShowItemByName(menu, "setfp_bluestyle", qfalse);
 				Menu_ShowItemByName(menu, "setfp_redstyle", qfalse);
-				Menu_ShowItemByName(menu, "setfp_greenstyle", qfalse);
-				Menu_ShowItemByName(menu, "setfp_purplestyle", qfalse);
+				// Menu_ShowItemByName(menu, "setfp_greenstyle", qfalse);
+				// Menu_ShowItemByName(menu, "setfp_purplestyle", qfalse);
 				Menu_ShowItemByName(menu, "setfp_dualstyle", qfalse);
 				Menu_ShowItemByName(menu, "setfp_staffstyle", qfalse);
 				//[/StanceSelection]
@@ -444,8 +444,8 @@ void UpdateForceUsed()
 				//[StanceSelection]
 				Menu_ShowItemByName(menu, "setfp_bluestyle", qfalse);
 				Menu_ShowItemByName(menu, "setfp_redstyle", qfalse);
-				Menu_ShowItemByName(menu, "setfp_greenstyle", qfalse);
-				Menu_ShowItemByName(menu, "setfp_purplestyle", qfalse);
+				// Menu_ShowItemByName(menu, "setfp_greenstyle", qfalse);
+				// Menu_ShowItemByName(menu, "setfp_purplestyle", qfalse);
 				Menu_ShowItemByName(menu, "setfp_dualstyle", qfalse);
 				Menu_ShowItemByName(menu, "setfp_staffstyle", qfalse);
 				//[/StanceSelection]
@@ -467,18 +467,17 @@ void UpdateForceUsed()
 				if(uiForceRank >= 30)
 					Menu_ShowItemByName(menu, "setfp_redstyle", qtrue);//djem so
 
-				if(uiForceRank >= 20)
-					Menu_ShowItemByName(menu, "setfp_greenstyle", qtrue);//makashi
+				// if(uiForceRank >= 20)
+					// Menu_ShowItemByName(menu, "setfp_greenstyle", qtrue);//makashi
 
-				if(uiForceRank >= 60)
-					Menu_ShowItemByName(menu, "setfp_purplestyle", qtrue);//juyo
+				// if(uiForceRank >= 60)
+					// Menu_ShowItemByName(menu, "setfp_purplestyle", qtrue);//juyo
 				
-				if(uiForceRank >= 40)
-					Menu_ShowItemByName(menu, "setfp_dualstyle", qtrue);//Dual
+					if (uiForceRank >= 40)
+						Menu_ShowItemByName(menu, "setfp_dualstyle", qtrue);//Dual
 
-				if(uiForceRank >= 50)
-					Menu_ShowItemByName(menu, "setfp_staffstyle", qtrue);//Staff
-
+					if (uiForceRank >= 50)
+						Menu_ShowItemByName(menu, "setfp_staffstyle", qtrue);//Staff
 
 				Menu_ShowItemByName(menu, "setfp_saberthrow", qtrue);
 				Menu_ShowItemByName(menu, "effectentry", qtrue);

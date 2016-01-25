@@ -798,120 +798,6 @@
 			}
 		}
 
-		// Saber Green Style title
-		itemDef 
-		{
-			name					setfp_greenstyle
-			group					"playersettingforcegroup"
-			style					0	
-			text					@OJP_MENUS_SKILL_GREENSTYLE
-			rect					20 285 110 15
-			textalign				ITEM_ALIGN_LEFT		
-			textalignx				0
-			textaligny				0
-			font					4
-			textscale				1
-			forecolor				0.8 0.8 0.8 1
-			outlinecolor			1 .5 .5 .5
-			backcolor				0 0 0 0
-			border					0
-			bordercolor				0 0 0 0
-			visible					1 
-			decoration
-		}
-
-		// Saber Green Style assign
-		itemDef 
-		{
-			name					setfp_greenstyle
-			group					"playersettingforcegroup"
-			style					0	
-			ownerdraw				UI_FORCE_RANK_GREENSTYLE
-			rect					20 285 175 15
-			textalign				ITEM_ALIGN_LEFT		
-			textalignx				115
-			textaligny				-5
-			textscale				.25        
-			outlinecolor			1 .5 .5 .5
-			background				"forcecirclegray"					
-			backcolor				0 0 0 0
-			forecolor				0.8 0.8 0.8 1
-			border					0
-			bordercolor				0 0 0 0
-			descText				@OJP_MENUS_DESC_SKILL_GREENSTYLE
-			visible					1 
-			action 
-			{ 
-				play			"sound/interface/button1.wav" ;
-			}
-
-			mouseenter 
-			{ 
-				setitemcolor	setfp_greenstyle forecolor 1 1 1 1
-			}
-			mouseexit 
-			{ 
-				setitemcolor	setfp_greenstyle forecolor 0.8 0.8 0.8 1
-			}
-		}
-
-		// Saber Purple Style title
-		itemDef 
-		{
-			name					setfp_purplestyle
-			group					"playersettingforcegroup"
-			style					0	
-			text					@OJP_MENUS_SKILL_PURPLESTYLE
-			rect					20 300 110 15
-			textalign				ITEM_ALIGN_LEFT		
-			textalignx				0
-			textaligny				0
-			font					4
-			textscale				1
-			forecolor				0.8 0.8 0.8 1
-			outlinecolor			1 .5 .5 .5
-			backcolor				0 0 0 0
-			border					0
-			bordercolor				0 0 0 0
-			visible					1 
-			decoration
-		}
-
-		// Saber Purple Style assign
-		itemDef 
-		{
-			name					setfp_purplestyle
-			group					"playersettingforcegroup"
-			style					0	
-			ownerdraw				UI_FORCE_RANK_PURPLESTYLE
-			rect					20 300 175 15
-			textalign				ITEM_ALIGN_LEFT		
-			textalignx				115
-			textaligny				-5
-			textscale				.25        
-			outlinecolor			1 .5 .5 .5
-			background				"forcecirclegray"					
-			backcolor				0 0 0 0
-			forecolor				0.8 0.8 0.8 1
-			border					0
-			bordercolor				0 0 0 0
-			descText				@OJP_MENUS_DESC_SKILL_PURPLESTYLE
-			visible					1 
-			action 
-			{ 
-				play			"sound/interface/button1.wav" ;
-			}
-
-			mouseenter 
-			{ 
-				setitemcolor	setfp_purplestyle forecolor 1 1 1 1
-			}
-			mouseexit 
-			{ 
-				setitemcolor	setfp_purplestyle forecolor 0.8 0.8 0.8 1
-			}
-		}
-
 		// Saber Dual Style title
 		itemDef 
 		{
@@ -919,7 +805,7 @@
 			group					"playersettingforcegroup"
 			style					0	
 			text					@OJP_MENUS_SKILL_DUALSTYLE
-			rect					20 315 110 15
+			rect					20 285 110 15
 			textalign				ITEM_ALIGN_LEFT		
 			textalignx				0
 			textaligny				0
@@ -941,7 +827,7 @@
 			group					"playersettingforcegroup"
 			style					0	
 			ownerdraw				UI_FORCE_RANK_DUALSTYLE
-			rect					20 315 175 15
+			rect					20 285 175 15
 			textalign				ITEM_ALIGN_LEFT		
 			textalignx				115
 			textaligny				-5
@@ -976,7 +862,7 @@
 			group					"playersettingforcegroup"
 			style					0	
 			text					@OJP_MENUS_SKILL_STAFFSTYLE
-			rect					20 330 110 15
+			rect					20 300 110 15
 			textalign				ITEM_ALIGN_LEFT		
 			textalignx				0
 			textaligny				0
@@ -998,7 +884,7 @@
 			group					"playersettingforcegroup"
 			style					0	
 			ownerdraw				UI_FORCE_RANK_STAFFSTYLE
-			rect					20 330 175 15
+			rect					20 300 175 15
 			textalign				ITEM_ALIGN_LEFT		
 			textalignx				115
 			textaligny				-5

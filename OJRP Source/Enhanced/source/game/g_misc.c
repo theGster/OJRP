@@ -201,6 +201,8 @@ void TeleportPlayer( gentity_t *player, vec3_t origin, vec3_t angles ) {
 		isNPC = qtrue;
 	}
 
+	player->teleportCooldown = -1;
+
 	// use temp events at source and destination to prevent the effect
 	// from getting dropped by a second player event
 	if ( player->client->sess.sessionTeam != TEAM_SPECTATOR ) {
