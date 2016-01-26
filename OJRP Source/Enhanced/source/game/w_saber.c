@@ -3352,16 +3352,16 @@ int BasicSaberBlockCost(int attackerStyle)
 		return 14; // 14
 		break;
 	case SS_FAST:
-		return 12; //12
+		return 13; //12
 		break;
 	case SS_MEDIUM:
-		return 17; //15 
+		return 16; //15 
 		break;
 	case SS_DESANN:
 		return 16; // 16
 		break;
 	case SS_STRONG:
-		return 16; //17 
+		return 22; //17 
 		break;
 	default:
 		G_Printf("Unknown Style type %i in BasicSaberBlockCost()\n", attackerStyle);
@@ -3528,7 +3528,17 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 			if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG
 				&& !G_BlockIsParry(defender, attacker, hitLoc))
 			{//Red does additional DP damage with attack fakes if they aren't parried.
-				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.15); //1.35 orig
+				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.4); //1.35 orig
+			}
+			else if (attacker->client->ps.fd.saberAnimLevel == SS_FAST
+				&& !G_BlockIsParry(defender, attacker, hitLoc))
+			{
+				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.1); 
+			}
+			else if (attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM
+				&& !G_BlockIsParry(defender, attacker, hitLoc))
+			{
+				saberBlockCost = (BasicSaberBlockCost(attacker->client->ps.fd.saberAnimLevel) * 1.2); 
 			}
 			else
 			{
@@ -3554,21 +3564,21 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 			{
 				saberBlockCost *= 1.1;
 			}
-			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_TAVION)
+			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_STAFF)
 			{
-				saberBlockCost *= 1.3;
+				saberBlockCost *= 1.25;
 			}
-			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_DESANN)
+			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_FAST)
 			{
-				saberBlockCost *= 1.3;
+				saberBlockCost *= 1.4;
 			}
 			else if (attacker->client->saber[0].numBlades == 1 && attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM)
 			{
-				saberBlockCost *= 1.3;
+				saberBlockCost *= 1.25;
 			}
 			else
 			{
-				saberBlockCost *= 1.4;
+				saberBlockCost *= 1.1;
 			}
 		}
 	}
@@ -3632,20 +3642,20 @@ int OJP_SaberBlockCost(gentity_t *defender, gentity_t *attacker, vec3_t hitLoc)
 				saberBlockCost *= 1;
 			}
 			else if((defender->client->ps.fd.saberAnimLevel == SS_STAFF && !(defender->client->saber[0].numBlades == 1))
-				//level 3 saber defenders and staff users  have much lessback damage. Staff sabers perk
+				//level 3 saber defenders and staff users  have much lessback damage. Staff sabers perk 1.25
 			|| defender->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE] == FORCE_LEVEL_3) 
 			{
-				saberBlockCost *= 1.25;
+				saberBlockCost *= 1.1;
 			}
 			else if(defender->client->ps.fd.saberAnimLevel != SS_STAFF 
 			&& defender->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE] == FORCE_LEVEL_2) 
 			{//level 2 defense lowers back damage more
-				saberBlockCost *= 1.50;
+				saberBlockCost *= 1.2;
 			}
 			else if(defender->client->ps.fd.saberAnimLevel != SS_STAFF 
 			&& defender->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE] == FORCE_LEVEL_1) 
-			{//level 1 defense lowers back damage a bit
-				saberBlockCost *= 1.75;
+			{//level 1 defense lowers back damage a bit 
+				saberBlockCost *= 1.3;
 			}
 			else
 			{

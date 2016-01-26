@@ -1136,7 +1136,7 @@ itemDef
 			}
 		}
 
-		itemDef 
+		/*itemDef 
 		{
 			name				attacklook
 			group				attackcontrols
@@ -1166,7 +1166,7 @@ itemDef
 			{ 
 				hide			keybindstatus
 			}
-		}
+		}*/
 
 //----------------------------------------------------------------------------------------------
 //

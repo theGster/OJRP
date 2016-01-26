@@ -121,25 +121,25 @@ LANG_ENGLISH	"Molecular destabilizer. Fully charged shots decimate Dodge from af
 
 //[StanceSelection]
 REFERENCE	REQUIRES_BLUESTYLE
-LANG_ENGLISH	"(requires Basic Lightsaber training in Shii-Cho Form)"
+LANG_ENGLISH	"(requires Core Lightsaber training in Medium style)"
 
 REFERENCE	SKILL_BLUESTYLE
-LANG_ENGLISH	"Soresu:"
+LANG_ENGLISH	"Fast Style (Blue):"
 
 REFERENCE	    DESC_SKILL_BLUESTYLE
-LANG_ENGLISH	"Parry defense bonuses; blaster defense bonuses."
+LANG_ENGLISH	"Fastest but weakest swings, DP gain upon power attack."
 
 REFERENCE	SKILL_YELLOWSTYLE
-LANG_ENGLISH	"Shii-Cho:"
+LANG_ENGLISH	"Med. Style (Yellow):"
 
 REFERENCE	    DESC_SKILL_YELLOWSTYLE
-LANG_ENGLISH	"Lightsaber training; faster mishap regeneration."
+LANG_ENGLISH	"Medium style, balanced in damage and speed. Reduced mishap upon power attack."
 
 REFERENCE	SKILL_REDSTYLE
-LANG_ENGLISH	"Djem So:"
+LANG_ENGLISH	"Strong Style (Red):"
 
 REFERENCE	    DESC_SKILL_REDSTYLE
-LANG_ENGLISH	"Destructive combination attacks; fatigue-inducing strikes if not parried."
+LANG_ENGLISH	"Slowest, most damaging style. Reduces enemy Force Points upon all attacks."
 
 REFERENCE	SKILL_GREENSTYLE
 LANG_ENGLISH	"Makashi:"
@@ -154,16 +154,16 @@ REFERENCE	    DESC_SKILL_PURPLESTYLE
 LANG_ENGLISH	"Power attacks damage mishap if unparried; opponent vulnerable to Force and melee attacks."
 
 REFERENCE	SKILL_DUALSTYLE
-LANG_ENGLISH	"Dual/Ataru:"
+LANG_ENGLISH	"Dual Style:"
 
 REFERENCE	    DESC_SKILL_DUALSTYLE
-LANG_ENGLISH	"Triple damage for run attacks; low Force cost for acrobatics."
+LANG_ENGLISH	"Requires two lightsabers to use. Massively powerful run swings."
 
 REFERENCE	SKILL_STAFFSTYLE
-LANG_ENGLISH	"Staff/Niman:"
+LANG_ENGLISH	"Staff Style:"
 
 REFERENCE	    DESC_SKILL_STAFFSTYLE
-LANG_ENGLISH	"Upgraded damage potential; faster Force regeneration."
+LANG_ENGLISH	"Requires staff saber to use. Variant of Medium with closer range, but more power."
 //[/StanceSelection]
 //[/ExpSys]
 

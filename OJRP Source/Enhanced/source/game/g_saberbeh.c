@@ -334,7 +334,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
 			   blocker->client->ps.fd.forcePower -= 55;
 			   //mechBlocker->doSlowBounce= qtrue;
            }
-            */G_DodgeDrain(attacker,blocker,-8); //Gain DP for hitting
+            */G_DodgeDrain(attacker,blocker,-4); //Gain DP for hitting
          }
          if(attacker->client->ps.fd.saberAnimLevel == SS_MEDIUM) {
 			 /*if(blocker->client->ps.stats[STAT_DODGE] <= 35) {
@@ -350,7 +350,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
 			   blocker->client->ps.fd.forcePower -= 55;
             }
 		   else {
-			   */blocker->client->ps.fd.forcePower -= 4;
+			   */blocker->client->ps.fd.forcePower -= 6;
 		   //}
          }
          /*if(attacker->client->ps.fd.saberAnimLevel == SS_DUAL) {
@@ -439,8 +439,8 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          }
          else
          {
-            *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry); //SLOWBOUNCE NORMAL ATTACKS
-            //*attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, qfalse); 
+            //*attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, atkparry); //SLOWBOUNCE NORMAL ATTACKS
+            *attackerMishap = SabBeh_RollBalance(attacker, mechAttacker, qfalse); 
          }
          SabBeh_AddBalance(attacker, mechAttacker, MPCOST_PARRIED, qtrue);
 #ifdef _DEBUG
@@ -469,7 +469,7 @@ qboolean *attackerMishap, qboolean *blockerMishap)
          }
          else if(attacker->client->ps.fd.saberAnimLevel == SS_STRONG)
          {
-            blocker->client->ps.fd.forcePower -= 1; //2
+            blocker->client->ps.fd.forcePower -= 4; //2
          }
          
 #ifdef _DEBUG
