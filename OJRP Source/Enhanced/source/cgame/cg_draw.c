@@ -41,7 +41,7 @@ int cg_siegeDeathTime = 0;
 
 //[NewHud]
 #define MAX_OJPHUD_TICS 8
-//#define MAX_HUD_TICS 4
+#define MAX_HUD_TICS 4
 
 const char *armorTicName[MAX_OJPHUD_TICS] = 
 //const char *armorTicName[MAX_HUD_TICS] = 
@@ -60,7 +60,6 @@ const char *armorTicName[MAX_OJPHUD_TICS] =
 };
 
 //[NewHud]
-/* not used in new hud
 const char *healthTicName[MAX_HUD_TICS] = 
 {
 "health_tic1", 
@@ -68,7 +67,6 @@ const char *healthTicName[MAX_HUD_TICS] =
 "health_tic3", 
 "health_tic4", 
 };
-*/
 //[/NewHud]
 
 //[NewHud]
@@ -676,19 +674,19 @@ void DrawAmmo()
 ================
 CG_DrawHealth
 ================
+
+28/01/16 - BaseJKA Hud reimplemented.
+Mikkel
+
 */
-void CG_DrawHealth( menuDef_t *menuHUD )
+void CG_DrawHealth(menuDef_t *menuHUD)
 {
 	vec4_t			calcColor;
 	playerState_t	*ps;
 	int				healthAmt;
-	//[NewHud]
-	//int			i,currValue,inc;
-	//[/NewHud]
+	int				i, currValue, inc;
 	itemDef_t		*focusItem;
-	//[NewHud]
-	//float percent;
-	//[/NewHud]
+	float percent;
 
 	// Can we find the menu?
 	if (!menuHUD)
@@ -705,42 +703,12 @@ void CG_DrawHealth( menuDef_t *menuHUD )
 		healthAmt = ps->stats[STAT_MAX_HEALTH];
 	}
 
-	//[NewHud]
-	focusItem = Menu_FindItemByName(menuHUD, "health_tic1");
 
-	if (focusItem)	// This is bad
-	{
-		if (healthAmt <= 0)	// don't show tic
-		{
-		}
-		else
-		{
-			calcColor[0] = calcColor[1] = calcColor[2] = calcColor[3] = 1;
-
-			if (healthAmt < ps->stats[STAT_MAX_HEALTH])
-			{
-				calcColor[1] = calcColor[2] = (float) healthAmt / (float) ps->stats[STAT_MAX_HEALTH];
-			}
-
-			trap_R_SetColor( calcColor );
-
-			CG_DrawPic( 
-				focusItem->window.rect.x,
-				focusItem->window.rect.y,
-				focusItem->window.rect.w, 
-				focusItem->window.rect.h, 
-				focusItem->window.background
-				);
-		}
-	}
-
-
-	/* NAUM
-	inc = (float) ps->stats[STAT_MAX_HEALTH] / MAX_HUD_TICS;
+	inc = (float)ps->stats[STAT_MAX_HEALTH] / MAX_HUD_TICS;
 	currValue = healthAmt;
 
 	// Print the health tics, fading out the one which is partial health
-	for (i=(MAX_HUD_TICS-1);i>=0;i--)
+	for (i = (MAX_HUD_TICS - 1); i >= 0; i--)
 	{
 		focusItem = Menu_FindItemByName(menuHUD, healthTicName[i]);
 
@@ -757,39 +725,37 @@ void CG_DrawHealth( menuDef_t *menuHUD )
 		}
 		else if (currValue < inc)	// partial tic (alpha it out)
 		{
-			percent = (float) currValue / inc;
+			percent = (float)currValue / inc;
 			calcColor[3] *= percent;		// Fade it out
 		}
 
-		trap_R_SetColor( calcColor);
+		trap_R_SetColor(calcColor);
 
-		CG_DrawPic( 
+		CG_DrawPic(
 			focusItem->window.rect.x,
 			focusItem->window.rect.y,
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
 			focusItem->window.background
 			);
 
 		currValue -= inc;
 	}
-	*/
-	//[/NewHud]
 
 	// Print the mueric amount
 	focusItem = Menu_FindItemByName(menuHUD, "healthamount");
 	if (focusItem)
 	{
 		// Print health amount
-		trap_R_SetColor( focusItem->window.foreColor );	
+		trap_R_SetColor(focusItem->window.foreColor);
 
-		CG_DrawNumField (
-			focusItem->window.rect.x, 
-			focusItem->window.rect.y, 
-			3, 
-			ps->stats[STAT_HEALTH], 
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
+		CG_DrawNumField(
+			focusItem->window.rect.x,
+			focusItem->window.rect.y,
+			3,
+			ps->stats[STAT_HEALTH],
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
 			NUM_FONT_SMALL,
 			qfalse);
 	}
@@ -801,14 +767,14 @@ void CG_DrawHealth( menuDef_t *menuHUD )
 CG_DrawArmor
 ================
 */
-void CG_DrawArmor( menuDef_t *menuHUD )
+void CG_DrawArmor(menuDef_t *menuHUD)
 {
 	vec4_t			calcColor;
 	playerState_t	*ps;
 	int				armor, maxArmor;
 	itemDef_t		*focusItem;
-	float			percent,quarterArmor;
-	int				i,currValue,inc;
+	float			percent, quarterArmor;
+	int				i, currValue, inc;
 
 	//ps = &cg.snap->ps;
 	ps = &cg.predictedPlayerState;
@@ -827,11 +793,11 @@ void CG_DrawArmor( menuDef_t *menuHUD )
 	{
 		trap_R_SetColor(hudTintColor);
 
-		CG_DrawPic( 
+		CG_DrawPic(
 			focusItem->window.rect.x,
 			focusItem->window.rect.y,
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
 			focusItem->window.background
 			);
 	}
@@ -847,15 +813,15 @@ void CG_DrawArmor( menuDef_t *menuHUD )
 
 	currValue = armor;
 	//[NewHud]
-	inc = (float) maxArmor / MAX_OJPHUD_TICS;
+	inc = (float)maxArmor / MAX_OJPHUD_TICS;
 	//inc = (float) maxArmor / MAX_HUD_TICS;
 	//[/NewHud]
 
 	memcpy(calcColor, hudTintColor, sizeof(vec4_t));
 	//[NewHud]
-	for (i=(MAX_OJPHUD_TICS-1);i>=0;i--)
-	//for (i=(MAX_HUD_TICS-1);i>=0;i--)
-	//[/NewHud]
+	for (i = (MAX_OJPHUD_TICS - 1); i >= 0; i--)
+		//for (i=(MAX_HUD_TICS-1);i>=0;i--)
+		//[/NewHud]
 	{
 		focusItem = Menu_FindItemByName(menuHUD, armorTicName[i]);
 
@@ -872,37 +838,37 @@ void CG_DrawArmor( menuDef_t *menuHUD )
 		}
 		else if (currValue < inc)	// partial tic (alpha it out)
 		{
-			percent = (float) currValue / inc;
+			percent = (float)currValue / inc;
 			calcColor[3] *= percent;
 		}
 
-		trap_R_SetColor( calcColor);
+		trap_R_SetColor(calcColor);
 
 		//[NewHud]
-		if ((i==(MAX_OJPHUD_TICS-1)) && (currValue < inc))
-		//if ((i==(MAX_HUD_TICS-1)) && (currValue < inc))
-		//[/NewHud]
+		if ((i == (MAX_OJPHUD_TICS - 1)) && (currValue < inc))
+			//if ((i==(MAX_HUD_TICS-1)) && (currValue < inc))
+			//[/NewHud]
 		{
 			if (cg.HUDArmorFlag)
 			{
-				CG_DrawPic( 
+				CG_DrawPic(
 					focusItem->window.rect.x,
 					focusItem->window.rect.y,
-					focusItem->window.rect.w, 
-					focusItem->window.rect.h, 
+					focusItem->window.rect.w,
+					focusItem->window.rect.h,
 					focusItem->window.background
 					);
 			}
 		}
-		else 
+		else
 		{
-				CG_DrawPic( 
-					focusItem->window.rect.x,
-					focusItem->window.rect.y,
-					focusItem->window.rect.w, 
-					focusItem->window.rect.h, 
-					focusItem->window.background
-					);
+			CG_DrawPic(
+				focusItem->window.rect.x,
+				focusItem->window.rect.y,
+				focusItem->window.rect.w,
+				focusItem->window.rect.h,
+				focusItem->window.background
+				);
 		}
 
 		currValue -= inc;
@@ -913,15 +879,15 @@ void CG_DrawArmor( menuDef_t *menuHUD )
 	if (focusItem)
 	{
 		// Print armor amount
-		trap_R_SetColor( focusItem->window.foreColor );	
+		trap_R_SetColor(focusItem->window.foreColor);
 
-		CG_DrawNumField (
-			focusItem->window.rect.x, 
-			focusItem->window.rect.y, 
-			3, 
-			armor, 
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
+		CG_DrawNumField(
+			focusItem->window.rect.x,
+			focusItem->window.rect.y,
+			3,
+			armor,
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
 			NUM_FONT_SMALL,
 			qfalse);
 	}
@@ -929,7 +895,7 @@ void CG_DrawArmor( menuDef_t *menuHUD )
 	// If armor is low, flash a graphic to warn the player
 	if (armor)	// Is there armor? Draw the HUD Armor TIC
 	{
-		quarterArmor = (float) (ps->stats[STAT_MAX_HEALTH] / 4.0f);
+		quarterArmor = (float)(ps->stats[STAT_MAX_HEALTH] / 4.0f);
 
 		// Make tic flash if armor is at 25% of full armor
 		if (ps->stats[STAT_ARMOR] < quarterArmor)		// Do whatever the flash timer says
@@ -949,12 +915,12 @@ void CG_DrawArmor( menuDef_t *menuHUD )
 		}
 		else
 		{
-			cg.HUDArmorFlag=qtrue;
+			cg.HUDArmorFlag = qtrue;
 		}
 	}
 	else						// No armor? Don't show it.
 	{
-		cg.HUDArmorFlag=qfalse;
+		cg.HUDArmorFlag = qfalse;
 	}
 
 }
@@ -1326,182 +1292,66 @@ static void CG_DrawAmmo( centity_t	*cent,menuDef_t *menuHUD)
 CG_DrawForcePower
 ================
 */
-//[NewHud]
-#define DPBAR_H			65.0f
-#define DPBAR_W			13.0f
-#define DPBAR_X			538.0f
-#define DPBAR_Y			367.0f
 //[/NewHud]
-void CG_DrawDodge( menuDef_t *menuHUD )
+void CG_DrawDodge(menuDef_t *menuHUD)
 {
 	//[NewHud]
 	vec4_t			aColor;
 	itemDef_t		*focusItem;
-	float			percent = ((float)cg.snap->ps.stats[STAT_DODGE]/DODGE_MAX)*DPBAR_H;
+	//float			percent = ((float)cg.snap->ps.stats[STAT_DODGE]/DODGE_MAX)*DPBAR_H;
+
 
 	//color of the bar
-	aColor[0] = 0.0f;
-	aColor[1] = .613f;
-	aColor[2] = .097f;
-	aColor[3] = 0.8f;
+	//aColor[0] = 0.0f;
+	//aColor[1] = .613f;
+	//aColor[2] = .097f;
+	//aColor[3] = 0.8f;
 
 	// Make the hud flash by setting forceHUDTotalFlashTime above cg.time
-	if (cg.snap->ps.stats[STAT_MAX_DODGE] > DODGE_CRITICALLEVEL  //our maximum level is lower than the standard critical level.
-		&& cg.snap->ps.stats[STAT_DODGE] < DODGE_CRITICALLEVEL)
-	{
-		//color of the bar
-		aColor[0] = 1.0f;
-		aColor[1] = 0.0f;
-		aColor[2] = 0.0f;
-		aColor[3] = 0.8f;
-		if (cg.dodgeHUDNextFlashTime < cg.time)	
-		{
-			cg.dodgeHUDNextFlashTime = cg.time + 400;
-			trap_S_StartSound (NULL, 0, CHAN_LOCAL, cgs.media.noforceSound );
+	//if (cg.snap->ps.stats[STAT_MAX_DODGE] > DODGE_CRITICALLEVEL  //our maximum level is lower than the standard critical level.
+	//&& cg.snap->ps.stats[STAT_DODGE] < DODGE_CRITICALLEVEL)
+	//{
+	//color of the bar
+	//aColor[0] = 1.0f;
+	//aColor[1] = 0.0f;
+	//aColor[2] = 0.0f;
+	//aColor[3] = 0.8f;
+	//if (cg.dodgeHUDNextFlashTime < cg.time)	
+	//{
+	//cg.dodgeHUDNextFlashTime = cg.time + 400;
+	//trap_S_StartSound (NULL, 0, CHAN_LOCAL, cgs.media.noforceSound );
 
-		}
-	}
-	else	// turn HUD back on if it had just finished flashing time.
-	{
-		cg.dodgeHUDNextFlashTime = 0;
-	}
+	//}
+	//}
+	//else	// turn HUD back on if it had just finished flashing time.
+	//{
+	//	cg.dodgeHUDNextFlashTime = 0;
+	//}
 
-	if (percent > DPBAR_H)
-	{//clamp to MAX_DODGE
-		percent = DPBAR_H;
-	}
+	//if (percent > DPBAR_H)
+	//{//clamp to MAX_DODGE
+	//percent = DPBAR_H;
+	//}
 
-	if (percent < 0.1f)
-	{
-		percent = 0.1f;
-	}
-
-	//now draw the part to show how much health there is in the color specified
-	CG_FillRect(DPBAR_X, DPBAR_Y+(DPBAR_H-percent), DPBAR_W, DPBAR_H-(DPBAR_H-percent), aColor);
-
-	/* old tic-based method
-	int				i;
-	vec4_t			calcColor;
-	float			value,inc,percent;
-	itemDef_t		*focusItem;
-	qboolean		flash=qfalse;
-
-	// Can we find the menu?
-	if (!menuHUD)
-	{
-		return;
-	}
-
-	// Make the hud flash by setting forceHUDTotalFlashTime above cg.time
-	if (cg.snap->ps.stats[STAT_DODGE] < DODGE_CRITICALLEVEL)
-	{
-		flash = qtrue;
-		if (cg.dodgeHUDNextFlashTime < cg.time)	
-		{
-			cg.dodgeHUDNextFlashTime = cg.time + 400;
-			trap_S_StartSound (NULL, 0, CHAN_LOCAL, cgs.media.noforceSound );
-
-			if (cg.dodgeHUDActive)
-			{
-				cg.dodgeHUDActive = qfalse;
-			}
-			else
-			{
-				cg.dodgeHUDActive = qtrue;
-			}
-
-		}
-	}
-	else	// turn HUD back on if it had just finished flashing time.
-	{
-		cg.dodgeHUDNextFlashTime = 0;
-		cg.dodgeHUDActive = qtrue;
-	}
-
-	if (!cg.dodgeHUDActive)
-	{
-		return;
-	}
-
-	//[NewHud]
-	inc = (float)  DODGE_MAX / MAX_OJPHUD_TICS;
-	//inc = (float)  DODGE_MAX / MAX_HUD_TICS;
-	//[/NewHud]
-	value = cg.snap->ps.stats[STAT_DODGE];
-
-	//[NewHud]
-	for (i=MAX_OJPHUD_TICS-1;i>=0;i--)
-	//for (i=MAX_HUD_TICS-1;i>=0;i--)
-	//[/NewHud]
-	{
-		focusItem = Menu_FindItemByName(menuHUD, dodgeTicName[i]);
-
-		if (!focusItem)
-		{
-			continue;
-		}
-
-//		memcpy(calcColor, hudTintColor, sizeof(vec4_t));
-
-		if ( value <= 0 )	// done
-		{
-			break;
-		}
-		else if (value < inc)	// partial tic
-		{
-			if (flash)
-			{
-				memcpy(calcColor,  colorTable[CT_RED], sizeof(vec4_t));
-			}
-			else 
-			{
-				memcpy(calcColor,  colorTable[CT_WHITE], sizeof(vec4_t));
-			}
-
-			percent = value / inc;
-			calcColor[3] = percent;
-		}
-		else
-		{
-			if (flash)
-			{
-				memcpy(calcColor,  colorTable[CT_RED], sizeof(vec4_t));
-			}
-			else 
-			{
-				memcpy(calcColor,  colorTable[CT_WHITE], sizeof(vec4_t));
-			}
-		}
-
-		trap_R_SetColor( calcColor);
-
-		CG_DrawPic( 
-			focusItem->window.rect.x,
-			focusItem->window.rect.y,
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
-			focusItem->window.background
-			);
-
-		value -= inc;
-	}
-	*/
-	//[/NewHud]
+	//if (percent < 0.1f)
+	//{
+	//	percent = 0.1f;
+	//}
 
 	focusItem = Menu_FindItemByName(menuHUD, "dodgeamount");
 
 	if (focusItem)
 	{
 		// Print force amount
-		trap_R_SetColor( focusItem->window.foreColor );	
+		trap_R_SetColor(focusItem->window.foreColor);
 
-		CG_DrawNumField (
-			focusItem->window.rect.x, 
-			focusItem->window.rect.y, 
-			3, 
-			cg.snap->ps.stats[STAT_DODGE], 
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
+		CG_DrawNumField(
+			focusItem->window.rect.x,
+			focusItem->window.rect.y,
+			3,
+			cg.snap->ps.stats[STAT_DODGE],
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
 			NUM_FONT_SMALL,
 			qfalse);
 	}
@@ -1514,66 +1364,14 @@ void CG_DrawDodge( menuDef_t *menuHUD )
 CG_DrawForcePower
 ================
 */
-//[NewHud]
-#define FPBAR_H			65.0f
-#define FPBAR_W			13.0f
-#define FPBAR_X			565.0f
-#define FPBAR_Y			367.0f
-//[/NewHud]
-void CG_DrawForcePower( menuDef_t *menuHUD )
+void CG_DrawForcePower(menuDef_t *menuHUD)
 {
-	//[NewHud]
-	vec4_t			aColor;
-	itemDef_t		*focusItem;
-	float			percent = ((float)cg.snap->ps.fd.forcePower/115.0f)*FPBAR_H;
-
-	//color of the bar
-	aColor[0] = 0.503f;
-	aColor[1] = 0.375f;
-	aColor[2] = 0.996f;
-	aColor[3] = 0.8f;
-
-	if (cg.forceHUDTotalFlashTime > cg.time || (cg_entities[cg.snap->ps.clientNum].currentState.userInt3 &  ( 1 << FLAG_FATIGUED)))
-	//if (cg.forceHUDTotalFlashTime > cg.time )
-	//[/FatigueSys]
-	{
-		//color of the bar
-		aColor[0] = 1.0f;
-		aColor[1] = 0.0f;
-		aColor[2] = 0.0f;
-		aColor[3] = 0.8f;
-		if (cg.forceHUDNextFlashTime < cg.time)	
-		{
-			cg.forceHUDNextFlashTime = cg.time + 400;
-			trap_S_StartSound (NULL, 0, CHAN_LOCAL, cgs.media.noforceSound );
-		}
-	}
-	else	// turn HUD back on if it had just finished flashing time.
-	{
-		cg.forceHUDNextFlashTime = 0;
-	}
-
-
-	if (percent > FPBAR_H)
-	{
-		return;
-	}
-
-	if (percent < 0.1f)
-	{
-		percent = 0.1f;
-	}
-
-	//now draw the part to show how much health there is in the color specified
-	CG_FillRect(FPBAR_X, FPBAR_Y+(FPBAR_H-percent), FPBAR_W, FPBAR_H-(FPBAR_H-percent), aColor);
-
-	/* old tic-based method
 	int				i;
 	vec4_t			calcColor;
-	float			value,inc,percent;
+	float			value, inc, percent;
 	itemDef_t		*focusItem;
 	const int		maxForcePower = 100;
-	qboolean	flash=qfalse;
+	qboolean	flash = qfalse;
 
 	// Can we find the menu?
 	if (!menuHUD)
@@ -1582,17 +1380,13 @@ void CG_DrawForcePower( menuDef_t *menuHUD )
 	}
 
 	// Make the hud flash by setting forceHUDTotalFlashTime above cg.time
-	//[FatigueSys]
-	//make the hud flash when fatigued.
-	if (cg.forceHUDTotalFlashTime > cg.time || (cg_entities[cg.snap->ps.clientNum].currentState.userInt3 &  ( 1 << FLAG_FATIGUED)))
-	//if (cg.forceHUDTotalFlashTime > cg.time )
-	//[/FatigueSys]
+	if (cg.forceHUDTotalFlashTime > cg.time)
 	{
 		flash = qtrue;
-		if (cg.forceHUDNextFlashTime < cg.time)	
+		if (cg.forceHUDNextFlashTime < cg.time)
 		{
 			cg.forceHUDNextFlashTime = cg.time + 400;
-			trap_S_StartSound (NULL, 0, CHAN_LOCAL, cgs.media.noforceSound );
+			trap_S_StartSound(NULL, 0, CHAN_LOCAL, cgs.media.noforceSound);
 
 			if (cg.forceHUDActive)
 			{
@@ -1611,21 +1405,15 @@ void CG_DrawForcePower( menuDef_t *menuHUD )
 		cg.forceHUDActive = qtrue;
 	}
 
-	if (!cg.forceHUDActive)
-	{
-		return;
-	}
+	//	if (!cg.forceHUDActive)
+	//	{
+	//		return;
+	//	}
 
-	//[NewHud]
-	inc = (float)  maxForcePower / MAX_OJPHUD_TICS;
-	//inc = (float)  maxForcePower / MAX_HUD_TICS;
-	//[/NewHud]
+	inc = (float)maxForcePower / MAX_HUD_TICS;
 	value = cg.snap->ps.fd.forcePower;
 
-	//[NewHud]
-	for (i=MAX_OJPHUD_TICS-1;i>=0;i--)
-	//for (i=MAX_HUD_TICS-1;i>=0;i--)
-	//[/NewHud]
+	for (i = MAX_HUD_TICS - 1; i >= 0; i--)
 	{
 		focusItem = Menu_FindItemByName(menuHUD, forceTicName[i]);
 
@@ -1634,9 +1422,9 @@ void CG_DrawForcePower( menuDef_t *menuHUD )
 			continue;
 		}
 
-//		memcpy(calcColor, hudTintColor, sizeof(vec4_t));
+		//		memcpy(calcColor, hudTintColor, sizeof(vec4_t));
 
-		if ( value <= 0 )	// done
+		if (value <= 0)	// done
 		{
 			break;
 		}
@@ -1644,11 +1432,11 @@ void CG_DrawForcePower( menuDef_t *menuHUD )
 		{
 			if (flash)
 			{
-				memcpy(calcColor,  colorTable[CT_RED], sizeof(vec4_t));
+				memcpy(calcColor, colorTable[CT_RED], sizeof(vec4_t));
 			}
-			else 
+			else
 			{
-				memcpy(calcColor,  colorTable[CT_WHITE], sizeof(vec4_t));
+				memcpy(calcColor, colorTable[CT_WHITE], sizeof(vec4_t));
 			}
 
 			percent = value / inc;
@@ -1658,43 +1446,41 @@ void CG_DrawForcePower( menuDef_t *menuHUD )
 		{
 			if (flash)
 			{
-				memcpy(calcColor,  colorTable[CT_RED], sizeof(vec4_t));
+				memcpy(calcColor, colorTable[CT_RED], sizeof(vec4_t));
 			}
-			else 
+			else
 			{
-				memcpy(calcColor,  colorTable[CT_WHITE], sizeof(vec4_t));
+				memcpy(calcColor, colorTable[CT_WHITE], sizeof(vec4_t));
 			}
 		}
 
-		trap_R_SetColor( calcColor);
+		trap_R_SetColor(calcColor);
 
-		CG_DrawPic( 
+		CG_DrawPic(
 			focusItem->window.rect.x,
 			focusItem->window.rect.y,
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
 			focusItem->window.background
 			);
 
 		value -= inc;
 	}
-	*/
-	//[/NewHud]
-	
+
 	focusItem = Menu_FindItemByName(menuHUD, "forceamount");
 
 	if (focusItem)
 	{
 		// Print force amount
-		trap_R_SetColor( focusItem->window.foreColor );	
+		trap_R_SetColor(focusItem->window.foreColor);
 
-		CG_DrawNumField (
-			focusItem->window.rect.x, 
-			focusItem->window.rect.y, 
-			3, 
-			cg.snap->ps.fd.forcePower, 
-			focusItem->window.rect.w, 
-			focusItem->window.rect.h, 
+		CG_DrawNumField(
+			focusItem->window.rect.x,
+			focusItem->window.rect.y,
+			3,
+			cg.snap->ps.fd.forcePower,
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
 			NUM_FONT_SMALL,
 			qfalse);
 	}
@@ -3353,6 +3139,8 @@ void CG_DrawTeamBackground( int x, int y, int w, int h, float alpha, int team )
 CG_DrawMiniScoreboard
 ================
 */
+
+/*
 static float CG_DrawMiniScoreboard ( float y ) 
 {
 	char temp[MAX_QPATH];
@@ -3380,7 +3168,7 @@ static float CG_DrawMiniScoreboard ( float y )
 	}
 	else
 	{
-		/*
+		
 		strcpy ( temp, "1st: " );
 		Q_strcat ( temp, MAX_QPATH, cgs.scores1==SCORE_NOT_PRESENT?"-":(va("%i",cgs.scores1)) );
 		
@@ -3389,7 +3177,7 @@ static float CG_DrawMiniScoreboard ( float y )
 		
 		CG_Text_Paint( 630 - CG_Text_Width ( temp, 0.7f, FONT_SMALL ), y, 0.7f, colorWhite, temp, 0, 0, ITEM_TEXTSTYLE_SHADOWEDMORE, FONT_MEDIUM );
 		y += 15;
-		*/
+		
 		//rww - no longer doing this. Since the attacker now shows who is first, we print the score there.
 	}		
 	
@@ -3397,11 +3185,13 @@ static float CG_DrawMiniScoreboard ( float y )
 	return y;
 }
 
+*/
+
 /*
 ================
 CG_DrawEnemyInfo
 ================
-*/
+
 static float CG_DrawEnemyInfo ( float y ) 
 {
 	float		size;
@@ -3450,11 +3240,6 @@ static float CG_DrawEnemyInfo ( float y )
 
 			y += size;
 
-			/*
-			CG_Text_Paint( 630 - CG_Text_Width ( ci->name, 0.7f, FONT_MEDIUM ), y, 0.7f, colorWhite, ci->name, 0, 0, 0, FONT_MEDIUM );
-			y += 15;
-			*/
-
 			CG_Text_Paint( 630 - CG_Text_Width ( title, 0.7f, FONT_MEDIUM ) + xOffset, y, 0.7f, colorWhite, title, 0, 0, 0, FONT_MEDIUM );
 
 			return y + BIGCHAR_HEIGHT + 2;
@@ -3488,40 +3273,14 @@ static float CG_DrawEnemyInfo ( float y )
 	}
 	else
 	{
-		/*
-		title = "Attacker";
-		clientNum = cg.predictedPlayerState.persistant[PERS_ATTACKER];
-
-		if ( clientNum < 0 || clientNum >= MAX_CLIENTS || clientNum == cg.snap->ps.clientNum ) 
-		{
-			return y;
-		}
-
-		if ( cg.time - cg.attackerTime > ATTACKER_HEAD_TIME ) 
-		{
-			cg.attackerTime = 0;
-			return y;
-		}
-		*/
-		//As of current, we don't want to draw the attacker. Instead, draw whoever is in first place.
+	
 		if (cgs.duelWinner < 0 || cgs.duelWinner >= MAX_CLIENTS)
 		{
 			return y;
 		}
 
 
-		title = va("%s: %i",CG_GetStringEdString("MP_INGAME", "LEADER"), cgs.scores1);
-
-		/*
-		if (cgs.scores1 == 1)
-		{
-			title = va("%i kill", cgs.scores1);
-		}
-		else
-		{
-			title = va("%i kills", cgs.scores1);
-		}
-		*/
+		title = va("%s: %i",CG_GetStringEdString("MP_INGAME", "LEADER"), cgs.scores1); // Removing the scoreboard for immersion - Mikkel. 
 		clientNum = cgs.duelWinner;
 	}
 
@@ -3573,6 +3332,8 @@ static float CG_DrawEnemyInfo ( float y )
 
 	return y + BIGCHAR_HEIGHT + 2;
 }
+
+*/
 
 /*
 ==================
@@ -4557,9 +4318,9 @@ static void CG_DrawUpperRight( void ) {
 		y = CG_DrawRadar ( y );
 	}
 
-	y = CG_DrawEnemyInfo ( y );
+	// y = CG_DrawEnemyInfo ( y ); - Removing scoreboard for immersion
 
-	y = CG_DrawMiniScoreboard ( y );
+	// y = CG_DrawMiniScoreboard ( y ); - Removing scoreboard for immersion
 
 	CG_DrawPowerupIcons(y);
 }

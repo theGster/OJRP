@@ -63,7 +63,7 @@
 #define DODGE_PARTIAL		.5
 
 //Default amount of Maximum dodge
-#define	DODGE_MAX			100
+#define	DODGE_MAX			110
 
 //The Fatigue (Force) Points to Dodge Points Ratio
 #define	DODGE_FATIGUE		6

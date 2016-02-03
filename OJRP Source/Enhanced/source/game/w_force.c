@@ -153,66 +153,36 @@ const int mindTrickTime[NUM_FORCE_POWER_LEVELS] =
 	15000
 };
 
-//[DodgeSys]
-#define SK_DP_FORFORCE		.5f	//determines the number of DP points players get for each skill point dedicated to Force Powers.
-#define SK_DP_FORMERC		1/6.0f	//determines the number of DP points get for each skill point dedicated to gunner/merc skills.
 void DetermineDodgeMax(gentity_t *ent)
-{//sets the maximum number of dodge points this player should have.  This is based on their skill point allociation.
-	int i;
-	int skillCount;
-	float dodgeMax = 0;
-
+{
+	/*
+		Dodge points are determined by the saber defense level from this point forward.
+		* Mikkel
+	*/
+	int dodgeMax = 0;
 	assert(ent && ent->client);
 
-	if(ent->client->ps.isJediMaster)
-	{//jedi masters have much more DP and don't actually have skills.
-		ent->client->ps.stats[STAT_MAX_DODGE] = 100;
-		return;
+	//Dodgecap
+	if (ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE] == FORCE_LEVEL_0) {
+		dodgeMax = 30;
+		ent->client->ps.stats[STAT_MAX_DODGE] = (int)dodgeMax;
+		//G_Printf("%d has SD level %d and has been given %d DP.", ent, ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE], dodgeMax );
 	}
-	else if(ent->s.number < MAX_CLIENTS)
-	{//players get a initial DP bonus.
-		dodgeMax = 50;
+	if (ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE] == FORCE_LEVEL_1) {
+		dodgeMax = 55;
+		ent->client->ps.stats[STAT_MAX_DODGE] = (int)dodgeMax;
+		//G_Printf("%d has SD level %d and has been given %d DP.", ent, ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE], dodgeMax);
 	}
-
-	//force powers
-	for(i = 0; i < NUM_FORCE_POWERS; i++)
-	{
-		if(ent->client->ps.fd.forcePowerLevel[i])
-		{//has points in this skill
-			for(skillCount = FORCE_LEVEL_1; skillCount <= ent->client->ps.fd.forcePowerLevel[i]; skillCount++)
-			{
-				dodgeMax += bgForcePowerCost[i][skillCount] * SK_DP_FORFORCE;
-			}
-		}
+	if (ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE] == FORCE_LEVEL_2) {
+		dodgeMax = 80;
+		ent->client->ps.stats[STAT_MAX_DODGE] = (int)dodgeMax;
+		//G_Printf("%d has SD level %d and has been given %d DP.", ent, ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE], dodgeMax);
 	}
-
-	//additional skills
-	for(i = 0; i < NUM_SKILLS; i++)
-	{
-		if(ent->client->skillLevel[i])
-		{//has points in this skill
-			for(skillCount = FORCE_LEVEL_1; skillCount <= ent->client->skillLevel[i]; skillCount++)
-			{
-				//[StanceSelection]
-				if(i >= SK_BLUESTYLE && i <= SK_STAFFSTYLE)
-				{//styles count as force powers
-					dodgeMax += bgForcePowerCost[i+NUM_FORCE_POWERS][skillCount] * SK_DP_FORFORCE;
-				}
-				else
-				{
-					dodgeMax += bgForcePowerCost[i+NUM_FORCE_POWERS][skillCount] * SK_DP_FORMERC;
-				}
-
-				//dodgeMax += bgForcePowerCost[i][skillCount] * SK_DP_FORMERC;
-				//[/StanceSelection]
-			}
-		}
+	if (ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE] == FORCE_LEVEL_3) {
+		dodgeMax = 110;
+		ent->client->ps.stats[STAT_MAX_DODGE] = (int)dodgeMax;
+		//G_Printf("%d has SD level %d and has been given %d DP.", ent, ent->client->ps.fd.forcePowerLevel[FP_SABER_DEFENSE], dodgeMax);
 	}
-   
-   //Dodgecap 120
-   if(dodgeMax > 120) 
-      dodgeMax=120;
-	ent->client->ps.stats[STAT_MAX_DODGE] = (int) dodgeMax;
 }
 //[/DodgeSys]
 
