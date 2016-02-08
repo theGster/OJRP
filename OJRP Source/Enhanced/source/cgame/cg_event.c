@@ -2442,6 +2442,7 @@ void CG_EntityEvent( centity_t *cent, vec3_t position ) {
 			else if ( cg.snap->ps.weapon == WP_SABER )
 			{
 				cg.forceHUDTotalFlashTime = cg.time + 1000;
+				cg.dodgeHUDTotalFlashTime = cg.time + 1000;
 			}
 			else
 			{

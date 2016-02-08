@@ -1295,48 +1295,106 @@ CG_DrawForcePower
 //[/NewHud]
 void CG_DrawDodge(menuDef_t *menuHUD)
 {
-	//[NewHud]
-	vec4_t			aColor;
+	int				i;
+	vec4_t			calcColor;
+	float			value, inc, percent;
 	itemDef_t		*focusItem;
-	//float			percent = ((float)cg.snap->ps.stats[STAT_DODGE]/DODGE_MAX)*DPBAR_H;
+	const int		maxDodgePoints = 110;
+	qboolean	flash = qfalse;
 
-
-	//color of the bar
-	//aColor[0] = 0.0f;
-	//aColor[1] = .613f;
-	//aColor[2] = .097f;
-	//aColor[3] = 0.8f;
+	// Can we find the menu?
+	if (!menuHUD)
+	{
+		return;
+	}
 
 	// Make the hud flash by setting forceHUDTotalFlashTime above cg.time
-	//if (cg.snap->ps.stats[STAT_MAX_DODGE] > DODGE_CRITICALLEVEL  //our maximum level is lower than the standard critical level.
-	//&& cg.snap->ps.stats[STAT_DODGE] < DODGE_CRITICALLEVEL)
-	//{
-	//color of the bar
-	//aColor[0] = 1.0f;
-	//aColor[1] = 0.0f;
-	//aColor[2] = 0.0f;
-	//aColor[3] = 0.8f;
-	//if (cg.dodgeHUDNextFlashTime < cg.time)	
-	//{
-	//cg.dodgeHUDNextFlashTime = cg.time + 400;
-	//trap_S_StartSound (NULL, 0, CHAN_LOCAL, cgs.media.noforceSound );
+	if (cg.dodgeHUDTotalFlashTime > cg.time)
+	{
+		flash = qtrue;
+		if (cg.dodgeHUDNextFlashTime < cg.time)
+		{
+			cg.dodgeHUDNextFlashTime = cg.time + 400;
+			trap_S_StartSound(NULL, 0, CHAN_LOCAL, cgs.media.noforceSound);
 
-	//}
-	//}
-	//else	// turn HUD back on if it had just finished flashing time.
-	//{
-	//	cg.dodgeHUDNextFlashTime = 0;
-	//}
+			if (cg.dodgeHUDActive)
+			{
+				cg.dodgeHUDActive = qfalse;
+			}
+			else
+			{
+				cg.dodgeHUDActive = qtrue;
+			}
 
-	//if (percent > DPBAR_H)
-	//{//clamp to MAX_DODGE
-	//percent = DPBAR_H;
-	//}
+		}
+	}
+	else	// turn HUD back on if it had just finished flashing time.
+	{
+		cg.dodgeHUDNextFlashTime = 0;
+		cg.dodgeHUDActive = qtrue;
+	}
 
-	//if (percent < 0.1f)
-	//{
-	//	percent = 0.1f;
-	//}
+	//	if (!cg.forceHUDActive)
+	//	{
+	//		return;
+	//	}
+
+	inc = (int)maxDodgePoints / MAX_HUD_TICS;
+	value = cg.snap->ps.stats[STAT_DODGE];
+
+	for (i = MAX_HUD_TICS - 1; i >= 0; i--)
+	{
+		focusItem = Menu_FindItemByName(menuHUD, dodgeTicName[i]);
+
+		if (!focusItem)
+		{
+			continue;
+		}
+
+		//		memcpy(calcColor, hudTintColor, sizeof(vec4_t));
+
+		if (value <= 0)	// done
+		{
+			break;
+		}
+		else if (value < inc)	// partial tic
+		{
+			if (flash)
+			{
+				memcpy(calcColor, colorTable[CT_RED], sizeof(vec4_t));
+			}
+			else
+			{
+				memcpy(calcColor, colorTable[CT_WHITE], sizeof(vec4_t));
+			}
+
+			percent = value / inc;
+			calcColor[3] = percent;
+		}
+		else
+		{
+			if (flash)
+			{
+				memcpy(calcColor, colorTable[CT_RED], sizeof(vec4_t));
+			}
+			else
+			{
+				memcpy(calcColor, colorTable[CT_WHITE], sizeof(vec4_t));
+			}
+		}
+
+		trap_R_SetColor(calcColor);
+
+		CG_DrawPic(
+			focusItem->window.rect.x,
+			focusItem->window.rect.y,
+			focusItem->window.rect.w,
+			focusItem->window.rect.h,
+			focusItem->window.background
+			);
+
+		value -= inc;
+	}
 
 	focusItem = Menu_FindItemByName(menuHUD, "dodgeamount");
 
@@ -1410,7 +1468,7 @@ void CG_DrawForcePower(menuDef_t *menuHUD)
 	//		return;
 	//	}
 
-	inc = (float)maxForcePower / MAX_HUD_TICS;
+	inc = (int)maxForcePower / MAX_HUD_TICS;
 	value = cg.snap->ps.fd.forcePower;
 
 	for (i = MAX_HUD_TICS - 1; i >= 0; i--)

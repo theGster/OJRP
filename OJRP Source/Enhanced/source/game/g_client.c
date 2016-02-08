@@ -2675,7 +2675,9 @@ char *ClientConnect( int clientNum, qboolean firstTime, qboolean isBot ) {
 //	if ( !client->areabits )
 //		client->areabits = G_Alloc( (trap_AAS_PointReachabilityAreaIndex( NULL ) + 7) / 8 );
 
-
+	// Resetting admin level to prevent incorrect levels given upon connection
+	// Mikkel 
+	ent->client->pers.admin = qfalse;
 
 	return NULL;
 }

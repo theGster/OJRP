@@ -611,44 +611,14 @@ typedef struct {
 	//This is used to determine if the visual weapon events can be sent or not.
 	qboolean ojpClientPlugIn;
 	//[/ClientPlugInDetect]
-   	//RoAR mod BEGIN
-	qboolean	amfreeze;
-	qboolean	silent;
-	qboolean	autopro;
-	qboolean	tzone;
-	qboolean	amdemigod;
-	qboolean	amterminator;
-	qboolean	amhuman;
-	qboolean	amlockname;
-	qboolean	amsplat;
-	qboolean	ammodelchanged;
-	qboolean	ammodelchanged2;
-	qboolean	ammodelchanged3;
-	qboolean	amempower;
-	qboolean	silent2;
-	qboolean	iamanadmin;
-	qboolean	iamclan;
-	qboolean	chatred;
-	qboolean	chatgreen;
-	qboolean	chatyellow;
-	qboolean	chatblue;
-	qboolean	chatlblue;
-	qboolean	chatpurple;
-	qboolean	chatwhite;
-	qboolean	chatblack;
-	qboolean	ampunish;
-	qboolean	amsleep;
-	qboolean	amblind;
-	//TEAM CHAT
-	qboolean	teamchat;
-	qboolean	clanchat;
-	qboolean	adminchat;
-	//
+   	
 	int			iModelScalePers;
 	int			save_score;
 	//RoAR mod END
 	int			forcePowersKnownSaved;	// MJN - Used to save and restore your known forcepowers when unempowering is used.
 	int			forcePowerLevelSaved[NUM_FORCE_POWERS]; // MJN - Used to save your old level when empowering is used and restoring it later.
+	// Mikkel
+	qboolean	admin;
 } clientPersistant_t;
 
 typedef struct renderInfo_s
@@ -2141,29 +2111,10 @@ extern  vmCvar_t	roar_emoteControl;
 
 //RoAR mod BEGIN
 extern vmCvar_t		roar_consolemotd;
-extern vmCvar_t		g_adminPassword1;      // admin password for \adminlogin <password>
-extern vmCvar_t		g_adminPassword2;
-extern vmCvar_t		g_adminPassword3;
-extern vmCvar_t		g_adminPassword4;
-extern vmCvar_t		g_adminPassword5;
+extern vmCvar_t		g_adminPassword;      // admin password for \adminlogin <password>
 
 extern vmCvar_t		g_clanPassword;
 extern	vmCvar_t	mod_saberBoxSize;
-
-extern vmCvar_t		roar_AdminLogin1_saying;
-extern vmCvar_t		roar_AdminLogin2_saying;
-extern vmCvar_t		roar_AdminLogin3_saying;
-extern vmCvar_t		roar_AdminLogin4_saying;
-extern vmCvar_t		roar_AdminLogin5_saying;
-
-extern vmCvar_t		roar_ClanLogin_saying;
-extern vmCvar_t		roar_ClanLogout_saying;
-
-extern vmCvar_t		roar_AdminLogout1_saying;
-extern vmCvar_t		roar_AdminLogout2_saying;
-extern vmCvar_t		roar_AdminLogout3_saying;
-extern vmCvar_t		roar_AdminLogout4_saying;
-extern vmCvar_t		roar_AdminLogout5_saying;
 
 extern vmCvar_t		roar_motd_line;
 extern vmCvar_t		x_cstime;

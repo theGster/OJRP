@@ -329,11 +329,7 @@ vmCvar_t		roar_emoteControl;
 
 vmCvar_t		d_slowmodeath;
 vmCvar_t		roar_consolemotd;
-vmCvar_t		g_adminPassword1;      // admin password for \adminlogin <password>
-vmCvar_t		g_adminPassword2;
-vmCvar_t		g_adminPassword3;
-vmCvar_t		g_adminPassword4;
-vmCvar_t		g_adminPassword5;
+vmCvar_t		g_adminPassword;      // admin password for \adminlogin <password>
 vmCvar_t		roar_motd_line;
 vmCvar_t		x_cstime;
 vmCvar_t		roar_allow_black_names;
@@ -466,21 +462,6 @@ vmCvar_t		roar_allow_samePlayerNames;
 
 vmCvar_t		roar_allow_auto_saber_switching;
 vmCvar_t		roar_IdleSaberDmg;
-
-vmCvar_t		roar_AdminLogin1_saying;
-vmCvar_t		roar_AdminLogin2_saying;
-vmCvar_t		roar_AdminLogin3_saying;
-vmCvar_t		roar_AdminLogin4_saying;
-vmCvar_t		roar_AdminLogin5_saying;
-
-vmCvar_t		roar_ClanLogin_saying;
-vmCvar_t		roar_ClanLogout_saying;
-
-vmCvar_t		roar_AdminLogout1_saying;
-vmCvar_t		roar_AdminLogout2_saying;
-vmCvar_t		roar_AdminLogout3_saying;
-vmCvar_t		roar_AdminLogout4_saying;
-vmCvar_t		roar_AdminLogout5_saying;
 
 vmCvar_t		roar_spectate_keep_score;
 vmCvar_t		sv_maxConnections;
@@ -939,11 +920,7 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &g_showDuelHealths, "g_showDuelHealths", "0", CVAR_SERVERINFO },
 	{ &g_powerDuelStartHealth, "g_powerDuelStartHealth", "150", CVAR_ARCHIVE, 0, qtrue  },
 	{ &g_powerDuelEndHealth, "g_powerDuelEndHealth", "90", CVAR_ARCHIVE, 0, qtrue  },
-	{ &g_adminPassword1,         "cm_adminPassword1",         "", CVAR_ARCHIVE | CVAR_INTERNAL, 0, qfalse },
-	{ &g_adminPassword2,         "cm_adminPassword2",         "", CVAR_ARCHIVE | CVAR_INTERNAL, 0, qfalse },
-	{ &g_adminPassword3,         "cm_adminPassword3",         "", CVAR_ARCHIVE | CVAR_INTERNAL, 0, qfalse },
-	{ &g_adminPassword4,         "cm_adminPassword4",         "", CVAR_ARCHIVE | CVAR_INTERNAL, 0, qfalse },
-	{ &g_adminPassword5,         "cm_adminPassword5",         "", CVAR_ARCHIVE | CVAR_INTERNAL, 0, qfalse },
+	{ &g_adminPassword,         "ojrp_apassword",         "", CVAR_ARCHIVE | CVAR_INTERNAL, 0, qfalse },
 	{ &d_slowmodeath,         "cm_slowmodeath",         "0", 0, 0, qtrue },
 	{ &roar_adminControl1, "cm_adminControl1", "0", CVAR_ARCHIVE, 0 , qtrue },
 	{ &roar_adminControl2, "cm_adminControl2", "0", CVAR_ARCHIVE, 0 , qtrue },
@@ -1157,21 +1134,6 @@ static cvarTable_t		gameCvarTable[] = {
 	{ &roar_console_motd,	"cm_console_motd",		"^1Type in /HELP to see a list of all the commands.",	CVAR_ARCHIVE,					0, qtrue },
 	{ &roar_starting_weapons,	"cm_starting_weapons",		"0",	CVAR_ARCHIVE,					0, qtrue },
 	{ &roar_allow_samePlayerNames,	"cm_allow_samePlayerNames",		"0",	CVAR_ARCHIVE,					0, qtrue },
-
-	{ &roar_AdminLogin1_saying,			"cm_AdminLogin1_saying",			"^7has logged in as admin level 1",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogin2_saying,			"cm_AdminLogin2_saying",			"^7has logged in as admin level 2",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogin3_saying,			"cm_AdminLogin3_saying",			"^7has logged in as admin level 3",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogin4_saying,			"cm_AdminLogin4_saying",			"^7has logged in as admin level 4",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogin5_saying,			"cm_AdminLogin5_saying",			"^7has logged in as admin level 5",		CVAR_ARCHIVE,					0, qfalse },
-
-	{ &roar_ClanLogin_saying,			"cm_ClanLogin_saying",			"^7has logged in as a ^1clan member!",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_ClanLogout_saying,			"cm_ClanLogout_saying",			"^7has logged out of ^1clan membership!",		CVAR_ARCHIVE,					0, qfalse },
-
-	{ &roar_AdminLogout1_saying,			"cm_AdminLogout1_saying",			"^7has logged out of admin level 1",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogout2_saying,			"cm_AdminLogout2_saying",			"^7has logged out of admin level 2",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogout3_saying,			"cm_AdminLogout3_saying",			"^7has logged out of admin level 3",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogout4_saying,			"cm_AdminLogout4_saying",			"^7has logged out of admin level 4",		CVAR_ARCHIVE,					0, qfalse },
-	{ &roar_AdminLogout5_saying,			"cm_AdminLogout5_saying",			"^7has logged out of admin level 5",		CVAR_ARCHIVE,					0, qfalse },
 
 	{ &roar_spectate_keep_score,			"cm_spectate_keep_score",			"1",		CVAR_ARCHIVE,					0, qfalse },
 	{ &gsess,								"gsess",							"",			CVAR_INTERNAL | CVAR_ROM | CVAR_NORESTART, 0, qfalse},

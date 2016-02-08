@@ -4059,6 +4059,11 @@ Ghoul2 Insert End
 	cg.forceHUDTotalFlashTime = 0;
 	cg.forceHUDNextFlashTime = 0;
 
+	// Dodge HUD set up
+	cg.dodgeHUDActive = qtrue;
+	cg.dodgeHUDTotalFlashTime = 0;
+	cg.dodgeHUDNextFlashTime = 0;
+
 	i = WP_NONE+1;
 	while (i <= LAST_USEABLE_WEAPON)
 	{

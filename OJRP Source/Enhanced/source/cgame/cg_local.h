@@ -1039,6 +1039,7 @@ typedef struct {
 	qboolean	forceHUDActive;				// Flag to show force hud is off/on
 
 	//[DodgeSys]
+	int			dodgeHUDTotalFlashTime;
 	int			dodgeHUDNextFlashTime;
 	qboolean	dodgeHUDActive;
 	//[/DodgeSys]
